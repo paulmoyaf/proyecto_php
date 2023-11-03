@@ -1,0 +1,41 @@
+proyecto_php/
+│
+├── admin/
+│   ├── index.php          # Página principal del área de administración
+│   ├── login.php          # Página de login
+│   ├── dashboard.php      # Página de dashboard (acceso después del login)
+│   └── ...
+│
+├── assets/
+│   ├── css/
+│   │   └── style.css
+│   └── js/
+│       └── script.js
+│
+├── includes/
+│   ├── header.php
+│   └── footer.php
+│
+├── public/
+│   ├── index.php
+│   ├── about.php
+│   └── contact.php
+│
+├── src/
+│   ├── controllers/
+│   │   └── HomeController.php
+│   ├── models/
+│   │   └── UserModel.php
+│   ├── views/
+│   │   ├── home_view.php
+│   │   ├── about_view.php
+│   │   └── contact_view.php
+│   ├── objects/
+│   │   └── YourObjectCreator.php  # Archivo que crea objetos
+│   └── ...
+│
+├── config.php
+└── db/
+    ├── db_connection.php
+    ├── db_functions.php
+    └── ...

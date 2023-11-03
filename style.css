@@ -1,0 +1,265 @@
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Fasthand&family=Lexend:wght@400;700&family=Noto+Sans+JP:wght@900&family=Nunito:wght@400;800&family=Poppins:wght@400;600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gabarito&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=AR+One+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Akatab&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Albert+Sans&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Amiko&display=swap');
+
+:root {
+    --blanco: white;
+    --negro: black;
+    --gris: rgba(0, 0, 0, 0.1);
+    --celeste: rgba(150, 174, 253, 0.1);
+}
+
+
+body{
+    /* font-family: "Gabarito", cursive; */
+    /* font-family: 'AR One Sans', sans-serif; */
+    /* font-family: "Poppins", sans-serif; */
+    /* font-family: 'Akatab', sans-serif; */
+    font-family: 'Albert Sans', sans-serif;
+    /* font-family: 'Amiko', sans-serif; */
+}
+
+.header{
+  padding: 1em 3em;
+  background-color: rgb(59, 58, 58);
+  color: var(--blanco);
+  height: 4em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-warning{
+  /* background-color: #ffa66f; */
+}
+
+#logo{
+    height: 3em;
+    /* margin-left: 2em; */
+}
+#carrito{
+    height: 2.2em;
+    /* margin-left: 2em; */
+}
+#imgGps{
+    width: 2em;
+    margin-right: 1em;
+}
+
+
+#secServicios img{
+  width: 5em;
+}
+
+#logosUnis{
+  height: 25em;
+  /* display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; */
+  /* text-align: center; */
+  /* background-color: aqua; */
+}
+
+#carouselIdLogo img {
+  height: 10em;
+  /* height: auto; */
+}
+#carouselCamisetas img {
+  /* height: 10em; */
+  width: 12em;
+}
+#carouselId {
+  /* width: auto; */
+  /* height: auto; */
+}
+
+.card::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(assets/img/portadas/camisetasBanner.jpg);
+  background-size:cover;
+  opacity: 0.5;
+  z-index: -1;
+}
+
+.card-it::before{
+  opacity: 0.2;
+}
+
+
+#flecha-carousel {
+  filter: invert(100%);
+}
+
+  .content {
+    height: 25em;
+    color: var(--negro);
+    opacity: 1;
+  }
+
+  .card{
+    border: 0px;
+  }
+
+
+
+#form-contacto{
+    border: 1px rgb(144, 144, 144) solid;
+    border-radius: 1em;
+    background-color: var(--gris);
+    padding: 2em;
+    /* width: auto; */
+    
+}
+
+
+a{
+  text-decoration: none;
+}
+
+
+
+#grid{
+  text-align: center;
+  gap: 2em;
+  display: grid;
+  grid-template-areas:
+  'card card card';
+  grid-template-columns: auto auto auto;
+}
+
+#grid-item{
+  grid-area: 'card';
+  border-radius: 0.5em;
+  background-color: rgba(0, 0, 0, 0.1);
+  padding-top: 2em;
+}
+
+.grid-foto{
+  padding-top: 0px;
+  grid-column: span 2;
+}
+
+.foto-large{
+  grid-column: 2 / span 2;
+}
+
+/* #grid-item:nth-child(4){
+grid-column: span 2;
+} */
+
+#grid-item img{
+  width: 80%;
+}
+
+.texto-nosotros{
+  text-align: justify;
+}
+
+.titulo-img-nosotros{
+  padding-top: 1em;
+  font-weight: bold;
+  font-size:large;
+  
+}
+.img-nosotros{
+ width: 7em;
+}
+
+.error{
+  padding-top: 2em;
+  color:rgb(219, 46, 46)
+}
+
+/* #productos-similares{
+  transition: background-color 1s;
+}
+#productos-similares:hover{
+  background-color: rgba(0, 0, 0, 0.1)  ;
+} */
+
+
+
+
+.caja{
+  background-color: aqua;
+  width: 15em;
+  height: 15em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box1{
+  transition: background-color 1s;
+}
+.box1:hover{
+  background-color: rgba(0, 0, 0, 0.1)  ;
+}
+.box2{
+  transition: font-size 1s;
+}
+.box2:hover{
+  font-size: 2em;
+}
+.box3{
+  transition: border-radius 1s;
+}
+.box3:hover{
+  border-radius: 3em;
+}
+
+@media (max-width:880px) {
+  #carouselIdLogo img{
+    height: 5em;
+    /* margin-left: 2em; */
+}
+
+#logosUnis{
+  height: 15em;
+}
+
+.button-form{
+width: 100%;
+}
+
+#grid{
+  display: grid;
+  grid-template-areas:
+  'card card';
+  grid-template-columns: auto auto;
+}
+
+.grid-foto{
+  grid-column: span 2;
+}
+
+.foto-large{
+  grid-column: span 2;
+}
+
+#carouselCamisetas img {
+  /* height: 10em; */
+  width: 6em;
+}
+
+/* #grid-item{
+  grid-area: card;
+} */
+
+/* #grid-item:nth-child(4){
+  grid-column: span 2;
+  } */
+
+}

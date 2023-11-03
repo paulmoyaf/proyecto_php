@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Fasthand&family=Lexend:wght@400;700&family=Noto+Sans+JP:wght@900&family=Nunito:wght@400;800&family=Poppins:wght@400;600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gabarito&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=AR+One+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Akatab&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Albert+Sans&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Amiko&display=swap');
+
+
+body{
+  /* font-family: "Gabarito", cursive; */
+  /* font-family: 'AR One Sans', sans-serif; */
+  /* font-family: "Poppins", sans-serif; */
+  /* font-family: 'Akatab', sans-serif; */
+  font-family: 'Albert Sans', sans-serif;
+  /* font-family: 'Amiko', sans-serif; */
+}
+
+.custom-width {
+    width: 60%;
+    margin: 0 auto;
+  }
+
+  .custom-dashboard{
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  a{
+    text-decoration: none;
+  }
+
+  .image-login{
+    width: auto;
+    margin: 0 auto;
+  }
+
+  .card-products{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 2em;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .card{
+    background-color: rgba(0, 0, 0, 0.1);
+    margin-top: 3em;
+    padding: 2em;
+  }
+
+  .logo{
+    width: 3em;
+  }
+
+
+  .header-titulo{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  tbody img{
+    width: 6em;
+  }
+  @media (max-width: 576px) {
+    .custom-width {
+      width: 100%;
+    }
+  }
