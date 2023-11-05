@@ -1,13 +1,13 @@
 <?php
 
-define('DB_PATH', 'sqlite:C:\\xampp\\htdocs\\proyecto_php\\db\\catalogo.db');
-// define('DB_PATH', 'sqlite:C:/xampp/htdocs/cap3/bbdd/catalogo.db');
-// $db = new PDO ("sqlite:C:\\xampp\\htdocs\\cap3\\bbdd\\catalogo.db");
+require_once('conexion.php');
+
 
 class ProductosDB{
 
     public static function selectProductos(){
         try{
+            // $db = obtenerConexion(); // Obtener la conexión desde la función
             $db = new PDO (DB_PATH);
             $registros = $db->query("select * from productos");
             $productos = array();
