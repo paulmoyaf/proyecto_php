@@ -57,6 +57,7 @@
                             <option value="">Medium</option>
                             <option value="">Large</option>
                         </select> -->
+                        <label for="talla_id">Talla:</label>
                         <select class="form-select form-select-md" name="talla_id">
                             <?php foreach ($tallas as $talla) { ?>
                                 <option value="<?php echo $talla['id']; ?>"><?php echo $talla['nombre']; ?></option>
@@ -67,7 +68,8 @@
 
 
                     <div class="form-outline col">
-                        <input type="number" id="typeNumber" class="form-control form-select-md" placeholder="Cantidad" min="0" />
+                        <label for="cantidad">Cantidad: </label>
+                        <input type="number" id="typeNumber" name="cantidad" class="form-control form-select-md" placeholder="Cantidad" min="0" />
                         <!-- <label class="form-label" for="typeNumber">Number input</label> -->
                     </div>
                 </div>
