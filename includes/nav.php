@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light ">
 
 <div class="container">
-  <a class="navbar-brand pt-3" href="index.html">
+  <a class="navbar-brand pt-3" href="index.php">
     <img src="assets/img/logo/logo.png" alt="" id="carrito">
     <!-- <h2>MoyaCreative</h2> -->
   </a>
@@ -36,7 +36,7 @@
           <a class="dropdown-item" href="#">Servicio 3</a>
       </li>
       <li class="nav-item">
-                    <a class="nav-link <?php echo ($currentPage === 'contactos') ? 'active' : ''; ?>" href="#">Contactos</a>
+                    <a class="nav-link disabled  <?php echo ($currentPage === 'contactos') ? 'active' : ''; ?>" href="#" disabled>Contactos</a>
                 </li>
     </ul>
   </div>

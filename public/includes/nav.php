@@ -35,7 +35,7 @@
           <a class="dropdown-item" href="#">Servicio 3</a>
       </li>
       <li class="nav-item">
-                    <a class="nav-link <?php echo ($currentPage === 'contactos') ? 'active' : ''; ?>" href="#">Contactos</a>
+                    <a class="nav-link disabled <?php echo ($currentPage === 'contactos') ? 'active' : ''; ?>" href="#">Contactos</a>
                 </li>
     </ul>
   </div>

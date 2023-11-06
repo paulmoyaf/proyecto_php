@@ -7,8 +7,8 @@ class ProductosDB{
 
     public static function selectProductos(){
         try{
-            // $db = obtenerConexion(); // Obtener la conexión desde la función
-            $db = new PDO (DB_PATH);
+            $db = conexionMySql(); 
+            // $db = new PDO (DB_PATH);
             $registros = $db->query("select * from productos");
             $productos = array();
 
@@ -17,8 +17,10 @@ class ProductosDB{
                 $producto->setId($registro['id']);
                 $producto->setNombre($registro['nombre']);
                 $producto->setDescripcion($registro['descripcion']);
-                $producto->setCategoria($registro['categoria']);
-                $producto->setTieneDescuento($registro['tiene_descuento']);
+                $producto->setCategoriaId($registro['categoria_id']);
+                $producto->setTallaId($registro['talla_id']);
+                $producto->setTieneDescuentoId($registro['tiene_descuento_id']);
+                $producto->setDescuento($registro['descuento']);
                 $producto->setPrecio($registro['precio']);
                 $producto->setImagenURL($registro['imagen_url']);
                 $productos[] = $producto;                
@@ -34,7 +36,8 @@ class ProductosDB{
 
     public static function selectProducto($id){
         try{
-            $db = new PDO (DB_PATH);
+            $db = conexionMySql(); 
+            // $db = new PDO (DB_PATH);
             $registros = $db->query("select * from productos where id=" .$id);
             $producto = null;
 
@@ -43,8 +46,10 @@ class ProductosDB{
                 $producto->setId($registro['id']);
                 $producto->setNombre($registro['nombre']);
                 $producto->setDescripcion($registro['descripcion']);
-                $producto->setCategoria($registro['categoria']);
-                $producto->setTieneDescuento($registro['tiene_descuento']);
+                $producto->setCategoriaId($registro['categoria_id']);
+                $producto->setTallaId($registro['talla_id']);
+                $producto->setTieneDescuentoId($registro['tiene_descuento_id']);
+                $producto->setDescuento($registro['descuento']);
                 $producto->setPrecio($registro['precio']);
                 $producto->setImagenURL($registro['imagen_url']);
             }
@@ -59,17 +64,20 @@ class ProductosDB{
     public static function insertProduct($producto){
 
         try{
-            $db = new PDO (DB_PATH);
-            $sql = "insert into productos (nombre, descripcion, categoria, tiene_descuento, precio, imagen_url) values";
+            $db = conexionMySql(); 
+            // $db = new PDO (DB_PATH);
+            $sql = "insert into productos (nombre, descripcion, categoria_id, talla_id, tiene_descuento_id, descuento, precio, imagen_url) values";
             $sql = $sql . "('" .$producto->getNombre() . "'";
             $sql = $sql . ",'" .$producto->getDescripcion() . "'";
-            $sql = $sql . ",'" .$producto->getCategoria() . "'";
-            $sql = $sql . ",'" .$producto->getTieneDescuento() . "'";
+            $sql = $sql . ",'" .$producto->getCategoriaId() . "'";
+            $sql = $sql . ",'" .$producto->getTallaId() . "'";
+            $sql = $sql . ",'" .$producto->getTieneDescuentoId() . "'";
+            $sql = $sql . ",'" .$producto->getDescuento() . "'";
             $sql = $sql . ",'" .$producto->getPrecio() . "'";
             $sql = $sql . ",'" .$producto->getImagenUrl() . "')";
 
-            $emaitza = $db->exec($sql);
-            return $emaitza;
+            $res = $db->exec($sql);
+            return $res;
         } catch (Exception $e){
             echo "<p>Error:" .$e->getMessage() . "</p>\n";
             return 0;
@@ -79,13 +87,16 @@ class ProductosDB{
     public static function editProduct($producto){
 
         try{
-            $db = new PDO (DB_PATH);
+            $db = conexionMySql(); 
+            // $db = new PDO (DB_PATH);
 
             $sql = "UPDATE productos SET ";
             $sql = $sql . "nombre = '" .$producto->getNombre() . "',";
             $sql = $sql . "descripcion = '" .$producto->getDescripcion() . "',";
-            $sql = $sql . "categoria = '" .$producto->getCategoria() . "',";
-            $sql = $sql . "tiene_descuento = '" .$producto->getTieneDescuento() . "',";
+            $sql = $sql . "categoria_id = '" .$producto->getCategoriaId() . "',";
+            $sql = $sql . "talla_id = '" .$producto->getTallaId() . "',";
+            $sql = $sql . "tiene_descuento_id = '" .$producto->getTieneDescuentoId() . "',";
+            $sql = $sql . "descuento = '" .$producto->getDescuento() . "',";
             $sql = $sql . "precio = '" .$producto->getPrecio() . "',";
             $sql = $sql . "imagen_url = '" .$producto->getImagenUrl() . "'";
 
@@ -104,7 +115,8 @@ class ProductosDB{
     public static function removeProduct($producto){
 
         try{
-            $db = new PDO (DB_PATH);
+            $db = conexionMySql(); 
+            // $db = new PDO (DB_PATH);
             $sql = "DELETE FROM productos ";
             $sql = $sql . " WHERE id = " .$producto->getId() . "";
             $resultado = $db->exec($sql);
@@ -113,6 +125,21 @@ class ProductosDB{
         } catch (Exception $e){
             echo "<p>Error:" .$e->getMessage() . "</p>\n";
             return 0;
+        }
+    }
+
+
+    public static function obtenerNombreTieneDescuento($tiene_descuento_id) {
+        try {
+            $db = conexionMySql(); 
+            // Realiza una consulta SQL utilizando JOIN para obtener el nombre de la tabla "tiene_descuento"
+            $consulta = "SELECT nombre FROM tiene_descuento WHERE id = $tiene_descuento_id";
+            $resultado = $db->query($consulta);
+            $nombre_tiene_descuento = $resultado->fetchColumn();
+            return $nombre_tiene_descuento;
+        } catch (Exception $e) {
+            echo "<p>Error: " . $e->getMessage() . "</p>\n";
+            return null;
         }
     }
 

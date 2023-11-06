@@ -18,13 +18,12 @@
     // $id = $_GET['id'];
 
     $id = $_GET['id'];
-        // $producto = ProductosDB::selectProductos();
 
-
-        // require('../../db/db_connection.php');
-        // require('../../src/objects/productos.php');
+    // $tiene_descuento_id = $_GET['tiene_descuento_id'];
     
     
             $producto = ProductosDB::selectProducto($id);
+            $nombre_tiene_descuento = ProductosDB::obtenerNombreTieneDescuento($producto->getTieneDescuentoId());
+            
 
 ?>
