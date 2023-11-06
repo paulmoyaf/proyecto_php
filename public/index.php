@@ -32,17 +32,22 @@ require('../src/objects/productos.php');
         <div class="row">
 
 
-            <?php $productos = ProductosDB::selectProductos();
+            <?php
+            $productos = ProductosDB::selectProductos();
             foreach ($productos as $producto) : ?>
+                <?php $nombre_tipo_producto = ProductosDB::obtenerNombreTipoProducto($producto->getTipoProductoId());?>
+                <?php $nombre_tipo_categoria = ProductosDB::obtenerNombreTipoCategoria($producto->getCategoriaId());?>
 
                 <div class="col-lg-4 col-md-4 col-sm-12 pb-5">
                     <div class="card w-100">
                         <a class="btn btn-outline-dark" href='view-page.php?id=<?= $producto->getId() ?>'>
                             <div class="card-body">
-                                <h4 class="card-title"><?php echo $producto->getNombre()  ?></h4>
+                                <h4 class="card-title font-weight-bold"><?php echo $producto->getNombre()  ?></h4>
                                 <img src="<?php echo $producto->getImagenURL()  ?>" class="img-fluid rounded-start py-3" style="width: 15em" alt="Card title">
                                 <p class="card-text">Modelo: <?php echo $producto->getDescripcion() ?></p>
-                                <p class="card-text"><?php echo $producto->getPrecio()  ?> €</p>
+                                <p class="card-text">Categoria: <?php echo $nombre_tipo_categoria ?></p>
+                                <p class="card-text">Tipo: <?php echo $nombre_tipo_producto ?></p>
+                                <p class="card-text font-weight-bold" style="font-size: larger;"><?php echo $producto->getPrecio()?> €</p>
                             </div>
                         </a>
                     </div>

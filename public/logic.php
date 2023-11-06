@@ -19,11 +19,14 @@
 
     $id = $_GET['id'];
 
-    // $tiene_descuento_id = $_GET['tiene_descuento_id'];
+    // $tipo_producto_id = $_GET['tipo_producto_id'];
     
-    
+            // $productos = ProductosDB::selectProductos();
             $producto = ProductosDB::selectProducto($id);
-            $nombre_tiene_descuento = ProductosDB::obtenerNombreTieneDescuento($producto->getTieneDescuentoId());
-            
+            $nombre_tipo_producto = ProductosDB::obtenerNombreTipoProducto($producto->getTipoProductoId());
+            $nombre_tipo_categoria = ProductosDB::obtenerNombreTipoCategoria($producto->getCategoriaId());
+            $tallas = ProductosDB::selectTallas();
+            $tiposProducto = ProductosDB::selectTipoProducto();
+
 
 ?>

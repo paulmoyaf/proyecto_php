@@ -37,11 +37,14 @@ CREATE TABLE productos (
   descripcion VARCHAR(255),
   categoria_id INT,
   talla_id INT,
-  tiene_descuento_id INT,
+  tipo_producto_id INT,
   descuento DECIMAL(5, 2),
   precio DECIMAL(10, 2),
   imagen_url VARCHAR(255),
   FOREIGN KEY (categoria_id) REFERENCES categoria(id),
-  FOREIGN KEY (tiene_descuento_id) REFERENCES tiene_descuento(id),
+  FOREIGN KEY (tipo_producto_id) REFERENCES tiene_descuento(id),
   FOREIGN KEY (talla_id) REFERENCES talla(id)
 );
+
+
+INSERT INTO `catalogo`.`productos` (`nombre`, `descripcion`, `categoria_id`, `talla_id`, `tipo_producto_id`, `descuento`, `precio`, `imagen_url`) VALUES ('Camiseta', 'Camiseta de Poliester', '2', '2', '2', '15', '85', '../assets/img/camisetas/cam(4).png');

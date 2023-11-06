@@ -6,7 +6,7 @@ class Producto {
     private $descripcion;
     private $categoria_id;
     private $talla_id;
-    private $tiene_descuento_id;
+    private $tipo_producto_id;
     private $descuento;
     private $precio;
     private $imagen_url;
@@ -55,12 +55,12 @@ class Producto {
         $this->talla_id = $talla_id;
     }
 
-    public function getTieneDescuentoId() {
-        return $this->tiene_descuento_id;
+    public function getTipoProductoId() {
+        return $this->tipo_producto_id;
     }
 
-    public function setTieneDescuentoId($tiene_descuento_id) {
-        $this->tiene_descuento_id = $tiene_descuento_id;
+    public function setTipoProductoId($tipo_producto_id) {
+        $this->tipo_producto_id = $tipo_producto_id;
     }
 
     public function getDescuento() {
@@ -72,7 +72,7 @@ class Producto {
     }
 
     public function getPrecio() {
-        if ($this->tiene_descuento_id == 1) {
+        if ($this->tipo_producto_id == 1) {
             return $this->precio - ($this->precio * ($this->descuento / 100));
         } else {
             return $this->precio;

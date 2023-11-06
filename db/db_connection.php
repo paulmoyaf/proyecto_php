@@ -19,7 +19,7 @@ class ProductosDB{
                 $producto->setDescripcion($registro['descripcion']);
                 $producto->setCategoriaId($registro['categoria_id']);
                 $producto->setTallaId($registro['talla_id']);
-                $producto->setTieneDescuentoId($registro['tiene_descuento_id']);
+                $producto->setTipoProductoId($registro['tipo_producto_id']);
                 $producto->setDescuento($registro['descuento']);
                 $producto->setPrecio($registro['precio']);
                 $producto->setImagenURL($registro['imagen_url']);
@@ -48,7 +48,7 @@ class ProductosDB{
                 $producto->setDescripcion($registro['descripcion']);
                 $producto->setCategoriaId($registro['categoria_id']);
                 $producto->setTallaId($registro['talla_id']);
-                $producto->setTieneDescuentoId($registro['tiene_descuento_id']);
+                $producto->setTipoProductoId($registro['tipo_producto_id']);
                 $producto->setDescuento($registro['descuento']);
                 $producto->setPrecio($registro['precio']);
                 $producto->setImagenURL($registro['imagen_url']);
@@ -66,12 +66,12 @@ class ProductosDB{
         try{
             $db = conexionMySql(); 
             // $db = new PDO (DB_PATH);
-            $sql = "insert into productos (nombre, descripcion, categoria_id, talla_id, tiene_descuento_id, descuento, precio, imagen_url) values";
+            $sql = "insert into productos (nombre, descripcion, categoria_id, talla_id, tipo_producto_id, descuento, precio, imagen_url) values";
             $sql = $sql . "('" .$producto->getNombre() . "'";
             $sql = $sql . ",'" .$producto->getDescripcion() . "'";
             $sql = $sql . ",'" .$producto->getCategoriaId() . "'";
             $sql = $sql . ",'" .$producto->getTallaId() . "'";
-            $sql = $sql . ",'" .$producto->getTieneDescuentoId() . "'";
+            $sql = $sql . ",'" .$producto->getTipoProductoId() . "'";
             $sql = $sql . ",'" .$producto->getDescuento() . "'";
             $sql = $sql . ",'" .$producto->getPrecio() . "'";
             $sql = $sql . ",'" .$producto->getImagenUrl() . "')";
@@ -95,7 +95,7 @@ class ProductosDB{
             $sql = $sql . "descripcion = '" .$producto->getDescripcion() . "',";
             $sql = $sql . "categoria_id = '" .$producto->getCategoriaId() . "',";
             $sql = $sql . "talla_id = '" .$producto->getTallaId() . "',";
-            $sql = $sql . "tiene_descuento_id = '" .$producto->getTieneDescuentoId() . "',";
+            $sql = $sql . "tipo_producto_id = '" .$producto->getTipoProductoId() . "',";
             $sql = $sql . "descuento = '" .$producto->getDescuento() . "',";
             $sql = $sql . "precio = '" .$producto->getPrecio() . "',";
             $sql = $sql . "imagen_url = '" .$producto->getImagenUrl() . "'";
@@ -129,18 +129,70 @@ class ProductosDB{
     }
 
 
-    public static function obtenerNombreTieneDescuento($tiene_descuento_id) {
+    public static function obtenerNombreTipoProducto($tipo_producto_id) {
         try {
             $db = conexionMySql(); 
-            // Realiza una consulta SQL utilizando JOIN para obtener el nombre de la tabla "tiene_descuento"
-            $consulta = "SELECT nombre FROM tiene_descuento WHERE id = $tiene_descuento_id";
+            $consulta = "SELECT nombre FROM tipo_producto WHERE id = $tipo_producto_id";
             $resultado = $db->query($consulta);
-            $nombre_tiene_descuento = $resultado->fetchColumn();
-            return $nombre_tiene_descuento;
+            $nombre_tipo_producto = $resultado->fetchColumn();
+            return $nombre_tipo_producto;
         } catch (Exception $e) {
             echo "<p>Error: " . $e->getMessage() . "</p>\n";
             return null;
         }
+    }
+    public static function obtenerNombreTipoCategoria($categoria_id) {
+        try {
+            $db = conexionMySql(); 
+            $consulta = "SELECT nombre FROM categoria WHERE id = $categoria_id";
+            $resultado = $db->query($consulta);
+            $nombre_tipo_categoria = $resultado->fetchColumn();
+            return $nombre_tipo_categoria;
+        } catch (Exception $e) {
+            echo "<p>Error: " . $e->getMessage() . "</p>\n";
+            return null;
+        }
+    }
+    public static function selectTallas(){ 
+        try { 
+            $db = conexionMySql();  
+            $consulta = "SELECT id, nombre FROM talla"; 
+            $registros = $db->query($consulta); 
+            // Obtener los registros de la tabla "talla" como un array asociativo
+            $tallas = $registros->fetchAll(PDO::FETCH_ASSOC);            
+            // Retornar el array de tallas
+            return $tallas; 
+        } catch (Exception $e) { 
+            echo "<p>Error:" .$e->getMessage() . "</p>\n"; 
+            return null; 
+        } 
+    }
+
+    public static function selectCategorias(){ 
+        try { 
+            $db = conexionMySql();  
+            $consulta = "SELECT id, nombre FROM categoria"; 
+            $registros = $db->query($consulta); 
+            // Obtener los registros de la tabla "talla" como un array asociativo
+            $categorias = $registros->fetchAll(PDO::FETCH_ASSOC);            
+            // Retornar el array de tallas
+            return $categorias; 
+        } catch (Exception $e) { 
+            echo "<p>Error:" .$e->getMessage() . "</p>\n"; 
+            return null; 
+        } 
+    }
+    public static function selectTipoProducto(){ 
+        try { 
+            $db = conexionMySql();  
+            $consulta = "SELECT id, nombre FROM tipo_producto"; 
+            $registros = $db->query($consulta); 
+            $tiposProducto = $registros->fetchAll(PDO::FETCH_ASSOC);            
+            return $tiposProducto; 
+        } catch (Exception $e) { 
+            echo "<p>Error:" .$e->getMessage() . "</p>\n"; 
+            return null; 
+        } 
     }
 
 

@@ -44,8 +44,8 @@
                 <hr>
                 <ul>
                     <li>Descripcion: <?php echo $producto->getDescripcion() ?></li>
-                    <li>Tipo de Producto: <?php echo $nombre_tiene_descuento?></li>
-                    <li>Descuento: <?php echo $producto->getDescuento() ?> %</li>
+                    <li>Tipo de Producto: <?php echo $nombre_tipo_producto ?></li>
+                    <li>Descuento: <?php echo $producto->getDescuento() ?> % (Para usuarios PRIME)</li>
                 </ul>
                 <p class="display-6"><?php echo $producto->getPrecio()  ?> €</p>
 
@@ -57,9 +57,9 @@
                             <option value="">Medium</option>
                             <option value="">Large</option>
                         </select> -->
-                        <select name="tiene_descuento_id">
-                            <?php foreach ($opciones_tiene_descuento as $opcion) { ?>
-                                <option value="<?php echo $opcion['id']; ?>"><?php echo $opcion['nombre']; ?></option>
+                        <select class="form-select form-select-md" name="talla_id">
+                            <?php foreach ($tallas as $talla) { ?>
+                                <option value="<?php echo $talla['id']; ?>"><?php echo $talla['nombre']; ?></option>
                             <?php } ?>
                         </select>
 
