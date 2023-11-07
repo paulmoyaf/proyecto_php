@@ -9,6 +9,7 @@ class Producto {
     private $tipo_producto_id;
     private $descuento;
     private $precio;
+    private $precio_final;
     private $imagen_url;
 
     public function __construct() {
@@ -72,16 +73,28 @@ class Producto {
     }
 
     public function getPrecio() {
-        if ($this->tipo_producto_id == 1) {
-            return $this->precio - ($this->precio * ($this->descuento / 100));
-        } else {
-            return $this->precio;
-        }
+        return $this->precio;
+        // if ($this->tipo_producto_id == 1) {
+        //     return $this->precio - ($this->precio * ($this->descuento / 100));
+        // } else {
+        //     return $this->precio;
+        // }
     }
 
     public function setPrecio($precio) {
         $this->precio = $precio;
     }
+
+    public function getPrecioFinal() {
+        // Asegurarse de que precio_inicial y descuento tengan valores válidos
+        if ($this->precio !== null && $this->descuento !== null && $this->tipo_producto_id == 1) {
+            return $this->precio_final = $this->precio - ($this->precio * ($this->descuento / 100));
+        } else {
+            // Puedes manejar casos donde los valores no están definidos
+            return $this->precio_final =  $this->precio;
+        }
+    }
+
 
     public function getImagenUrl() {
         return $this->imagen_url;

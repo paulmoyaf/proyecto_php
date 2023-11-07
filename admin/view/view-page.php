@@ -30,8 +30,11 @@
                             <th scope="col">Nombre</th>
                             <th scope="col">Descripcion</th>
                             <th scope="col">Categoria</th>
+                            <th scope="col">Talla</th>
+                            <th scope="col">Tipo</th>
                             <th scope="col">Descuento</th>
                             <th scope="col">Precio</th>
+                            <th scope="col">Precio Final</th>
                         </tr>
                     </thead>
                     <tbody class="align-middle">
@@ -39,9 +42,12 @@
                             <td><img src="../<?php echo $producto->getImagenURL()  ?>"></td>
                             <td><?php echo $producto->getNombre()  ?></td>
                             <td><?php echo $producto->getDescripcion() ?></td>
-                            <td><?php echo $producto->getCategoria() ?></td>
-                            <td><?php echo $producto->getTieneDescuento() ?></td>
+                            <td><?php echo $nombre_tipo_categoria ?></td>
+                            <td><?php echo $nombre_talla ?></td>
+                            <td><?php echo $nombre_tipo_producto ?></td>
+                            <td><?php echo $producto->getDescuento()  ?>%</td>
                             <td><?php echo $producto->getPrecio()  ?> €</td>
+                            <td><?php echo $producto->getPrecioFinal()  ?> €</td>
                         </tr>
                     </tbody>
                 </table>

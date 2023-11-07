@@ -18,42 +18,49 @@
             </div>
             <hr>
             <div class="card bg-light">
-                <img class="card-img-top" src="../src/img/portadas/camisetasBannerHorizontal.jpg" alt="Portada_Dashboard">
+                <img class="card-img-top" src="" alt="Portada_Dashboard">
+                <!-- <img class="card-img-top" src="../assets/img/portadas/bannerCamisetas.jpg" alt="Portada_Dashboard"> -->
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
                         <h4 class="card-title text-uppercase text-center">List Items</h4>
-                        <button class="btn btn-outline-dark" onclick="window.location.href='../admin/add/add-page.php'">Add New Item</button>                    </div>
+                        <button class="btn btn-outline-dark" onclick="window.location.href='../admin/add/add-page.php'">Add New Item</button>
+                    </div>
                     <hr>
-                    <div class="">
-                            <div class="card-products">
-                                <?php foreach ($productos as $producto) : ?>
-                                    <div class="card">
-                                            <a href="../admin/view/view-page.php?id=<?= $producto->getId() ?>">
-                                            <img class="card-img-top" src=<?= $producto->getImagenURL()?>>
-                                            <div class="card-body">
-                                                <h4 class="card-title"><?= $producto->getNombre() ?></h4>
-                                                <p class="card-text text-price"><?= $producto->getDescripcion() ?></p>
-                                                <p class="card-text text-price"><?= $producto->getPrecio() ?> €</p>
-                                            </a>
-                                                <span class="">[<a class="text-success" href='../admin/edit/edit-page.php?id=<?= $producto->getId()?>'>Edit</a>]</span>
-                                                <span class="">[<a class="text-danger"  href='../admin/remove/remove-page.php?id=<?= $producto->getId() ?>'>Delete</a>]</span>                      
-                                            </div>
-                                        
-                                    </div>
-                                    <?php endforeach; ?>
 
-                            </div>
-                        
-                    </div>
-                        <div class="d-flex flex-column gap-5 pt-3">
-                            <!-- <button class="btn btn-outline-dark" onclick="window.location.href='../admin/add/add-page.php'">Add New Item</button> -->
-                            <!-- <button class="btn btn-outline-danger" onclick="window.location.href='logout.php'">Cerrar Sesion</button> -->
+                    <div class="">
+                        <div class="card-products">
+                            <?php
+                            foreach ($productos as $producto) :
+                                $nombre_tipo_producto = ProductosDB::obtenerNombreTipoProducto($producto->getTipoProductoId());
+                                $nombre_talla = ProductosDB::obtenerNombreTalla($producto->getTallaId());
+                            ?>
+                                <div class="card text-bg-light">
+                                    <a href="../admin/view/view-page.php?id=<?= $producto->getId() ?>">
+                                        <img class="card-img-top" src=<?= $producto->getImagenURL() ?>>
+                                    </a>
+                                    <div class="card-body">
+                                        <h4 class="card-title"><?= $producto->getNombre() ?></h4>
+                                        <p class="card-text text-price"><?= $producto->getDescripcion() ?></p>
+                                        <p class="card-text text-price">Talla: <?= $nombre_talla ?></p>
+                                        <p class="card-text text-price"><?= $producto->getPrecio() ?> €</p>
+                                        <p class="card-text text-price">Tipo: <?= $nombre_tipo_producto ?></p>
+                                        <p class="card-text text-price">P.F.: <?= $producto->getPrecioFinal() ?> €</p>
+                                        <div class="mt-2">
+                                            <a class="btn btn-outline-secondary" href='../admin/edit/edit-page.php?id=<?= $producto->getId() ?>'>Edit</a>
+                                            <a class="btn btn-outline-danger" href='../admin/remove/remove-page.php?id=<?= $producto->getId() ?>'>Delete</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+
                         </div>
+
                     </div>
+
                 </div>
-                <!-- <button class="btn btn-danger w-100" onclick="window.location.href='logout.php'">Log Out</button> -->
             </div>
         </div>
+    </div>
     </div>
 </body>
 

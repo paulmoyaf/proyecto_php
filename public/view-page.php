@@ -51,12 +51,6 @@
 
                 <div class="row form-group">
                     <div class="mb-3 col">
-                        <!-- <select class="form-select form-select-md" name="" id="">
-                            <option selected>- Seleccionar la Talla -</option>
-                            <option value="">Small</option>
-                            <option value="">Medium</option>
-                            <option value="">Large</option>
-                        </select> -->
                         <label for="talla_id">Talla:</label>
                         <select class="form-select form-select-md" name="talla_id">
                             <?php foreach ($tallas as $talla) { ?>

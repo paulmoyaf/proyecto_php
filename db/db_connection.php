@@ -66,7 +66,7 @@ class ProductosDB{
         try{
             $db = conexionMySql(); 
             // $db = new PDO (DB_PATH);
-            $sql = "insert into productos (nombre, descripcion, categoria_id, talla_id, tipo_producto_id, descuento, precio, imagen_url) values";
+            $sql = "insert into productos (nombre, descripcion, categoria_id, talla_id, tipo_producto_id, descuento, precio, precio_final, imagen_url) values";
             $sql = $sql . "('" .$producto->getNombre() . "'";
             $sql = $sql . ",'" .$producto->getDescripcion() . "'";
             $sql = $sql . ",'" .$producto->getCategoriaId() . "'";
@@ -74,6 +74,7 @@ class ProductosDB{
             $sql = $sql . ",'" .$producto->getTipoProductoId() . "'";
             $sql = $sql . ",'" .$producto->getDescuento() . "'";
             $sql = $sql . ",'" .$producto->getPrecio() . "'";
+            $sql = $sql . ",'" .$producto->getPrecioFinal() . "'";
             $sql = $sql . ",'" .$producto->getImagenUrl() . "')";
 
             $res = $db->exec($sql);
@@ -98,6 +99,7 @@ class ProductosDB{
             $sql = $sql . "tipo_producto_id = '" .$producto->getTipoProductoId() . "',";
             $sql = $sql . "descuento = '" .$producto->getDescuento() . "',";
             $sql = $sql . "precio = '" .$producto->getPrecio() . "',";
+            $sql = $sql . "precio_final = '" .$producto->getPrecioFinal() . "',";
             $sql = $sql . "imagen_url = '" .$producto->getImagenUrl() . "'";
 
             $sql = $sql . " WHERE id = " .$producto->getId() . "";
@@ -136,6 +138,18 @@ class ProductosDB{
             $resultado = $db->query($consulta);
             $nombre_tipo_producto = $resultado->fetchColumn();
             return $nombre_tipo_producto;
+        } catch (Exception $e) {
+            echo "<p>Error: " . $e->getMessage() . "</p>\n";
+            return null;
+        }
+    }
+    public static function obtenerNombreTalla($talla_id) {
+        try {
+            $db = conexionMySql(); 
+            $consulta = "SELECT nombre FROM talla WHERE id = $talla_id";
+            $resultado = $db->query($consulta);
+            $nombre_talla = $resultado->fetchColumn();
+            return $nombre_talla;
         } catch (Exception $e) {
             echo "<p>Error: " . $e->getMessage() . "</p>\n";
             return null;
