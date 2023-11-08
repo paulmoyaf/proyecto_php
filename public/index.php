@@ -46,8 +46,9 @@ require('../src/objects/productos.php');
                                 <img src="<?php echo $producto->getImagenURL()  ?>" class="img-fluid rounded-start py-3" style="width: 15em" alt="Card title">
                                 <p class="card-text">Modelo: <?php echo $producto->getDescripcion() ?></p>
                                 <p class="card-text">Categoria: <?php echo $nombre_tipo_categoria ?></p>
+                                <p class="card-text">Modelo: <?php echo $producto->getPrecio() ?></p>
                                 <p class="card-text">Tipo: <?php echo $nombre_tipo_producto ?></p>
-                                <p class="card-text font-weight-bold" style="font-size: larger;"><?php echo $producto->getPrecio()?> €</p>
+                                <p class="card-text font-weight-bold" style="font-size: larger;"><?php echo $producto->getPrecioFinal()?> €</p>
                             </div>
                         </a>
                     </div>

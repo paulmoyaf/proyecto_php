@@ -19,13 +19,13 @@
                 $error_message </div> \n";
             }
             ?>
-            <div class="image-login">
-                <img class="card-img-top" src="../src/img/portadas/camisetasBannerHorizontal.jpg" alt="Title">
-            </div>
-
-            <div class="card mb-3 mt-0">
-                <div class="card-body bg-light">
-
+            <!-- <div class="image-login">
+                </div> -->
+                
+                <div class="card mt-5">
+                    <div class="card-body bg-light">
+                        
+                        <img class="card-img-top rounded-3 pb-5" src="../assets/img/portadas/BannerHorizontal.jpg" alt="BANNER">
                     <form action="index.php" method="post">
                         <div class="">
                             <label for="usuario" class="form-label">Usuario:</label>

@@ -12,7 +12,11 @@
 <body class="container pt-5">
     <?php require('logic.php'); ?>
 
-    <?php if (isset($_POST['editar'])) : ?>
+    <?php if (isset($_POST['editar'])) :
+        $nombre_categoria_nuevo = ProductosDB::obtenerNombreTalla($categoria_id); 
+        $nombre_talla_nuevo = ProductosDB::obtenerNombreTalla($talla_id); 
+        $nombre_tipo_nuevo = ProductosDB::obtenerNombreTalla($tipo_producto_id); 
+        ?>
         <div class="table-responsive">
 
             <table class="table table-bordered text-center">
@@ -22,8 +26,11 @@
                         <th scope="col">Nombre</th>
                         <th scope="col">Descripcion</th>
                         <th scope="col">Categoria</th>
-                        <th scope="col">Descuento</th>
+                        <th scope="col">Talla</th>
+                        <th scope="col">Tipo</th>
                         <th scope="col">Precio</th>
+                        <th scope="col">Descuento</th>
+                        <th scope="col">Precio Final</th>
                     </tr>
                 </thead>
                 <tbody class="align-middle">
@@ -31,9 +38,12 @@
                         <td><img src="../<?php echo $imagen_url ?>"></td>
                         <td><?php echo $nombre  ?></td>
                         <td><?php echo $descripcion ?></td>
-                        <td><?php echo $categoria ?></td>
-                        <td><?php echo $tiene_descuento ?></td>
+                        <td><?php echo $nombre_categoria_nuevo ?></td>
+                        <td><?php echo $nombre_talla_nuevo ?></td>
+                        <td><?php echo $nombre_tipo_nuevo ?></td>
                         <td><?php echo $precio  ?> €</td>
+                        <td><?php echo $descuento ?>%</td>
+                        <td><?php echo $producto->getPrecioFinal() ?>€</td>
                     </tr>
                 </tbody>
             </table>
@@ -44,7 +54,7 @@
     <?php else : ?>
 
         <div class="header-titulo">
-            <img class="card-img-top logo" src="../../src/img/logo/logo.png" alt="Title">
+            <img class="card-img-top logo" src="../../assets/img/logo/logo.png" alt="Logo">
             <p class="h2">Edit Item</p>
         </div>
         <hr>
@@ -62,28 +72,44 @@
                     </div>
 
                     <div class="form-group-item mb-3">
-                        <label for="categoria" class="form-label">Categoria:</label>
-                        <select class="form-select form-select-lg" name="categoria" id="categoria" class="form-control">
-                            <option value="<?php echo $producto->getCategoria()?>">Actual:  <?php echo $producto->getCategoria()?></option>
-                            <option >New</option>
-                            <option >Used</option>
+                        <label for="categoria_id" class="form-label">Categoria:</label>
+                        <select class="form-select form-select-md" name="categoria_id" id="categoria_id" class="form-control">
+                            <?php foreach ($categorias as $categoria) { ?>
+                                <option value="<?php echo $categoria['id']; ?>" <?php if ($categoria['nombre'] == $nombre_tipo_categoria) echo 'selected'; ?>><?php echo $categoria['nombre']; ?></option>
+                            <?php } ?>
                         </select>
                     </div>
 
                     <div class="form-group-item mb-3">
-                        <label for="tiene_descuento" class="form-label">Descuento:</label>
-                        <select class="form-select form-select-lg" name="tiene_descuento"  id="tiene_descuento" class="form-control">
-                            <option value="<?php echo $producto->getTieneDescuento()?>"><?php echo $producto->getTieneDescuento()?></option>
-                            <option>Prime</option>
-                            <option>Regular</option>
+                        <label for="talla_id" class="form-label">Talla:</label>
+                        <select class="form-select form-select-md" name="talla_id">
+                            <?php foreach ($tallas as $talla) { ?>
+                                <option value="<?php echo $talla['id']; ?>" <?php if ($talla['nombre'] == $nombre_talla) echo 'selected'; ?>><?php echo $talla['nombre']; ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group-item mb-3">
+                        <label for="tipo_producto_id" class="form-label">Tipo:</label>
+                        <select class="form-select form-select-md" name="tipo_producto_id">
+                            <?php foreach ($tipos_producto as $tipo_producto) { ?>
+                                <option value="<?php echo $tipo_producto['id']; ?>" <?php if ($tipo_producto['nombre'] == $nombre_tipo_producto) echo 'selected'; ?>><?php echo $tipo_producto['nombre']; ?></option>
+                            <?php } ?>
                         </select>
                     </div>
 
 
                     <div class="mb-3">
+                        <label for="descuento" class="form-label">Descuento:</label>
+                        <input type="text" name="descuento" id="descuento" class="form-control" value="<?php echo $producto->getDescuento() ?>">
+                    </div>
+
+                    <div class="mb-3">
                         <label for="precio" class="form-label">Precio:</label>
                         <input type="text" name="precio" id="precio" class="form-control" value="<?php echo $producto->getPrecio() ?>">
                     </div>
+
                     <div class="form-group-item mb-3">
                         <label for="imagen_url" class="form-label">Imagen:</label>
                         <div class="d-flex gap-3">

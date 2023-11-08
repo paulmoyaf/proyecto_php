@@ -21,6 +21,7 @@ $id = $_GET['id'];
 
 if (isset($_POST['editar'])) {
 
+
     // $nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
     // $descripcion = filter_input(INPUT_POST, 'descripcion', FILTER_SANITIZE_STRING);
     // $categoria = filter_input(INPUT_POST, 'categoria', FILTER_SANITIZE_STRING);
@@ -28,17 +29,20 @@ if (isset($_POST['editar'])) {
     // $precio = filter_input(INPUT_POST, 'precio', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
     // $imagen_url = filter_input(INPUT_POST, 'imagen_url', FILTER_SANITIZE_URL);
 
-    $nombre      = $_POST['nombre'];       
-    $descripcion = $_POST['descripcion'];
-    $categoria   = $_POST['categoria'];
-        $tiene_descuento = filter_input(INPUT_POST, 'tiene_descuento', FILTER_SANITIZE_STRING);
-
-    // $tiene_descuento   = $_POST['tiene_descuento'];
-    $precio      = $_POST['precio'];
+    $nombre          = $_POST['nombre'];
+    $descripcion     = $_POST['descripcion'];
+    $categoria_id    = $_POST['categoria_id'];
+    $talla_id        = $_POST['talla_id'];
+    $tipo_producto_id   = $_POST['tipo_producto_id'];
+    $descuento       = $_POST['descuento'];
+    $precio          = $_POST['precio'];
     $imagen_url      = $_POST['imagen_url'];
+
+
  
-    if (strlen($nombre) > 0 && strlen($descripcion) > 0 && strlen($categoria) > 0 &&
-    strlen($tiene_descuento) > 0 && strlen($precio) > 0 && strlen($imagen_url) > 0  
+    if (strlen($nombre) > 0 && strlen($descripcion) > 0 && strlen($categoria_id) > 0 &&
+    strlen($talla_id) > 0 && strlen($tipo_producto_id) > 0 && strlen($descuento) > 0  
+    && strlen($precio) > 0 && strlen($imagen_url) > 0  
     ) {
 
         
@@ -46,10 +50,13 @@ if (isset($_POST['editar'])) {
         $producto->setId($id);
         $producto->setNombre($nombre);
         $producto->setDescripcion($descripcion);
-        $producto->setCategoria($categoria);
-        $producto->setTieneDescuento($tiene_descuento);
+        $producto->setCategoriaId($categoria_id);
+        $producto->setTallaId($talla_id);
+        $producto->setTipoProductoId($tipo_producto_id);
+        $producto->setDescuento($descuento);
         $producto->setPrecio($precio);
         $producto->setImagenUrl($imagen_url);
+        // $producto->set($imagen_url);
 
 
         if (ProductosDB::editProduct($producto) > 0) {
@@ -69,6 +76,15 @@ if (isset($_POST['editar'])) {
     }
 } else {
     $producto = ProductosDB::selectProducto($id);
+    $nombre_tipo_producto = ProductosDB::obtenerNombreTipoProducto($producto->getTipoProductoId());
+    $nombre_tipo_categoria = ProductosDB::obtenerNombreTipoCategoria($producto->getCategoriaId());
+    $nombre_talla = ProductosDB::obtenerNombreTalla($producto->getTallaId());
+    $tallas = ProductosDB::selectTallas();
+    $categorias = ProductosDB::selectCategorias();
+    $tipos_producto = ProductosDB::selectTipoProducto();
+
+    
+
 }
 
 

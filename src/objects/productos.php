@@ -84,6 +84,10 @@ class Producto {
     public function setPrecio($precio) {
         $this->precio = $precio;
     }
+    
+    // public function setPrecioFinal($precio_final) {
+    //     $this->precio_final = $precio_final;
+    // }
 
     public function getPrecioFinal() {
         // Asegurarse de que precio_inicial y descuento tengan valores válidos

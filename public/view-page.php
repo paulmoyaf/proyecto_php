@@ -45,9 +45,10 @@
                 <ul>
                     <li>Descripcion: <?php echo $producto->getDescripcion() ?></li>
                     <li>Tipo de Producto: <?php echo $nombre_tipo_producto ?></li>
+                    <li>Precio: <?php echo $producto->getPrecio()?></li>
                     <li>Descuento: <?php echo $producto->getDescuento() ?> % (Para usuarios PRIME)</li>
                 </ul>
-                <p class="display-6"><?php echo $producto->getPrecio()  ?> €</p>
+                <p class="display-6"><?php echo $producto->getPrecioFinal()  ?> €</p>
 
                 <div class="row form-group">
                     <div class="mb-3 col">
