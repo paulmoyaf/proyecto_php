@@ -20,9 +20,9 @@
 
     <div class="container">
 
-        <div class="header-titulo pt-5">
+        <div class="pt-5">
             <!-- <img class="card-img-top logo" src="../src/img/logo/logo.png" alt="Title"> -->
-            <p class="display-5 text-center">View Item</p>
+            <p class="display-5 text-end">View Item</p>
         </div>
         <hr>
 

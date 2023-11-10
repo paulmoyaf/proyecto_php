@@ -36,7 +36,7 @@
                                 $nombre_tipo_producto = ProductosDB::obtenerNombreTipoProducto($producto->getTipoProductoId());
                                 $nombre_talla = ProductosDB::obtenerNombreTalla($producto->getTallaId());
                             ?>
-                                <div class="card text-bg-light">
+                                <div class="card text-bg-light card-items">
                                     <a href="../admin/view/logic.php?id=<?= $producto->getId() ?>">
                                         <img class="card-img-top" src=<?= $producto->getImagenURL() ?>>
                                     </a>

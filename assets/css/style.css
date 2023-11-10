@@ -92,7 +92,7 @@ body{
   /* height: 10em; */
   width: 12em;
 }
-.card{
+.card-items{
   /* background-color: rgba(0, 0, 0, 0.1); */
   margin-top: 3em;
   padding: 2em;
@@ -112,7 +112,7 @@ body{
 
 
 
-.card::before {
+#imagen-principal::before { 
   content: "";
   display: block;
   position: absolute;
@@ -120,7 +120,7 @@ body{
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url(assets/img/portadas/camisetasBanner.jpg);
+  background-image: url(../img/portadas/camisetasBanner.jpg);
   background-size:cover;
   opacity: 0.5;
   z-index: -1;

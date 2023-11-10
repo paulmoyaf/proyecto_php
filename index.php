@@ -26,7 +26,7 @@
 
  
 
-  <div class="card content" style="background-color: rgba(128, 125, 125, 0.1);">
+  <div class="card content" id="imagen-principal" style="background-color: rgba(128, 125, 125, 0.1);">
     <!-- <img class="card-img-top" src="holder.js/100x180/" alt="Title"> -->
     <div class="card-body d-flex flex-column justify-content-center align-items-center text-center">
       <div class="card-title">

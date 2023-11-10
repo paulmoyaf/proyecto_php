@@ -21,7 +21,6 @@ require('../src/objects/productos.php');
     <?php include 'includes/header.php'; ?>
     <?php include 'includes/nav.php'; ?>
 
-
     <div class="container py-5">
         <div class="container pb-3">
             <div class="display-6 text-center">Lista de Productos</div>
@@ -31,48 +30,53 @@ require('../src/objects/productos.php');
 
         <div class="row">
 
-        <div class="col-8">
+            <div class="col-8">
 
-        <div class="d-flex flex-wrap" id="lista-items">
-            <?php
-                $productos = ProductosDB::selectProductos();
-                foreach ($productos as $producto) : ?>
-                    <?php $nombre_tipo_producto = ProductosDB::obtenerNombreTipoProducto($producto->getTipoProductoId());?>
-                    <?php $nombre_tipo_categoria = ProductosDB::obtenerNombreTipoCategoria($producto->getCategoriaId());?>
+                <div class="d-flex flex-wrap" id="lista-items">
 
-                    <div class="col-lg-4 col-md-4 col-sm-12 pb-5 px-3">
-                        <div class="card w-100">
-                            <a class="btn btn-outline-dark" href='view-page.php?id=<?= $producto->getId() ?>'>
-                                <div class="card-body">
-                                    <h4 class="card-title font-weight-bold"><?php echo $producto->getNombre()  ?></h4>
-                                    <img src="<?php echo $producto->getImagenURL()  ?>" class="img-fluid rounded-start py-3" style="width: 15em" alt="Card title">
-                                    <p class="card-text">Modelo: <?php echo $producto->getDescripcion() ?></p>
-                                    <p class="card-text">Categoria: <?php echo $nombre_tipo_categoria ?></p>
-                                    <p class="card-text">Modelo: <?php echo $producto->getPrecio() ?></p>
-                                    <p class="card-text">Tipo: <?php echo $nombre_tipo_producto ?></p>
-                                    <p class="card-text font-weight-bold" style="font-size: larger;"><?php echo $producto->getPrecioFinal()?> €</p>
-                                    <div class="btn btn-warning" id="producto">Add To Car</div>
+                    <?php
+                        $productos = ProductosDB::selectProductos();
+                        foreach ($productos as $producto) : ?>
+                            <?php $nombre_tipo_producto = ProductosDB::obtenerNombreTipoProducto($producto->getTipoProductoId());?>
+                            <?php $nombre_tipo_categoria = ProductosDB::obtenerNombreTipoCategoria($producto->getCategoriaId());?>
+
+                            <div class="col-lg-4 col-md-4 col-sm-12 pb-5 px-3">
+                                <div class="card">
+                                    <button class="btn btn-outline-dark" href='view-page.php?id=<?= $producto->getId() ?>'>
+                                        <div class="card-body">
+                                            <h4 class="card-title font-weight-bold" id="name-producto"><?php echo $producto->getNombre()  ?></h4>
+                                            <img id="img-producto" src="<?php echo $producto->getImagenURL()  ?>" class="img-fluid rounded-start py-3" style="width: 15em" alt="Card title">
+                                            <p class="card-text">Modelo: <?php echo $producto->getDescripcion() ?></p>
+                                            <p class="card-text">Categoria: <?php echo $nombre_tipo_categoria ?></p>
+                                            <p class="card-text">Modelo: <?php echo $producto->getPrecio() ?></p>
+                                            <p class="card-text">Tipo: <?php echo $nombre_tipo_producto ?></p>
+                                            <p class="card-text font-weight-bold" style="font-size: larger;" id="price-producto"><?php echo $producto->getPrecioFinal()?> €</p>
+                                        </div>
+                                    </button>
                                 </div>
-                            </a>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-        </div>
+                                <!-- <button class="btn btn-outline-dark" href='view-page.php?id=<?= $producto->getId() ?>'>Ver detalle</button> -->
+                                <button class="btn btn-warning w-100 btn-add" data-nombre="<?php echo $producto->getNombre() ?>" data-imagen="<?php echo $producto->getImagenURL() ?>" data-precio="<?php echo $producto->getPrecioFinal() ?>">Agregar al carrito</button>
+                            </div>
+                    <?php endforeach; ?>
 
-        </div>
-        <div class="col-4">
-                    <div class="new-product">Carrito</div>
-        </div>
+                </div>
+
+                </div>
+
+                <div class="col-4">
+                            <div class="card" id="new-product">Carrito <span id="contador"></span></div>
+                </div>
 
 
-        </div>
+                </div>
 
     </div>
 
     <!-- <a href="../index.html" class="btn btn-primary">Volver a la Pagina</a> -->
 
     <?php include 'includes/footer.php'; ?>
-    <script src="assets/js/carrito.js"></script>
+    <script src="../assets/js/carrito.js"></script>
 </body>
 
 </html>
+
