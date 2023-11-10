@@ -10,48 +10,6 @@
 </head>
 
 <body class="container pt-5">
-    <?php require('logic.php'); ?>
-
-    <?php if (isset($_POST['editar'])) :
-        $nombre_categoria_nuevo = ProductosDB::obtenerNombreTalla($categoria_id); 
-        $nombre_talla_nuevo = ProductosDB::obtenerNombreTalla($talla_id); 
-        $nombre_tipo_nuevo = ProductosDB::obtenerNombreTalla($tipo_producto_id); 
-        ?>
-        <div class="table-responsive">
-
-            <table class="table table-bordered text-center">
-                <thead class="">
-                    <tr>
-                        <th scope="col">Imagen</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Descripcion</th>
-                        <th scope="col">Categoria</th>
-                        <th scope="col">Talla</th>
-                        <th scope="col">Tipo</th>
-                        <th scope="col">Precio</th>
-                        <th scope="col">Descuento</th>
-                        <th scope="col">Precio Final</th>
-                    </tr>
-                </thead>
-                <tbody class="align-middle">
-                    <tr class="">
-                        <td><img src="../<?php echo $imagen_url ?>"></td>
-                        <td><?php echo $nombre  ?></td>
-                        <td><?php echo $descripcion ?></td>
-                        <td><?php echo $nombre_categoria_nuevo ?></td>
-                        <td><?php echo $nombre_talla_nuevo ?></td>
-                        <td><?php echo $nombre_tipo_nuevo ?></td>
-                        <td><?php echo $precio  ?> €</td>
-                        <td><?php echo $descuento ?>%</td>
-                        <td><?php echo $producto->getPrecioFinal() ?>€</td>
-                    </tr>
-                </tbody>
-            </table>
-
-
-        </div>
-        <a class="btn btn-outline-secondary" href="../../admin/index.php" role="button">Regresar al Menú</a>
-    <?php else : ?>
 
         <div class="header-titulo">
             <img class="card-img-top logo" src="../../assets/img/logo/logo.png" alt="Logo">
@@ -127,7 +85,6 @@
             </div>
         </div>
 
-    <?php endif; ?>
 </body>
 
 </html>

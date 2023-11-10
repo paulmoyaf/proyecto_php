@@ -1,29 +1,20 @@
 <?php
-
-//esto no tiene las cookies
 session_start();
-
 $admin = false;
-    if(isset($_SESSION['usuario']) && $_SESSION['usuario'] == "admin"){
+if(isset($_SESSION['usuario']) && $_SESSION['usuario'] == "admin"){
     $admin = true;
-
-
-// esto con la cookie
-// if(isset($_COOKIE['usuario']) && $_COOKIE['usuario'] == "admin"){
-//     $admin = true;
-
 }
-
 if ($admin == false){
     header ("location: index.php");
 }
-
-
 require('../../db/db_connection.php');
 require('../../src/objects/productos.php');
 
+$tallas = ProductosDB::selectTallas();
+$categorias = ProductosDB::selectCategorias();
+$tipos_producto = ProductosDB::selectTipoProducto();
+
 if (isset($_POST['guardar'])) {
-    
     $nombre          = $_POST['nombre'];
     $descripcion     = $_POST['descripcion'];
     $categoria_id    = $_POST['categoria_id'];
@@ -36,12 +27,15 @@ if (isset($_POST['guardar'])) {
     if ($descuento == ""){
         $descuento = 0;
     }
- 
+
+    $nombre_categoria_nuevo = ProductosDB::obtenerNombreTipoCategoria($categoria_id);
+    $nombre_talla_nuevo = ProductosDB::obtenerNombreTalla($talla_id);
+    $nombre_tipo_nuevo = ProductosDB::obtenerNombreTipoProducto($tipo_producto_id);
+    
     if (strlen($nombre) > 0 && strlen($descripcion) > 0 && strlen($categoria_id) > 0 &&
     strlen($talla_id) > 0 && strlen($tipo_producto_id) > 0  
     && strlen($precio) > 0 && strlen($imagen_url) > 0  
     ) {
-
         $producto = new Producto();
         $producto->setNombre($nombre);
         $producto->setDescripcion($descripcion);
@@ -51,22 +45,21 @@ if (isset($_POST['guardar'])) {
         $producto->setDescuento($descuento);
         $producto->setPrecio($precio);
         $producto->setImagenUrl($imagen_url);
-
         if (ProductosDB::insertProduct($producto) > 0) {
             echo "<div class=\"alert alert-success\" role=\"alert\">
             El Producto se ha guardado exitosamente... </div> \n";
+            require('view-add-results.php');
         } else {
             echo "<div class=\"alert alert-warning\" role=\"alert\">
             El producto no se ha guardado ... </div> \n";
+            require('view-add.php');
         }
     } else {
         echo "<div class=\"alert alert-warning\" role=\"alert\">
         Upps parece que ha ocurrido algo, parece que no tiene informacion... </div> \n";
+        require('view-add.php');
     }
 } else {
-    $tallas = ProductosDB::selectTallas();
-    $categorias = ProductosDB::selectCategorias();
-    $tipos_producto = ProductosDB::selectTipoProducto();
+    require('view-add.php');
 }
 ?>
-

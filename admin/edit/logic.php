@@ -14,6 +14,14 @@ require('../../db/db_connection.php');
 require('../../src/objects/productos.php');
 
 $id = $_GET['id'];
+$producto = ProductosDB::selectProducto($id);
+$nombre_tipo_producto = ProductosDB::obtenerNombreTipoProducto($producto->getTipoProductoId());
+$nombre_tipo_categoria = ProductosDB::obtenerNombreTipoCategoria($producto->getCategoriaId());
+$nombre_talla = ProductosDB::obtenerNombreTalla($producto->getTallaId());
+$tallas = ProductosDB::selectTallas();
+$categorias = ProductosDB::selectCategorias();
+$tipos_producto = ProductosDB::selectTipoProducto();
+
 
 // $directorioDestino = "../src/img/cds/"; // Reemplaza con la ruta de tu carpeta destino
 // $resultado = subirArchivo($_FILES['imagen_url'], $directorioDestino);
@@ -38,7 +46,9 @@ if (isset($_POST['editar'])) {
     $precio          = $_POST['precio'];
     $imagen_url      = $_POST['imagen_url'];
 
-
+    $nombre_categoria_nuevo = ProductosDB::obtenerNombreTalla($categoria_id); 
+    $nombre_talla_nuevo = ProductosDB::obtenerNombreTalla($talla_id); 
+    $nombre_tipo_nuevo = ProductosDB::obtenerNombreTalla($tipo_producto_id); 
  
     if (strlen($nombre) > 0 && strlen($descripcion) > 0 && strlen($categoria_id) > 0 &&
     strlen($talla_id) > 0 && strlen($tipo_producto_id) > 0 && strlen($descuento) > 0  
@@ -65,23 +75,21 @@ if (isset($_POST['editar'])) {
 
             echo "<div class=\"alert alert-success\" role=\"alert\">
             El Producto se ha editado exitosamente... </div> \n";
+            require('edit-page-results.php');
         } else {
             echo "<div class=\"alert alert-warning\" role=\"alert\">
             El Producto no se ha guardado... </div> \n";
+            require('edit-page.php');
         }
     } else {
             echo "<div class=\"alert alert-warning\" role=\"alert\">
             Upps parece que ha ocurrido algo, parece que no tiene informacion... </div> \n";
+            require('edit-page.php');
         
     }
 } else {
-    $producto = ProductosDB::selectProducto($id);
-    $nombre_tipo_producto = ProductosDB::obtenerNombreTipoProducto($producto->getTipoProductoId());
-    $nombre_tipo_categoria = ProductosDB::obtenerNombreTipoCategoria($producto->getCategoriaId());
-    $nombre_talla = ProductosDB::obtenerNombreTalla($producto->getTallaId());
-    $tallas = ProductosDB::selectTallas();
-    $categorias = ProductosDB::selectCategorias();
-    $tipos_producto = ProductosDB::selectTipoProducto();
+    require('edit-page.php');
+
 
     
 

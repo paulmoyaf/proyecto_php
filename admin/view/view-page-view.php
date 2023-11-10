@@ -14,10 +14,8 @@
 
 <body class="container pt-5">
 
-<?php require('logic.php'); ?>
-
         <div class="header-titulo">            
-            <img class="card-img-top logo" src="../../src/img/logo/logo.png" alt="Title">
+            <img class="card-img-top logo" src="../../assets/img/logo/logo.png" alt="Title">
             <p class="h2 text-center">View Item</p>
         </div>
         <hr>
@@ -54,8 +52,8 @@
         </div>
 
             <div class="d-flex justify-content-between gap-3 row mx-5">
-                <a class="btn btn-primary col" href='../edit/edit-page.php?id=<?= $producto->getId() ?>'>Edit</a>
-                <a class="btn btn-danger col" href='../remove/remove-page.php?id=<?= $producto->getId() ?>'>Remove</a>        
+                <a class="btn btn-primary col" href='../edit/logic.php?id=<?= $producto->getId() ?>'>Edit</a>
+                <a class="btn btn-danger col" href='../remove/logic.php?id=<?= $producto->getId() ?>'>Remove</a>        
                 <a class="btn btn-outline-secondary col" href="../../admin/index.php" role="button">Regresar al Menu</a>
             </div>
 

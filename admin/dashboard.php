@@ -8,7 +8,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 
-<body class="container">
+<body class="">
+
+    <div class="container">
     <div class="row">
         <div class="py-5 col-md-6 col-12 custom-dashboard">
             <div class="d-flex justify-content-between">
@@ -23,7 +25,7 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
                         <h4 class="card-title text-uppercase text-center">List Items</h4>
-                        <button class="btn btn-outline-dark" onclick="window.location.href='../admin/add/add-page.php'">Add New Item</button>
+                        <button class="btn btn-outline-dark" onclick="window.location.href='../admin/add/logic.php'">Add New Item</button>
                     </div>
                     <hr>
 
@@ -35,7 +37,7 @@
                                 $nombre_talla = ProductosDB::obtenerNombreTalla($producto->getTallaId());
                             ?>
                                 <div class="card text-bg-light">
-                                    <a href="../admin/view/view-page.php?id=<?= $producto->getId() ?>">
+                                    <a href="../admin/view/logic.php?id=<?= $producto->getId() ?>">
                                         <img class="card-img-top" src=<?= $producto->getImagenURL() ?>>
                                     </a>
                                     <div class="card-body">
@@ -46,8 +48,8 @@
                                         <p class="card-text text-price">Tipo: <?= $nombre_tipo_producto ?></p>
                                         <p class="card-text font-weight-bold" style="font-size: larger;">P.F.: <?= $producto->getPrecioFinal() ?> €</p>
                                         <div class="mt-2">
-                                            <a class="btn btn-outline-secondary" href='../admin/edit/edit-page.php?id=<?= $producto->getId() ?>'>Edit</a>
-                                            <a class="btn btn-outline-danger" href='../admin/remove/remove-page.php?id=<?= $producto->getId() ?>'>Delete</a>
+                                            <a class="btn btn-outline-secondary" href='../admin/edit/logic.php?id=<?= $producto->getId() ?>'>Edit</a>
+                                            <a class="btn btn-outline-danger" href='../admin/remove/logic.php?id=<?= $producto->getId() ?>'>Delete</a>
                                         </div>
                                     </div>
                                 </div>
@@ -62,6 +64,8 @@
         </div>
     </div>
     </div>
+    </div>
+
 </body>
 
 </html>

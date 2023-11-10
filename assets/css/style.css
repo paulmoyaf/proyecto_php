@@ -6,6 +6,12 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Amiko&display=swap');
 
+:root {
+  --blanco: white;
+  --negro: black;
+  --gris: rgba(0, 0, 0, 0.1);
+  --celeste: rgba(150, 174, 253, 0.1);
+}
 
 body{
   /* font-family: "Gabarito", cursive; */
@@ -15,6 +21,18 @@ body{
   font-family: 'Albert Sans', sans-serif;
   /* font-family: 'Amiko', sans-serif; */
 }
+
+.header{
+  padding: 1em 3em;
+  background-color: rgb(59, 58, 58);
+  color: var(--blanco);
+  height: 4em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
 
 .custom-width {
     width: 60%;
@@ -68,4 +86,5 @@ body{
     .custom-width {
       width: 100%;
     }
+    
   }

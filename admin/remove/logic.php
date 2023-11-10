@@ -27,21 +27,28 @@
 
             $producto = new Producto();
             $producto->setId($id);
-            // $albistea->setizenburua($izenburua);
-            // $albistea->setlaburpena($laburpena);
-            // $albistea->setxehetasunak($xehetasunak);
 
             if (ProductosDB::removeProduct($producto) > 0) {
                 echo "<div class=\"alert alert-success\" role=\"alert\">
                 El Producto se ha borrado exitosamente... </div> \n";
+                require('remove-page-results.php');
+                exit;
+                
             } else {
                 echo "<div class=\"alert alert-warning\" role=\"alert\">
                 El Producto no se ha borrado, ha ocurrido algun error... </div> \n";
+                require('remove-page.php');
+                exit;
             }
         
     }else{
         $producto = ProductosDB::selectProducto($id);
+        $nombre_tipo_producto = ProductosDB::obtenerNombreTipoProducto($producto->getTipoProductoId());
+        $nombre_tipo_categoria = ProductosDB::obtenerNombreTipoCategoria($producto->getCategoriaId());
+        $nombre_talla = ProductosDB::obtenerNombreTalla($producto->getTallaId());
     }
     
+    require('remove-page.php');
+
     
     ?>
