@@ -2,7 +2,7 @@
 
 <div class="container">
   <a class="navbar-brand pt-3" href="index.php">
-    <img src="assets/img/logo/logo.png" alt="" id="carrito">
+    <img src="assets/img/logo/logo.png" alt="" id="logo">
     <!-- <h2>MoyaCreative</h2> -->
   </a>
 
