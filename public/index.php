@@ -42,7 +42,7 @@ require('../src/objects/productos.php');
 
                             <div class="col-lg-4 col-md-4 col-sm-12 pb-5 px-3">
                                 <div class="card">
-                                    <button class="btn btn-outline-dark" href='view-page.php?id=<?= $producto->getId() ?>'>
+                                    <a class="btn btn-outline-dark" href='view-page.php?id=<?= $producto->getId() ?>'>
                                         <div class="card-body">
                                             <h4 class="card-title font-weight-bold" id="name-producto"><?php echo $producto->getNombre()  ?></h4>
                                             <img id="img-producto" src="<?php echo $producto->getImagenURL()  ?>" class="img-fluid rounded-start py-3" style="width: 15em" alt="Card title">
@@ -52,7 +52,7 @@ require('../src/objects/productos.php');
                                             <p class="card-text">Tipo: <?php echo $nombre_tipo_producto ?></p>
                                             <p class="card-text font-weight-bold" style="font-size: larger;" id="price-producto"><?php echo $producto->getPrecioFinal()?> €</p>
                                         </div>
-                                    </button>
+                                    </a>
                                 </div>
                                 <!-- <button class="btn btn-outline-dark" href='view-page.php?id=<?= $producto->getId() ?>'>Ver detalle</button> -->
                                 <button class="btn btn-warning w-100 btn-add" data-nombre="<?php echo $producto->getNombre() ?>" data-imagen="<?php echo $producto->getImagenURL() ?>" data-precio="<?php echo $producto->getPrecioFinal() ?>">Agregar al carrito</button>
