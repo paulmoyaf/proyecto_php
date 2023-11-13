@@ -1,14 +1,8 @@
 <?php
-    require('../db/db_connection.php');
-    require('../src/objects/productos.php');
-    $currentPage = 'catalogo';
+require('../db/db_connection.php');
+require('../src/objects/productos.php');
 
-    // $productos = ProductosDB::selectProductos();
-    // $tallas = ProductosDB::selectTallas();
-    // $tiposProducto = ProductosDB::selectTipoProducto();
-    
-    // include 'catalogo.php';
-    // require ('catalogo.php');
-    header('Location: catalogo.php');
-    // exit;
+$productos = ProductosDB::selectProductos();
+
+include 'catalogo.php';
 ?>

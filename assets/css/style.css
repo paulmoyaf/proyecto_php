@@ -141,8 +141,8 @@ body{
     opacity: 1;
   }
 
-  .card{
-    /* border: 0px; */
+  #servicios .card{
+    border: 0px;
   }
 
 
@@ -217,15 +217,14 @@ grid-column: span 2;
 }
 
 .div-productos {
-  background-color: aqua;
-  border-right: 1px solid black;
-  /* padding-right: 10px;  */
+  border-right: 1px solid var(--gris);
+  padding-right: 1em; 
 }
 
 #div-carrito {
   /* background-color: aqua; */
   border-left: 1px solid var(--gris);
-  padding-left: 2em; 
+  padding-left: 1em; 
 }
 
 .btn-small {
