@@ -58,7 +58,7 @@ document.querySelectorAll('.btn-add').forEach(function(button) {
     
     let precioElement = document.createElement('p');
     precioElement.classList.add('card-text');
-    precioElement.innerHTML = `<strong>${precioProducto}</strong>`;
+    precioElement.innerHTML = `<strong>${precioProducto} €</strong>`;
     
     let btnRemove = document.createElement('button');
     btnRemove.classList.add('btn');
