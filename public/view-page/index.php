@@ -1,21 +1,8 @@
 <?php
-    //esto no tiene las cookies
-    // session_start();
 
-    // $admin = false;
-    //     if(isset($_SESSION['usuario']) && $_SESSION['usuario'] == "admin"){
-    //     $admin = true;
-    // }
+    require('../../db/db_connection.php');
+    require('../../src/objects/productos.php');
 
-    // if ($admin == false){
-    //     header ("location: index.php");
-    // }
-
-
-    require('../db/db_connection.php');
-    require('../src/objects/productos.php');
-
-    // $id = $_GET['id'];
 
     $id = $_GET['id'];
 
@@ -27,6 +14,7 @@
             $nombre_tipo_categoria = ProductosDB::obtenerNombreTipoCategoria($producto->getCategoriaId());
             $tallas = ProductosDB::selectTallas();
             $tiposProducto = ProductosDB::selectTipoProducto();
-
+    
+    require('view-page.php');
 
 ?>

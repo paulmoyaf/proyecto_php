@@ -22,7 +22,11 @@
 
         <div class="pt-5">
             <!-- <img class="card-img-top logo" src="../src/img/logo/logo.png" alt="Title"> -->
-            <p class="display-5 text-end">View Item</p>
+            <!-- <p class="display-5 text-end">View Item</p> -->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.php">Catalogo</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><?php echo $producto->getId()  ?></li>
+            </ol>
         </div>
         <hr>
 
@@ -42,7 +46,7 @@
                 <ul>
                     <li>Descripcion: <?php echo $producto->getDescripcion() ?></li>
                     <li>Tipo de Producto: <?php echo $nombre_tipo_producto ?></li>
-                    <li>Precio: <?php echo $producto->getPrecio()?></li>
+                    <li>Precio: <?php echo $producto->getPrecio() ?></li>
                     <li>Descuento: <?php echo $producto->getDescuento() ?> % (Para usuarios PRIME)</li>
                 </ul>
                 <p class="display-6"><?php echo $producto->getPrecioFinal()  ?> €</p>

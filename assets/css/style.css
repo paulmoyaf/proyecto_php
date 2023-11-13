@@ -142,7 +142,7 @@ body{
   }
 
   .card{
-    border: 0px;
+    /* border: 0px; */
   }
 
 
@@ -206,6 +206,7 @@ grid-column: span 2;
   font-size:large;
   
 }
+
 .img-nosotros{
  width: 7em;
 }
@@ -215,9 +216,22 @@ grid-column: span 2;
   color:rgb(219, 46, 46)
 }
 
+.div-productos {
+  background-color: aqua;
+  border-right: 1px solid black;
+  /* padding-right: 10px;  */
+}
 
+#div-carrito {
+  /* background-color: aqua; */
+  border-left: 1px solid var(--gris);
+  padding-left: 2em; 
+}
 
-
+.btn-small {
+  padding: 5px 10px;
+  font-size: 12px;
+}
 
 
 .caja{

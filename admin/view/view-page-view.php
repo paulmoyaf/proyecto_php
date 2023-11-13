@@ -52,8 +52,8 @@
         </div>
 
             <div class="d-flex justify-content-between gap-3 row mx-5">
-                <a class="btn btn-primary col" href='../edit/logic.php?id=<?= $producto->getId() ?>'>Edit</a>
-                <a class="btn btn-danger col" href='../remove/logic.php?id=<?= $producto->getId() ?>'>Remove</a>        
+                <a class="btn btn-primary col" href='../edit/index.php?id=<?= $producto->getId() ?>'>Edit</a>
+                <a class="btn btn-danger col" href='../remove/index.php?id=<?= $producto->getId() ?>'>Remove</a>        
                 <a class="btn btn-outline-secondary col" href="../../admin/index.php" role="button">Regresar al Menu</a>
             </div>
 

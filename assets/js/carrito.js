@@ -1,5 +1,7 @@
 const divHtml = document.querySelector('#new-product');
 const textContador = document.querySelector('#contador');
+const btnEliminarTodo = document.querySelector('#btn-delete-all');
+
 textContador.innerHTML = 0;
 let contador = 0;
 
@@ -7,57 +9,94 @@ document.querySelectorAll('.btn-add').forEach(function(button) {
   button.addEventListener('click', function(e) {
     e.preventDefault();
     contador++;
+
     textContador.innerHTML = contador;
+
+    btnEliminarTodo.style.display = "block";
+
 
     const card = document.createElement('div');
     card.classList.add('card');
+    card.classList.add('mb-3');
+    card.classList.add('p-3');
     card.classList.add('w-100');
+
+    let filaCard  = document.createElement('div');
+    filaCard.classList.add('row');
+
+    let columnaIzquierda = document.createElement('div');
+    columnaIzquierda.classList.add('col-md-4');
+    let columnaDerecha = document.createElement('div');
+    columnaDerecha.classList.add('col-md-8');
     
-    const cardBody = document.createElement('div');
+    let cardBody = document.createElement('div');
     cardBody.classList.add('card-body');
-    cardBody.classList.add('d-flex');
-    cardBody.classList.add('flex-column');
-    cardBody.classList.add('align-items-center');
-    cardBody.classList.add('py-1');
+
+    let nombreProducto = this.getAttribute('data-nombre');
+    let imgProducto = this.getAttribute('data-imagen');
+    let tipoProducto = this.getAttribute('data-tipo');
+    let precioProducto = this.getAttribute('data-precio');
     
-    const nombreProducto = document.querySelector('#name-producto').textContent;
-    const imgProducto = document.querySelector('#img-producto').getAttribute('src');
-    const precioProducto = document.querySelector('#price-producto').textContent;
+    // let nombreProducto = document.querySelector('#name-producto').textContent;
+    // let imgProducto = document.querySelector('#img-producto').getAttribute('src');
+    // let tipoProducto = document.querySelector('#tipo-producto').textContent;
+    // let precioProducto = document.querySelector('#price-producto').textContent;
     
-    const nombreElement = document.createElement('h4');
+    let nombreElement = document.createElement('h6');
     nombreElement.classList.add('card-title');
-    nombreElement.classList.add('text-center');
     nombreElement.textContent = nombreProducto;
     
-    const imgElement = document.createElement('img');
-    imgElement.classList.add('card-img-top');
-    imgElement.classList.add('w-50');
+    let imgElement = document.createElement('img');
+    imgElement.classList.add('card-img');
+    imgElement.classList.add('w-100');
     imgElement.src = imgProducto;
+
+    let tipoElement = document.createElement('p');
+    tipoElement.classList.add('card-text');
+    tipoElement.classList.add('text-muted');
+    tipoElement.innerHTML = tipoProducto;
     
-    const precioElement = document.createElement('p');
+    let precioElement = document.createElement('p');
     precioElement.classList.add('card-text');
-    precioElement.classList.add('text-center');
-    precioElement.classList.add('py-1');
     precioElement.innerHTML = `<strong>${precioProducto}</strong>`;
     
-    const btnRemove = document.createElement('button');
+    let btnRemove = document.createElement('button');
     btnRemove.classList.add('btn');
     btnRemove.classList.add('btn-danger');
+    btnRemove.classList.add('col-12');
+
     btnRemove.textContent = 'Borrar';
     btnRemove.addEventListener('click', function() {
       contador--;
       textContador.innerHTML = contador;
       card.remove();
+      if(contador==0){
+        btnEliminarTodo.style.display = "none";
+      }
     });
     
+
+    columnaIzquierda.appendChild(imgElement);
+    columnaDerecha.appendChild(cardBody);
+
     cardBody.appendChild(nombreElement);
-    cardBody.appendChild(imgElement);
+    cardBody.appendChild(tipoElement);
     cardBody.appendChild(precioElement);
-    cardBody.appendChild(btnRemove);
+
+    filaCard.appendChild(columnaIzquierda);
+    filaCard.appendChild(columnaDerecha);
+    filaCard.appendChild(btnRemove);
     
-    card.appendChild(cardBody);
+    card.appendChild(filaCard);
     divHtml.appendChild(card);
   });
+});
+
+btnEliminarTodo.addEventListener('click', function() {
+  contador = 0;
+  textContador.innerHTML = contador;
+  divHtml.innerHTML = ''; // Eliminar todos los elementos dentro del contenedor
+  btnEliminarTodo.style.display = "none";
 });
 
 // const divHtml = document.querySelector('#new-product');
