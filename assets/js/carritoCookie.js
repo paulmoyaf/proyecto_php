@@ -28,18 +28,8 @@ function getCookie(name) {
 
 // Obtén el contador almacenado en la cookie (si existe)
 const storedCounter = getCookie("contador");
-const storedCards = getCookie("cards");
-const storedBtnRemoveAll = getCookie("btn_removeAll");
-const storedBtnRemoveOne = getCookie("btn_removeOne");
-
 if (storedCounter) {
   contador = parseInt(storedCounter);
-}
-if (storedCards) {
-  divHtml.innerHTML = storedCards;
-}
-if (storedBtnRemoveAll) {
-  btnEliminarTodo.style.display = "block";
 }
 
 // Actualiza el contador en la página
@@ -51,18 +41,16 @@ document.querySelectorAll('.btn-add').forEach(function(button) {
     e.preventDefault();
     contador++;
     textContador.innerHTML = contador;
+    // Guarda el nuevo valor del contador en la cookie
     setCookie("contador", contador, 365);
     btnEliminarTodo.style.display = "block";
-    setCookie("btn_removeAll", btnEliminarTodo.style.display, 365);
     const card = createCardElement(this);
     divHtml.appendChild(card);
-    setCookie("cards", divHtml.innerHTML, 365);
   });
 });
 
 // Crea un elemento de tarjeta con los detalles del producto
 function createCardElement(button) {
-
   const card = document.createElement('div');
   card.classList.add('card', 'mb-3', 'p-3', 'w-100');
   
@@ -101,13 +89,10 @@ function createCardElement(button) {
   
   const btnRemove = document.createElement('button');
   btnRemove.classList.add('btn', 'btn-danger', 'col-12');
-  btnRemove.innerHTML = 'Borrar';
-  
-
+  btnRemove.textContent = 'Borrar';
   btnRemove.addEventListener('click', function() {
     contador--;
     textContador.innerHTML = contador;
-
     card.remove();
     if (contador === 0) {
       btnEliminarTodo.style.display = "none";
@@ -136,7 +121,4 @@ btnEliminarTodo.addEventListener('click', function() {
   divHtml.innerHTML = '';
   btnEliminarTodo.style.display = "none";
   setCookie("contador", "", -1);
-  setCookie("cards", "", -1);
-  setCookie("btn_removeAll", "", -1);
 });
-
