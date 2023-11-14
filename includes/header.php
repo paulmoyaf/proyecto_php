@@ -6,7 +6,7 @@
   </a>
   <div class="d-flex align-items-center gap-3">
     <a href="#">
-      <img src="../assets/img/carrito@4x.png" alt="" id="carrito">
+      <img src="assets/img/carrito.png" alt="" id="carrito">
     </a>
     <!-- <a name="" id="" class="btn btn-warning" href="http:\\localhost\proyecto_php\admin\index.php" role="button">LogIn</a> -->
   </div>

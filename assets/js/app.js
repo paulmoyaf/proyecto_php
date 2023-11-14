@@ -1,7 +1,7 @@
 const formulario = document.querySelector('.formulario');
 
 
-const name = document.querySelector("#name");
+const nombre = document.querySelector("#name");
 const phone = document.querySelector("#phone");
 const email = document.querySelector("#email");
 const msn = document.querySelector("#msn");
@@ -14,7 +14,7 @@ formulario.addEventListener('submit',function(e){
 
 const formData = () =>{
 
-    if (name.value == "" || phone.value == "" || email.value == "" | msn.value == ""){
+    if (nombre.value == "" || phone.value == "" || email.value == "" | msn.value == ""){
         showError("No has metido todos la información....");
     } else{
         showMessage("No has metido los datos");

@@ -7,8 +7,7 @@
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
-    <?php include 'includes/header.php'; ?>
-    <?php include 'includes/nav.php'; ?>
+
     <div class="container py-5">
         <div class="container pb-3">
             <div class="display-6 text-center">Catálogo</div>
@@ -23,7 +22,7 @@
                     ?>
                         <div class="col-lg-4 col-md-4 col-sm-12 pb-5 px-3">
                             <div class="card">
-                                <a class="btn btn-outline-dark" href='view-page/index.php?id=<?= $producto->getId() ?>'>
+                                <a class="btn btn-outline-dark" href='index.php?id=<?= $producto->getId() ?>'>
                                     <div class="card-body">
                                         <h4 class="card-title font-weight-bold" id="name-producto"><?php echo $producto->getNombre() ?></h4>
                                         <img id="img-producto" src="<?php echo $producto->getImagenURL() ?>" class="img-fluid rounded-start py-3" style="width: 15em" alt="Card title">
@@ -43,14 +42,14 @@
             <div class="col-md-4 col-12 px-3" id="div-carrito">
                 <div class="d-flex justify-content-around gap-2 pb-3">
                     <span>Productos en el Carrito: </span>
-                    <span id="contador"></span>
+                    <!-- <span id="contador"></span> -->
                     <button class="btn btn-danger btn-small" id="btn-delete-all" style="display: none">Vaciar Carrito</button>
                 </div>
                 <span class="" id="new-product"></span>
             </div>
         </div>
     </div>
-    <?php include 'includes/footer.php'; ?>
+
     <script src="../assets/js/carrito.js"></script>
 </body>
 </html>

@@ -5,7 +5,7 @@
     <title>Base de Datos</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 
@@ -13,16 +13,13 @@
 
 <body class="">
 
-    <?php include '../includes/header.php'; ?>
-
-
     <div class="container">
 
         <div class="pt-5">
             <!-- <img class="card-img-top logo" src="../src/img/logo/logo.png" alt="Title"> -->
             <!-- <p class="display-5 text-end">View Item</p> -->
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="../index.php">Catalogo</a></li>
+                <li class="breadcrumb-item"><a href="index.php">Catalogo</a></li>
                 <li class="breadcrumb-item active" aria-current="page"><?php echo $producto->getId()  ?></li>
             </ol>
         </div>
@@ -31,7 +28,7 @@
         <div class="row">
             <div class="col-md-6 col-12 text-center p-5">
 
-                <img class="card-img-top" src="../<?php echo $producto->getImagenURL()  ?>">
+                <img class="card-img-top" src="<?php echo $producto->getImagenURL()  ?>">
                 <div class="card-body">
                     <h4 class="card-title"><?php echo $producto->getNombre()  ?></h4>
                     <p class="card-text"><?php echo $producto->getDescripcion()  ?></p>
@@ -73,7 +70,7 @@
 
         </div>
     </div>
-    <?php include '../includes/footer.php'; ?>
+    
 </body>
 
 </html>
