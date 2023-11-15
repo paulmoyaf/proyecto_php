@@ -12,7 +12,7 @@
     crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
@@ -21,8 +21,8 @@
 <body>
 
   <?php $currentPage = 'nosotros'; ?>
-  <?php include '../../includes/header.php'; ?>
-  <?php include '../../includes/nav.php'; ?>
+  <?php include '../includes/header.php'; ?>
+  <?php include '../includes/nav.php'; ?>
 
 
   <main class="w-100">
@@ -49,7 +49,7 @@
           </p>
         </div>
 
-        <img src="../../assets/img/portadas/camisetasFoto.jpg" class="img-fluid col-12 col-md-6 rounded-top pb-5" alt="">
+        <img src="../assets/img/portadas/camisetasFoto.jpg" class="img-fluid col-12 col-md-6 rounded-top pb-5" alt="">
         
       </div>
     </div>
@@ -74,7 +74,7 @@
   
           <div class="col-md-3 col-6 card p-sm-3">
             <div class="card-body">
-              <img class="card-img-top img-nosotros" src="../../assets/img/nosotros/price.png" alt="Title">
+              <img class="card-img-top img-nosotros" src="../assets/img/nosotros/price.png" alt="Title">
               <h4 class="card-title titulo-img-nosotros">Mejor Precio</h4>  
               <p class="card-text pt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
               <!-- <a href="#" class="btn btn-outline-dark">Ver más...</a> -->
@@ -83,7 +83,7 @@
   
           <div class="col-md-3 col-6 card p-sm-3">
             <div class="card-body">
-              <img class="card-img-top img-nosotros" src="../../assets/img/nosotros/devs.png" alt="Title">
+              <img class="card-img-top img-nosotros" src="../assets/img/nosotros/devs.png" alt="Title">
               <h4 class="card-title titulo-img-nosotros">Para Devs</h4>
               <p class="card-text pt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
               <!-- <a href="#" class="btn btn-outline-dark">Ver más...</a> -->
@@ -92,7 +92,7 @@
   
           <div class="col-md-3 col-6 card p-sm-3">
             <div class="card-body">
-              <img class="card-img-top img-nosotros" src="../../assets/img/nosotros/free.png" alt="Title">
+              <img class="card-img-top img-nosotros" src="../assets/img/nosotros/free.png" alt="Title">
               <h4 class="card-title titulo-img-nosotros">Envío Gratis</h4>
               <p class="card-text pt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
               <!-- <a href="#" class="btn btn-outline-dark">Ver más...</a> -->
@@ -101,7 +101,7 @@
   
           <div class="col-md-3 col-6 card p-sm-3">
             <div class="card-body">
-              <img class="card-img-top img-nosotros" src="../../assets/img/nosotros/quality.png" alt="Title">
+              <img class="card-img-top img-nosotros" src="../assets/img/nosotros/quality.png" alt="Title">
               <h4 class="card-title titulo-img-nosotros">Mejor Calidad</h4>
               <p class="card-text pt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
               <!-- <a href="#" class="btn btn-outline-dark">Ver más...</a> -->
@@ -121,9 +121,9 @@
 
   </main>
 
-  <?php include '../../includes/footer.php'; ?>
+  <?php include '../includes/footer.php'; ?>
 
-  <style></style>
+  <script src="../assets/js/carrito.js"></script>
 
 </body>
 

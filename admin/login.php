@@ -12,16 +12,7 @@
 <body class="container">
     <div class="row">
         <div class="py-5 col-md-6 col-12 custom-width">
-            <h1 class="h3 text-black-50 text-end">Albisteak Administrador</h1>
-            <?php
-            if (isset($error_message)) {
-                echo "<div class=\"alert alert-warning\" role=\"alert\">
-                $error_message </div> \n";
-            }
-            ?>
-            <!-- <div class="image-login">
-                </div> -->
-                
+            <h1 class="h3 text-black-50 text-end">Albisteak Administrador</h1>              
                 <div class="card mt-5">
                     <div class="card-body bg-light">
                         
@@ -39,6 +30,12 @@
                     </form>
                 </div>
             </div>
+            <?php
+            if (isset($error_message)) {
+                echo "<div class=\"alert alert-warning\" role=\"alert\">
+                $error_message </div> \n";
+            }
+            ?>
             <a href="../index.php" class="btn btn-warning w-100">Pagina Inicial</a>
 
         </div>

@@ -23,7 +23,13 @@
 
     $id = $_GET['id'];
 
-        // $albistea = AlbisteaDB::selectAlbistea($id);
+    $filteredId = filter_var($id, FILTER_VALIDATE_INT);
+        if ($filteredId === false) {
+            header("HTTP/1.0 400 Bad Request");
+            include '../../src/views/400.php';
+            exit;
+        }
+        
         $producto = ProductosDB::selectProducto($id);
         
         if ($producto == null) {
@@ -39,5 +45,5 @@
 
         // $tallas = ProductosDB::selectTallas();
         // $tiposProducto = ProductosDB::selectTipoProducto();
-        require('view-page-view.php');
+        require('product-page-view.php');
 ?>

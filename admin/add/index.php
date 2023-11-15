@@ -46,17 +46,14 @@ if (isset($_POST['guardar'])) {
         $producto->setPrecio($precio);
         $producto->setImagenUrl($imagen_url);
         if (ProductosDB::insertProduct($producto) > 0) {
-            echo "<div class=\"alert alert-success\" role=\"alert\">
-            El Producto se ha guardado exitosamente... </div> \n";
+            require ('../src/views/data-success.php');
             require('view-add-results.php');
         } else {
-            echo "<div class=\"alert alert-warning\" role=\"alert\">
-            El producto no se ha guardado ... </div> \n";
+            require ('../src/views/data-error.php');
             require('view-add.php');
         }
     } else {
-        echo "<div class=\"alert alert-warning\" role=\"alert\">
-        Upps parece que ha ocurrido algo, parece que no tiene informacion... </div> \n";
+        require ('../src/views/data-warning.php');
         require('view-add.php');
     }
 } else {

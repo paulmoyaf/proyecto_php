@@ -16,6 +16,13 @@ require('../../src/objects/productos.php');
 
 $id = $_GET['id'];
 
+$filteredId = filter_var($id, FILTER_VALIDATE_INT);
+if ($filteredId === false) {
+    header("HTTP/1.0 400 Bad Request");
+    include '../../src/views/400.php';
+    exit;
+}
+
 
 $producto = ProductosDB::selectProducto($id);
 
@@ -84,17 +91,16 @@ if (isset($_POST['editar'])) {
 
 
 
-            echo "<div class=\"alert alert-success\" role=\"alert\">
-            El Producto se ha editado exitosamente... </div> \n";
+            require ('../src/views/data-success.php');
             require('edit-page-results.php');
         } else {
-            echo "<div class=\"alert alert-warning\" role=\"alert\">
-            El Producto no se ha guardado... </div> \n";
+
+            require ('../src/views/data-error.php');
             require('edit-page.php');
         }
     } else {
-            echo "<div class=\"alert alert-warning\" role=\"alert\">
-            Upps parece que ha ocurrido algo, parece que no tiene informacion... </div> \n";
+            require ('../src/views/data-warning.php');
+
             require('edit-page.php');
         
     }

@@ -23,6 +23,13 @@
 
     $id = $_GET['id'];
 
+    $filteredId = filter_var($id, FILTER_VALIDATE_INT);
+if ($filteredId === false) {
+    header("HTTP/1.0 400 Bad Request");
+    include '../../src/views/400.php';
+    exit;
+}
+
     if (isset($_POST['eliminar'])) {
 
             $producto = new Producto();
@@ -30,14 +37,13 @@
             $producto->setId($id);
 
             if (ProductosDB::removeProduct($producto) > 0) {
-                echo "<div class=\"alert alert-success\" role=\"alert\">
-                El Producto se ha borrado exitosamente... </div> \n";
+
+                require ('../src/views/data-success.php');
                 require('remove-page-results.php');
                 exit;
                 
             } else {
-                echo "<div class=\"alert alert-warning\" role=\"alert\">
-                El Producto no se ha borrado, ha ocurrido algun error... </div> \n";
+                require ('../src/views/data-error.php');
                 require('remove-page.php');
                 exit;
             }

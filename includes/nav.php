@@ -14,13 +14,13 @@
   <div class="collapse navbar-collapse justify-content-end mr-auto text-center" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
     <li class="nav-item">
-                    <a class="nav-link <?php echo ($currentPage === 'index') ? 'active' : ''; ?>" href="./">Inicio</a>
+                    <a class="nav-link <?php echo ($currentPage === 'index') ? 'active' : ''; ?>" href="../public/">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled <?php echo ($currentPage === 'nosotros') ? 'active' : ''; ?>" href="src/views/nosotros.php">Sobre Nosotros</a>
+                    <a class="nav-link <?php echo ($currentPage === 'nosotros') ? 'active' : ''; ?>" href="../public/nosotros.php">Sobre Nosotros</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?php echo ($currentPage === 'catalogo') ? 'active' : ''; ?>" href="public/index.php">Catálogo</a>
+                    <a class="nav-link <?php echo ($currentPage === 'catalogo') ? 'active' : ''; ?>" href="../public/catalogo.php">Catálogo</a>
                 </li>
       <!-- <li class="nav-item">
         <a class="nav-link" href="productos.php">Productos</a>

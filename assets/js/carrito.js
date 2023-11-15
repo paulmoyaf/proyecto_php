@@ -3,38 +3,25 @@ const textContador = document.querySelector('#contador');
 const btnEliminarTodo = document.querySelector('#btn-delete-all');
 let contador = 0;
 
-// Función para establecer una cookie
-function setCookie(name, value, days) {
-  const expires = new Date();
-  expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
-  document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`;
-}
-
-// Función para obtener el valor de una cookie
-function getCookie(name) {
-  const cookieName = `${name}=`;
-  const cookies = document.cookie.split(';');
-  for (let i = 0; i < cookies.length; i++) {
-    let cookie = cookies[i];
-    while (cookie.charAt(0) === ' ') {
-      cookie = cookie.substring(1);
-    }
-    if (cookie.indexOf(cookieName) === 0) {
-      return cookie.substring(cookieName.length, cookie.length);
-    }
-  }
-  return null;
-}
-
-// Obtén el contador almacenado en la cookie (si existe)
 const storedCounter = getCookie("contador");
+if (storedCounter) {
+  contador = parseInt(storedCounter);
+}
+textContador.innerHTML = contador;
+
+if (!divHtml || !btnEliminarTodo) {
+
+  sumarContador();
+  
+} else {
+// Obtén el contador almacenado en la cookie (si existe)
+
 const storedCards = getCookie("cards");
 const storedBtnRemoveAll = getCookie("btn_removeAll");
 const storedBtnRemoveOne = getCookie("btn_removeOne");
 
-if (storedCounter) {
-  contador = parseInt(storedCounter);
-}
+
+
 if (storedCards) {
   divHtml.innerHTML = storedCards;
 }
@@ -43,15 +30,13 @@ if (storedBtnRemoveAll) {
 }
 
 // Actualiza el contador en la página
-textContador.innerHTML = contador;
+
 
 // Incrementa el contador al hacer clic en el botón
 document.querySelectorAll('.btn-add').forEach(function(button) {
   button.addEventListener('click', function(e) {
     e.preventDefault();
-    contador++;
-    textContador.innerHTML = contador;
-    setCookie("contador", contador, 365);
+    sumarContador();
     btnEliminarTodo.style.display = "block";
     setCookie("btn_removeAll", btnEliminarTodo.style.display, 365);
     const card = createCardElement(this);
@@ -59,6 +44,8 @@ document.querySelectorAll('.btn-add').forEach(function(button) {
     setCookie("cards", divHtml.innerHTML, 365);
   });
 });
+
+
 
 // Crea un elemento de tarjeta con los detalles del producto
 function createCardElement(button) {
@@ -140,3 +127,35 @@ btnEliminarTodo.addEventListener('click', function() {
   setCookie("btn_removeAll", "", -1);
 });
 
+}
+
+// Función para establecer una cookie
+function setCookie(name, value, days) {
+  const expires = new Date();
+  expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
+  document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`;
+}
+
+// Función para obtener el valor de una cookie
+function getCookie(name) {
+  const cookieName = `${name}=`;
+  const cookies = document.cookie.split(';');
+  for (let i = 0; i < cookies.length; i++) {
+    let cookie = cookies[i];
+    while (cookie.charAt(0) === ' ') {
+      cookie = cookie.substring(1);
+    }
+    if (cookie.indexOf(cookieName) === 0) {
+      return cookie.substring(cookieName.length, cookie.length);
+    }
+  }
+  return null;
+}
+
+
+
+const sumarContador = () =>{
+  contador++;
+  textContador.innerHTML = contador;
+  setCookie("contador", contador, 365);
+}

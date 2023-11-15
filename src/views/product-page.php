@@ -13,13 +13,16 @@
 
 <body class="">
 
+<?php include '../includes/header.php'; ?>
+<?php include '../includes/nav.php';  ?>
+
     <div class="container">
 
         <div class="pt-5">
             <!-- <img class="card-img-top logo" src="../src/img/logo/logo.png" alt="Title"> -->
             <!-- <p class="display-5 text-end">View Item</p> -->
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.php">Catalogo</a></li>
+                <li class="breadcrumb-item"><a href="catalogo.php">Catalogo</a></li>
                 <li class="breadcrumb-item active" aria-current="page"><?php echo $producto->getId()  ?></li>
             </ol>
         </div>
@@ -70,7 +73,8 @@
 
         </div>
     </div>
-    
+    <?php include '../includes/footer.php'; ?>
+    <script src="../assets/js/carrito.js"></script>
 </body>
 
 </html>
