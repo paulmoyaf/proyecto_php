@@ -21,7 +21,8 @@ $producto = ProductosDB::selectProducto($id);
 
 if ($producto == null) {
     header("HTTP/1.0 404 Not Found");
-    echo "Error 404: Página no encontrada";
+    // echo "Error 404: Página no encontrada";
+    include '../../src/views/404.php';
     exit;
 }
 

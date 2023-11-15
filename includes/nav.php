@@ -17,7 +17,7 @@
                     <a class="nav-link <?php echo ($currentPage === 'index') ? 'active' : ''; ?>" href="./">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?php echo ($currentPage === 'nosotros') ? 'active' : ''; ?>" href="nosotros.php">Sobre Nosotros</a>
+                    <a class="nav-link disabled <?php echo ($currentPage === 'nosotros') ? 'active' : ''; ?>" href="src/views/nosotros.php">Sobre Nosotros</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link <?php echo ($currentPage === 'catalogo') ? 'active' : ''; ?>" href="public/index.php">Catálogo</a>
