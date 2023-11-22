@@ -17,6 +17,7 @@
     <div class="container py-5">
         <div class="container pb-3">
             <div class="display-6 text-center">Catálogo</div>
+            <div id="btn-categorias"></div>
             <hr>
         </div>
         <div class="row d-flex flex-wrap-reverse">

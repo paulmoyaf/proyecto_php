@@ -27,6 +27,7 @@ if (isset($_GET['id'])) {
     $nombre_tipo_producto = ProductosDB::obtenerNombreTipoProducto($producto->getTipoProductoId());
     $nombre_tipo_categoria = ProductosDB::obtenerNombreTipoCategoria($producto->getCategoriaId());
     $tallas = ProductosDB::selectTallas();
+
     $tiposProducto = ProductosDB::selectTipoProducto();
     // 
 
@@ -34,6 +35,7 @@ if (isset($_GET['id'])) {
 
 } else {
     $productos = ProductosDB::selectProductos();
+    $categorias = ProductosDB::selectCategorias();
     $currentPage = 'catalogo';
     // header("Location: ../src/views/catalogo.php");
     require '../src/views/catalogo.php';
