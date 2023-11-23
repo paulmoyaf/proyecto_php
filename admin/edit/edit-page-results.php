@@ -11,6 +11,20 @@
 
 <body class="container pt-5">
 
+            <?php
+            $messages = [
+                'success' => $message ?? null,
+                'warning' => $messageWarning ?? null,
+                'error' => $messageError ?? null
+            ];
+
+            foreach ($messages as $type => $message) {
+                if ($message) {
+                    echo "<div class=\"alert alert-$type\" role=\"alert\">$message</div>\n";
+                }
+            }
+            ?>          
+
         <div class="table-responsive">
 
             <table class="table table-bordered text-center">
@@ -29,7 +43,7 @@
                 </thead>
                 <tbody class="align-middle">
                     <tr class="">
-                        <td><img src="../<?php echo $imagen_url ?>"></td>
+                        <td><img src="../<?php echo $imagen_url ?>" alt="imagen-item"></td>
                         <td><?php echo $nombre  ?></td>
                         <td><?php echo $descripcion ?></td>
                         <td><?php echo $nombre_categoria_nuevo ?></td>

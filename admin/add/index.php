@@ -14,7 +14,11 @@ $tallas = ProductosDB::selectTallas();
 $categorias = ProductosDB::selectCategorias();
 $tipos_producto = ProductosDB::selectTipoProducto();
 
+
+
 if (isset($_POST['guardar'])) {
+
+
     $nombre          = $_POST['nombre'];
     $descripcion     = $_POST['descripcion'];
     $categoria_id    = $_POST['categoria_id'];
@@ -24,9 +28,9 @@ if (isset($_POST['guardar'])) {
     $precio          = $_POST['precio'];
     $imagen_url      = $_POST['imagen_url'];
 
-    if ($descuento == ""){
-        $descuento = 0;
-    }
+    // if ($descuento == ""){
+    //     $descuento = 0.00;
+    // }
 
     $nombre_categoria_nuevo = ProductosDB::obtenerNombreTipoCategoria($categoria_id);
     $nombre_talla_nuevo = ProductosDB::obtenerNombreTalla($talla_id);
@@ -45,18 +49,36 @@ if (isset($_POST['guardar'])) {
         $producto->setDescuento($descuento);
         $producto->setPrecio($precio);
         $producto->setImagenUrl($imagen_url);
-        if (ProductosDB::insertProduct($producto) > 0) {
-            require ('../src/views/data-success.php');
-            require('view-add-results.php');
-        } else {
-            require ('../src/views/data-error.php');
-            require('view-add.php');
+
+        $precio = filter_var($precio, FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+        $descuento = filter_var($descuento, FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+
+        if ($precio === false || $descuento === false ) {
+            $messageError = "El precio o descuento debe ser un número decimal válido";
+            require ('view-add.php');
+        } else{
+            if (ProductosDB::insertProduct($producto) > 0) {
+                    $message = "La acción se ha completado correctamente!!!";
+                require ('view-add-results.php');
+            } else {
+                $messageError = "Error: No se ha podido completar la acción deseada";
+                require ('view-add-results.php');
+            }
         }
     } else {
-        require ('../src/views/data-warning.php');
-        require('view-add.php');
+        $messageWarning = "Upps parece que ha ocurrido algo, parece que no tiene toda la informacion...";
+        require ('view-add.php');
+
     }
 } else {
-    require('view-add.php');
+    $nombre           = "";
+    $descripcion      = ""; 
+    $nombre_categoria_nuevo    = ""; 
+    $nombre_talla_nuevo       = ""; 
+    $nombre_tipo_nuevo = ""; 
+    $descuento        = ""; 
+    $precio           = ""; 
+    $imagen_url       = ""; 
+    include('view-add.php');
 }
 ?>

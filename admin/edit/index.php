@@ -48,13 +48,6 @@ $tipos_producto = ProductosDB::selectTipoProducto();
 if (isset($_POST['editar'])) {
 
 
-    // $nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
-    // $descripcion = filter_input(INPUT_POST, 'descripcion', FILTER_SANITIZE_STRING);
-    // $categoria = filter_input(INPUT_POST, 'categoria', FILTER_SANITIZE_STRING);
-    // $tiene_descuento = filter_input(INPUT_POST, 'tiene_descuento', FILTER_VALIDATE_INT);
-    // $precio = filter_input(INPUT_POST, 'precio', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-    // $imagen_url = filter_input(INPUT_POST, 'imagen_url', FILTER_SANITIZE_URL);
-
     $nombre          = $_POST['nombre'];
     $descripcion     = $_POST['descripcion'];
     $categoria_id    = $_POST['categoria_id'];
@@ -64,9 +57,9 @@ if (isset($_POST['editar'])) {
     $precio          = $_POST['precio'];
     $imagen_url      = $_POST['imagen_url'];
 
-    $nombre_categoria_nuevo = ProductosDB::obtenerNombreTalla($categoria_id); 
+    $nombre_categoria_nuevo = ProductosDB::obtenerNombreTipoCategoria($categoria_id); 
     $nombre_talla_nuevo = ProductosDB::obtenerNombreTalla($talla_id); 
-    $nombre_tipo_nuevo = ProductosDB::obtenerNombreTalla($tipo_producto_id); 
+    $nombre_tipo_nuevo = ProductosDB::obtenerNombreTipoProducto($tipo_producto_id); 
  
     if (strlen($nombre) > 0 && strlen($descripcion) > 0 && strlen($categoria_id) > 0 &&
     strlen($talla_id) > 0 && strlen($tipo_producto_id) > 0 && strlen($descuento) > 0  
@@ -84,32 +77,28 @@ if (isset($_POST['editar'])) {
         $producto->setDescuento($descuento);
         $producto->setPrecio($precio);
         $producto->setImagenUrl($imagen_url);
-        // $producto->set($imagen_url);
+ 
+        $precio = filter_var($precio, FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+        $descuento = filter_var($descuento, FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
 
-
-        if (ProductosDB::editProduct($producto) > 0) {
-
-
-
-            require ('../src/views/data-success.php');
-            require('edit-page-results.php');
-        } else {
-
-            require ('../src/views/data-error.php');
-            require('edit-page.php');
+        if ($precio === false || $descuento === false ) {
+            $messageError = "El precio o descuento debe ser un número decimal válido";
+            require ('edit-page.php');
+        } else{
+            if (ProductosDB::editProduct($producto) > 0) {
+                $message = "La acción se ha completado correctamente!!!";
+                require('edit-page-results.php');
+            } else {
+                $messageError = "Error: No se ha podido completar la acción deseada";
+                require('edit-page-results.php');
+            }
         }
     } else {
-            require ('../src/views/data-warning.php');
-
-            require('edit-page.php');
-        
+        $messageWarning = "Upps parece que ha ocurrido algo, parece que no tiene toda la informacion...";
+        require('edit-page.php');
     }
 } else {
     require('edit-page.php');
-
-
-    
-
 }
 
 

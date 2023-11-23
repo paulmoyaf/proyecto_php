@@ -2,14 +2,14 @@
 <html>
 
 <head>
-    <title>Base de Datos</title>
+    <title>Edit Item</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../../assets/css/style.css">
 
 </head>
 
-<body class="container pt-5">
+<body class="container py-5">
 
         <div class="header-titulo">
             <img class="card-img-top logo" src="../../assets/img/logo/logo.png" alt="Logo">
@@ -17,12 +17,21 @@
         </div>
         <hr>
 
+        <?php 
+                    if (isset($messageWarning)) {
+                        echo "<div class=\"alert alert-warning\" role=\"alert\">$messageWarning </div>\n";
+                    }
+                    if (isset($messageError)) {
+                        echo "<div class=\"alert alert-warning\" role=\"alert\">$messageError </div>\n";
+                    }
+        ?>
+
         <div class="card">
             <div class="card-body">
                 <form class="form-group" action="" method="post" enctype="multipart/form-data">
                     <div class="form-group-item mb-3">
                         <label for="nombre" class="form-label">Nombre:</label>
-                        <input type="text" name="nombre" id="nombre" class="form-control" value="<?php echo $producto->getNombre() ?>" placeholder="Add title" required>
+                        <input type="text" name="nombre" id="nombre" class="form-control" value="<?php echo $producto->getNombre() ?>" placeholder="Add name" required>
                     </div>
                     <div class="mb-3">
                         <label for="descripcion" class="form-label">Descripcion:</label>
@@ -57,22 +66,21 @@
                         </select>
                     </div>
 
+                    <div class="mb-3">
+                        <label for="precio" class="form-label">Precio:</label>
+                        <input type="text" name="precio" id="precio" class="form-control" value="<?php echo $producto->getPrecio() ?>">
+                    </div>
 
                     <div class="mb-3">
                         <label for="descuento" class="form-label">Descuento:</label>
                         <input type="text" name="descuento" id="descuento" class="form-control" value="<?php echo $producto->getDescuento() ?>">
                     </div>
 
-                    <div class="mb-3">
-                        <label for="precio" class="form-label">Precio:</label>
-                        <input type="text" name="precio" id="precio" class="form-control" value="<?php echo $producto->getPrecio() ?>">
-                    </div>
-
                     <div class="form-group-item mb-3">
                         <label for="imagen_url" class="form-label">Imagen:</label>
                         <div class="d-flex gap-3">
-                            <img class="form-control w-25" src="../<?php echo $producto->getImagenURL() ?>" alt="">
-                            <input style="height: 3em" type="text" name="imagen_url" id="imagen_url" class="form-control" value="<?php echo $producto->getImagenURL() ?>">
+                            <img class="form-control w-25" src="../<?php echo $producto->getImagenURL() ?>" alt="imagen-item">
+                            <input style="height: 3em" type="text" name="imagen_url" id="imagen_url" class="form-control" value="<?php echo $producto->getImagenURL() ?>" >
                         </div>
                         <!-- <input type="file" name="imagen_url" id="imagen_url" class="form-control"> -->
                     </div>

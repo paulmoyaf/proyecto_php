@@ -9,6 +9,18 @@
 </head>
 <body class="container pt-5">
 
+            <?php
+            if (isset($message)) {
+                echo "<div class=\"alert alert-success\" role=\"alert\"> $message </div>\n";
+            }
+            if (isset($messageWarning)) {
+                echo "<div class=\"alert alert-warning\" role=\"alert\">$messageWarning </div>\n";
+            }
+            if (isset($messageError)) {
+                echo "<div class=\"alert alert-danger\" role=\"alert\">$messageError </div>\n";
+            }
+            ?>
+
 
         <div class="table-responsive">
             <table class="table table-bordered text-center">
@@ -27,7 +39,7 @@
                 </thead>
                 <tbody class="align-middle">
                     <tr class="">
-                        <td><img src="../<?php echo $imagen_url ?>"></td>
+                        <td><img src="../<?php echo $imagen_url ?>" alt="imagen-item"></td>
                         <td><?php echo $nombre  ?></td>
                         <td><?php echo $descripcion ?></td>
                         <td><?php echo $nombre_categoria_nuevo ?></td>
