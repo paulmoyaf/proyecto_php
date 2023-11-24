@@ -2,6 +2,7 @@ const divHtml = document.querySelector('#new-product');
 const divBotones = document.querySelector('#btn-categorias');
 const textContador = document.querySelector('#contador');
 const btnEliminarTodo = document.querySelector('#btn-delete-all');
+const filterItems = document.querySelector('#lista-items-filter');
 
 let contador = 0;
 
@@ -9,12 +10,6 @@ const storedCounter = getCookie("contador");
 
 
 
-const createButtons = () =>{
-  const btnCategoria = document.createElement('button');
-  btnCategoria.classList.add('btn', 'btn-outline-primary');
-  btnCategoria.innerHTML = 'hola'
-}
-createButtons();
 
 
 if (storedCounter) {
@@ -174,3 +169,45 @@ const sumarContador = () => {
   textContador.innerHTML = contador;
   setCookie("contador", contador, 365);
 }
+
+const createButtonsCategories = () =>{
+
+  categorias.forEach(function (category, array) {
+    const btnCategoria = document.createElement('button');
+    btnCategoria.classList.add('btn', 'btn-outline-dark', 'btn-sm' , 'mx-1');
+    btnCategoria.innerHTML = category.nombre;
+
+    
+    btnCategoria.addEventListener('click', function() {
+      showItems(category.nombre);
+    });
+
+    divBotones.appendChild(btnCategoria);
+
+    
+  });
+
+  var iterator = productos.values();
+  console.log(iterator.next().value);
+  for (let e of iterator) {
+    console.log(e);
+  }
+
+  productos.forEach(function(producto, indice) {
+    producto = new producto();
+    // console.log(producto[indice].nombre);
+    // console.log(producto.getPrecio());
+    // console.log(producto.getDescripcion());
+    // ... Acceder a otros atributos utilizando los métodos correspondientes
+  });
+
+}
+
+const showItems = (text) =>{
+  console.log(text);
+  filterItems.style.display="block";
+  filterItems.textContent = text
+}
+
+createButtonsCategories();
+

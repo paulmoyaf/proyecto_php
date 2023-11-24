@@ -31,11 +31,11 @@
                 <form class="form-group" action="" method="post" enctype="multipart/form-data">
                     <div class="form-group-item mb-3">
                         <label for="nombre" class="form-label">Nombre:</label>
-                        <input type="text" name="nombre" id="nombre" class="form-control" value="<?php echo $producto->getNombre() ?>" placeholder="Add name" required>
+                        <input type="text" name="nombre" id="nombre" class="form-control" value="<?php echo $nombre ?>" placeholder="Add name">
                     </div>
                     <div class="mb-3">
                         <label for="descripcion" class="form-label">Descripcion:</label>
-                        <input type="text" name="descripcion" id="descripcion" class="form-control" value="<?php echo $producto->getDescripcion() ?>">
+                        <input type="text" name="descripcion" id="descripcion" class="form-control" value="<?php echo $descripcion ?>">
                     </div>
 
                     <div class="form-group-item mb-3">
@@ -68,19 +68,19 @@
 
                     <div class="mb-3">
                         <label for="precio" class="form-label">Precio:</label>
-                        <input type="text" name="precio" id="precio" class="form-control" value="<?php echo $producto->getPrecio() ?>">
+                        <input type="text" name="precio" id="precio" class="form-control" value="<?php echo $precio  ?>">
                     </div>
 
                     <div class="mb-3">
                         <label for="descuento" class="form-label">Descuento:</label>
-                        <input type="text" name="descuento" id="descuento" class="form-control" value="<?php echo $producto->getDescuento() ?>">
+                        <input type="text" name="descuento" id="descuento" class="form-control" value="<?php echo $descuento ?>">
                     </div>
 
                     <div class="form-group-item mb-3">
                         <label for="imagen_url" class="form-label">Imagen:</label>
                         <div class="d-flex gap-3">
                             <img class="form-control w-25" src="../<?php echo $producto->getImagenURL() ?>" alt="imagen-item">
-                            <input style="height: 3em" type="text" name="imagen_url" id="imagen_url" class="form-control" value="<?php echo $producto->getImagenURL() ?>" >
+                            <input style="height: 3em" type="text" name="imagen_url" id="imagen_url" class="form-control" value="<?php echo $imagen_url ?>" >
                         </div>
                         <!-- <input type="file" name="imagen_url" id="imagen_url" class="form-control"> -->
                     </div>

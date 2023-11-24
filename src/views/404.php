@@ -10,15 +10,15 @@
 
 <body class="">
 
-<?php include '../includes/nav.php';  ?>
+<!-- <?php include '../includes/nav.php';  ?> -->
 
     <div class="row text-center">
         <div class="display-1 pt-5">
             Error 404: Page not found!!
         </div>
-        <div class="display-6 pt-5">
+        <!-- <div class="display-6 pt-5">
         El ID no pertenece a la base de datos
-        </div>
+        </div> -->
     </div>
 
     

@@ -38,12 +38,11 @@ if ($filteredId === false) {
 
             if (ProductosDB::removeProduct($producto) > 0) {
 
-                require ('../src/views/data-success.php');
                 require('remove-page-results.php');
                 exit;
                 
             } else {
-                require ('../src/views/data-error.php');
+                $messageError = "Error: No se ha podido completar la acción deseada";
                 require('remove-page.php');
                 exit;
             }
@@ -53,7 +52,6 @@ if ($filteredId === false) {
 
         if ($producto == null) {
             header("HTTP/1.0 404 Not Found");
-            // echo "Error 404: Página no encontrada";
             include '../../src/views/404.php';
             exit;
         }

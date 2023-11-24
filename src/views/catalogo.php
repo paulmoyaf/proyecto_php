@@ -16,12 +16,18 @@
 
     <div class="container py-5">
         <div class="container pb-3">
+            <div class="d-flex align-items-center justify-content-between">
             <div class="display-6 text-center">Catálogo</div>
-            <div id="btn-categorias"></div>
-            <hr>
+            <div class="right-side d-grid mx-3">
+                <h6 class="h6">Categorias: </h6>
+                <div id="btn-categorias"></div>
+            </div>
         </div>
+        <hr>
+    </div>
         <div class="row d-flex flex-wrap-reverse">
             <div class="col-md-8 col-12 div-productos">
+                <div class="d-flex flex-wrap" id="lista-items-filter" style="display: none"></div>
                 <div class="d-flex flex-wrap" id="lista-items">
                     <?php foreach ($productos as $producto) :
                         $nombre_tipo_producto = ProductosDB::obtenerNombreTipoProducto($producto->getTipoProductoId());
@@ -57,6 +63,10 @@
         </div>
     </div>
     <?php include '../includes/footer.php';  ?>
+
+
+    <script> const categorias = <?php echo json_encode($categorias); ?>;</script>
+    <script> const productos = <?php echo json_encode($productos); ?>;</script>
 
     <script src="../assets/js/carrito.js"></script>
 </body>

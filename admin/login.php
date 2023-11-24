@@ -12,7 +12,7 @@
 <body class="container">
     <div class="row">
         <div class="py-5 col-md-6 col-12 custom-width">
-            <h1 class="h3 text-black-50 text-end">Albisteak Administrador</h1>              
+            <h1 class="h3 text-black-50 text-end">Administrador</h1>              
                 <div class="card mt-5">
                     <div class="card-body bg-light">
                         
@@ -20,11 +20,11 @@
                     <form action="index.php" method="post">
                         <div class="">
                             <label for="usuario" class="form-label">Usuario:</label>
-                            <input type="text" class="form-control" id="usuario" name="usuario" required>
+                            <input type="text" class="form-control" id="usuario" name="usuario">
                         </div>
                         <div class="mb-3 pt-2">
                             <label for="password" class="form-label">Password:</label>
-                            <input type="password" class="form-control" name="password" id="" required>
+                            <input type="password" class="form-control" name="password" id="" >
                         </div>
                         <input type="submit" class="btn btn-outline-dark w-100" name="ingresar" value="Ingresar">
                     </form>

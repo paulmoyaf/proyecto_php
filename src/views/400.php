@@ -9,15 +9,15 @@
 </head>
 
 <body class="">
-<?php include '../includes/nav.php';  ?>
+<!-- <?php include '../includes/nav.php';  ?> -->
 
     <div class="row text-center">
         <div class="display-1 pt-5">
             Error 400: Bad Request !!
         </div>
-        <div class="display-6 pt-5">
+        <!-- <div class="display-6 pt-5">
         Error 400: El ID debe ser un número entero
-        </div>
+        </div> -->
     </div>
 
     

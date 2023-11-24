@@ -45,5 +45,5 @@
 
         // $tallas = ProductosDB::selectTallas();
         // $tiposProducto = ProductosDB::selectTipoProducto();
-        require('product-page-view.php');
+        require('view-page-view.php');
 ?>

@@ -15,6 +15,8 @@
 </head>
 
 <body class="container pt-5">
+
+    <div class="alert alert-success" role="alert">Se ha realizado la acción correctamente</div>
    
     <a class="btn btn-outline-secondary" href="../../admin/index.php" role="button">Regresar al Menú</a>
 

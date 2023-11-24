@@ -4,7 +4,7 @@ define('DB_PATH', 'sqlite:C:\\xampp\\htdocs\\proyecto_php\\db\\catalogo.db');
 function conexionMySql() {
     $servername = "localhost";
     $username = "root";
-    $password = "";
+    $password = "1234";
     $dbname = "catalogo";
 
     try {

@@ -39,7 +39,7 @@
                     </div>
                     <div class="form-group-item mb-3">
                         <label for="categoria_id" class="form-label">Categoria:</label>
-                        <select class="form-select form-select-md" name="categoria_id" id="categoria_id" class="form-control" >
+                        <select class="form-select form-select-md" name="categoria_id" id="categoria_id" class="form-control" required>
                             <option value="" selected>Seleccionar categoría</option>
                             <?php foreach ($categorias as $categoria) { ?>
                                 <!-- <option value="<?php echo $categoria['id']; ?>"><?php echo $categoria['nombre']; ?></option> -->
@@ -49,7 +49,7 @@
                     </div>
                     <div class="form-group-item mb-3">
                         <label for="talla_id" class="form-label">Talla:</label>
-                        <select class="form-select form-select-md" name="talla_id" class="form-control" >
+                        <select class="form-select form-select-md" name="talla_id" class="form-control" required>
                             <option value="" selected>Seleccionar Talla</option>
                             <?php foreach ($tallas as $talla) { ?>
                                 <!-- <option value="<?php echo $talla['id']; ?>"><?php echo $talla['nombre']; ?></option> -->
@@ -60,7 +60,7 @@
                     </div>
                     <div class="form-group-item mb-3">
                         <label for="tipo_producto_id" class="form-label">Tipo:</label>
-                        <select class="form-select form-select-md" name="tipo_producto_id" class="form-control" >
+                        <select class="form-select form-select-md" name="tipo_producto_id" class="form-control" required>
                             <option value="" selected>Seleccionar Tipo del Producto</option>
                             <?php foreach ($tipos_producto as $tipo_producto) { ?>
                                 <!-- <option value="<?php echo $tipo_producto['id']; ?>"><?php echo $tipo_producto['nombre']; ?></option> -->

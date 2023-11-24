@@ -21,6 +21,14 @@ CREATE TABLE tipo_producto (
 -- Insertar datos en la tabla "tiene_descuento"
 INSERT INTO tipo_producto (nombre) VALUES ('Prime'), ('Regular');
 
+CREATE TABLE `catalogo`.`comentarios` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `id_producto` INT NULL,
+  `nombre` VARCHAR(255) NULL,
+  `comentario` LONGTEXT NULL,
+  PRIMARY KEY (`id`));
+
+
 -- Crear la tabla "talla"
 CREATE TABLE talla (
   id INT AUTO_INCREMENT PRIMARY KEY,

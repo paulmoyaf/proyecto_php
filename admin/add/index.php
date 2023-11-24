@@ -1,5 +1,7 @@
 <?php
 session_start();
+require('../../db/db_connection.php');
+require('../../src/objects/productos.php');
 $admin = false;
 if(isset($_SESSION['usuario']) && $_SESSION['usuario'] == "admin"){
     $admin = true;
@@ -7,8 +9,7 @@ if(isset($_SESSION['usuario']) && $_SESSION['usuario'] == "admin"){
 if ($admin == false){
     header ("location: index.php");
 }
-require('../../db/db_connection.php');
-require('../../src/objects/productos.php');
+
 
 $tallas = ProductosDB::selectTallas();
 $categorias = ProductosDB::selectCategorias();

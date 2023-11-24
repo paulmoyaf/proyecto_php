@@ -10,56 +10,108 @@
 
 <body class="">
 
-    <div class="container">
-    <div class="row">
-        <div class="py-5 col-md-6 col-12 custom-dashboard">
-            <div class="d-flex justify-content-between">
-                <img class="card-img-top logo" src="../assets/img/logo/logo.png" alt="Logo">
-                <h1 class="h3 text-black-50 text-end">Menu - Administrador</h1>
-                <button class="btn btn-warning" onclick="window.location.href='logout.php'">Log Out</button>
-            </div>
-            <hr>
-            <div class="card bg-light">
-                <!-- <img class="card-img-top" src="" alt="Portada_Dashboard"> -->
-                <img class="card-img-top rounded-3" src="../assets/img/portadas/BannerHorizontal.jpg" alt="Portada_Dashboard">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                        <h4 class="card-title text-uppercase text-center">List Items</h4>
-                        <button class="btn btn-outline-dark" onclick="window.location.href='../admin/add/index.php'">Add New Item</button>
-                    </div>
-                    <hr>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="py-5 col-md-6 col-12 custom-dashboard">
+                <div class="d-flex justify-content-between align-items-center">
+                    <img class="card-img-top logo" src="../assets/img/logo/logo.png" alt="Logo">
+                    <h1 class="h3 text-black-50 text-end">Menu - Administrador</h1>
+                    <button class="btn btn-warning btn-sm " onclick="window.location.href='logout.php'" style="height: fit-content">Log Out</button>
+                </div>
+                <hr>
+                <div class="card bg-light">
+                    <!-- <img class="card-img-top" src="" alt="Portada_Dashboard"> -->
+                    <!-- <img class="card-img-top" src="../assets/img/portadas/BannerHorizontal.jpg" alt="Portada_Dashboard"> -->
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <h4 class="card-title text-uppercase text-center">Items List</h4>
+                            <button class="btn btn-outline-dark" onclick="window.location.href='../admin/add/index.php'">Add New Item</button>
+                        </div>
+                        <hr>
 
-                    <div class="">
-                        <div class="card-products">
-                            <?php
-                            foreach ($productos as $producto) :
-                                $nombre_tipo_producto = ProductosDB::obtenerNombreTipoProducto($producto->getTipoProductoId());
-                                $nombre_talla = ProductosDB::obtenerNombreTalla($producto->getTallaId());
-                            ?>
-                                <div class="card text-bg-light card-items">
-                                    <a href="../admin/view/index.php?id=<?= $producto->getId() ?>">
-                                        <img class="card-img-top" src=<?= $producto->getImagenURL() ?>>
-                                    </a>
-                                    <div class="card-body">
-                                        <h4 class="card-title"><?= $producto->getNombre() ?></h4>
-                                        <p class="card-text text-price"><?= $producto->getDescripcion() ?></p>
-                                        <p class="card-text text-price">Talla: <?= $nombre_talla ?></p>
-                                        <p class="card-text text-price"><?= $producto->getPrecio() ?> €</p>
-                                        <p class="card-text text-price">Tipo: <?= $nombre_tipo_producto ?></p>
-                                        <p class="card-text font-weight-bold" style="font-size: larger;">P.F.: <?= $producto->getPrecioFinal() ?> €</p>
-                                        <div class="mt-2">
-                                            <a class="btn btn-outline-secondary" href='../admin/edit/index.php?id=<?= $producto->getId() ?>'>Edit</a>
-                                            <a class="btn btn-outline-danger" href='../admin/remove/index.php?id=<?= $producto->getId() ?>'>Delete</a>
+                        <!-- <div class="">
+                            <div class="card-products">
+                                <?php
+                                foreach ($productos as $producto) :
+                                    $nombre_tipo_producto = ProductosDB::obtenerNombreTipoProducto($producto->getTipoProductoId());
+                                    $nombre_tipo_categoria = ProductosDB::obtenerNombreTipoCategoria($producto->getTipoProductoId());
+                                    $nombre_talla = ProductosDB::obtenerNombreTalla($producto->getTallaId());
+                                ?>
+                                    <div class="card text-bg-light card-items">
+                                        <a href="../admin/view/index.php?id=<?= $producto->getId() ?>">
+                                            <img class="card-img-top" src=<?= $producto->getImagenURL() ?> alt="imagen-item">
+                                        </a>
+                                        <div class="card-body">
+                                            <h4 class="card-title"><?= $producto->getNombre() ?></h4>
+                                            <p class="card-text text-price"><?= $producto->getDescripcion() ?></p>
+                                            <p class="card-text text-price">Talla: <?= $nombre_talla ?></p>
+                                            <p class="card-text text-price"><?= $producto->getPrecio() ?> €</p>
+                                            <p class="card-text text-price">Tipo: <?= $nombre_tipo_producto ?></p>
+                                            <p class="card-text font-weight-bold" style="font-size: larger;">P.F.: <?= $producto->getPrecioFinal() ?> €</p>
+                                            <div class="mt-2">
+                                                <a class="btn btn-outline-secondary" href='../admin/edit/index.php?id=<?= $producto->getId() ?>'>Edit</a>
+                                                <a class="btn btn-outline-danger" href='../admin/remove/index.php?id=<?= $producto->getId() ?>'>Delete</a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            <?php endforeach; ?>
+                                <?php endforeach; ?>
+                            </div>
+                        </div> -->
+
+                        <div class="table-responsive">
+                            <table class="table table-hover text-center">
+                                <thead class="align-middle">
+                                    <tr class="table-dark" >
+                                        <th scope="col">Imagen</th>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Descripcion</th>
+                                        <th scope="col">Categoria</th>
+                                        <th scope="col">Talla</th>
+                                        <th scope="col">Tipo</th>
+                                        <th scope="col">Precio</th>
+                                        <th scope="col">Descuento</th>
+                                        <th scope="col">Precio Final</th>
+                                        <th scope="col">Opciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="align-middle">
+                                    <?php
+                                    foreach ($productos as $producto) :
+                                        $nombre_tipo_categoria = ProductosDB::obtenerNombreTipoCategoria($producto->getCategoriaId());
+                                        $nombre_talla = ProductosDB::obtenerNombreTalla($producto->getTallaId());
+                                        $nombre_tipo_producto = ProductosDB::obtenerNombreTipoProducto($producto->getTipoProductoId());
+                                    ?>
+                                        <tr class="">
+                                            <td>
+                                                <button class="btn btn-outline-dark">
+                                                    <a href="../admin/view/index.php?id=<?= $producto->getId() ?>">
+                                                    <img class="card-img-top" src=<?= $producto->getImagenURL() ?> alt="imagen-item" style="width: 5em">
+                                                    </a>
+                                                </button>
+                                            </td>
+                                            <td><?= $producto->getNombre() ?></td>
+                                            <td><?= $producto->getDescripcion() ?></td>
+                                            <td><?= $nombre_tipo_categoria ?></td>
+                                            <td><?= $nombre_talla ?></td>
+                                            <td><?= $nombre_tipo_producto ?></td>
+                                            <td><?= $producto->getPrecio() ?></td>
+                                            <td><?= $producto->getDescuento() ?></td>
+                                            <td><?= $producto->getPrecioFinal() ?></td>
+                                            <td>
+                                                <a class="btn btn-outline-secondary btn-sm w-100 mb-1" href='../admin/edit/index.php?id=<?= $producto->getId() ?>'>Edit</a>
+                                                <a class="btn btn-danger btn-sm w-100" href='../admin/remove/index.php?id=<?= $producto->getId() ?>'>Delete</a>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
                         </div>
+
+                        
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
     </div>
 
