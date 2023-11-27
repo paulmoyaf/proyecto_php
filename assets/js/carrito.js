@@ -4,6 +4,7 @@ const textContador = document.querySelector('#contador');
 const btnEliminarTodo = document.querySelector('#btn-delete-all');
 const filterItems = document.querySelector('#lista-items-filter');
 
+
 let contador = 0;
 
 const storedCounter = getCookie("contador");
@@ -172,39 +173,45 @@ const sumarContador = () => {
 
 const createButtonsCategories = () =>{
 
-  categorias.forEach(function (category, array) {
+  categorias.forEach(function (category) {
     const btnCategoria = document.createElement('button');
     btnCategoria.classList.add('btn', 'btn-outline-dark', 'btn-sm' , 'mx-1');
     btnCategoria.innerHTML = category.nombre;
 
+    const newItemFilter = document.createElement('div');
+    // newItemFilter.classList.add('');
+
     
     btnCategoria.addEventListener('click', function() {
-      showItems(category.nombre);
-    });
 
+      const productosCategoriaFilter = productos.filter(function(producto) {
+        return producto.categoria_id === category.id;
+      });
+  
+      console.log(category.id + " - " + category.nombre);
+      productosCategoriaFilter.forEach(function(producto) {
+        
+        newItemFilter.innerHTML = producto.nombre;
+        filterItems.style.display="block";
+        newItemFilter.appendChild(filterItems)
+        console.log(producto.nombre);
+      });
+      // showItems(newItemFilter);
+    });
     divBotones.appendChild(btnCategoria);
+
 
     
   });
 
-  var iterator = productos.values();
-  console.log(iterator.next().value);
-  for (let e of iterator) {
-    console.log(e);
-  }
-
-  productos.forEach(function(producto, indice) {
-    producto = new producto();
-    // console.log(producto[indice].nombre);
-    // console.log(producto.getPrecio());
-    // console.log(producto.getDescripcion());
-    // ... Acceder a otros atributos utilizando los métodos correspondientes
-  });
+  // productos.forEach(function  (product){
+  //   console.log(product.nombre);
+  // })
 
 }
 
 const showItems = (text) =>{
-  console.log(text);
+  // console.log(text);
   filterItems.style.display="block";
   filterItems.textContent = text
 }

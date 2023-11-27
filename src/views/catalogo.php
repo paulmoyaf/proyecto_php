@@ -65,8 +65,9 @@
     <?php include '../includes/footer.php';  ?>
 
 
+    <script> const productos = <?php echo $productosJSON; ?>;</script>
     <script> const categorias = <?php echo json_encode($categorias); ?>;</script>
-    <script> const productos = <?php echo json_encode($productos); ?>;</script>
+
 
     <script src="../assets/js/carrito.js"></script>
 </body>

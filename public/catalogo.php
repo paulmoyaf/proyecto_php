@@ -34,7 +34,9 @@ if (isset($_GET['id'])) {
     include '../src/views/product-page.php';
 
 } else {
+    
     $productos = ProductosDB::selectProductos();
+    $productosJSON = ProductosDB::selectProductosJSON();
     $categorias = ProductosDB::selectCategorias();
     $currentPage = 'catalogo';
     // header("Location: ../src/views/catalogo.php");

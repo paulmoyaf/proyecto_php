@@ -34,6 +34,38 @@ class ProductosDB{
         }
     }
 
+    public static function selectProductosJSON()
+    {
+        try {
+            $db = conexionMySql();
+            // $db = new PDO (DB_PATH);
+            $registros = $db->query("select * from productos");
+            if ($registro = $registros->fetch()) {
+                $productos = array();
+                $i = 0;
+                do {
+                    $producto = array(
+                        'id' => (int)$registro['id'],
+                        'nombre' => $registro['nombre'],
+                        'descripcion' => $registro['descripcion'],
+                        'categoria_id' => (int)$registro['categoria_id'],
+                        'talla_id' => (int)$registro['talla_id'],
+                        'tipo_producto_id' => (int)$registro['tipo_producto_id'],
+                        'descuento' => (float)$registro['descuento'],
+                        'precio' => (float)$registro['precio'],
+                        'imagen_url' => $registro['imagen_url']
+                    );
+                    $productos[] = $producto;
+                    $i++;
+                } while ($registro = $registros->fetch());
+                return json_encode($productos, JSON_UNESCAPED_UNICODE);
+            }
+        } catch (Exception $e) {
+            echo "<p>Error:" . $e->getMessage() . "</p>\n";
+            return null;
+        }
+    }
+
     public static function selectProducto($id){
         try{
             $db = conexionMySql(); 
