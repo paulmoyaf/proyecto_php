@@ -53,6 +53,7 @@ class ProductosDB{
                         'tipo_producto_id' => (int)$registro['tipo_producto_id'],
                         'descuento' => (float)$registro['descuento'],
                         'precio' => (float)$registro['precio'],
+                        'precio_final' => (float)$registro['precio_final'],
                         'imagen_url' => $registro['imagen_url']
                     );
                     $productos[] = $producto;

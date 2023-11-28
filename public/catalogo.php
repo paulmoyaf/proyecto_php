@@ -2,6 +2,9 @@
 require('../db/db_connection.php');
 require('../src/objects/productos.php');
 
+$categorias = ProductosDB::selectCategorias();
+$tallas = ProductosDB::selectTallas();
+$tiposProducto = ProductosDB::selectTipoProducto();
 
 if (isset($_GET['id'])) {
 
@@ -26,9 +29,8 @@ if (isset($_GET['id'])) {
 
     $nombre_tipo_producto = ProductosDB::obtenerNombreTipoProducto($producto->getTipoProductoId());
     $nombre_tipo_categoria = ProductosDB::obtenerNombreTipoCategoria($producto->getCategoriaId());
-    $tallas = ProductosDB::selectTallas();
-
-    $tiposProducto = ProductosDB::selectTipoProducto();
+    // $tallas = ProductosDB::selectTallas();
+    // $tiposProducto = ProductosDB::selectTipoProducto();
     // 
 
     include '../src/views/product-page.php';
@@ -37,7 +39,9 @@ if (isset($_GET['id'])) {
     
     $productos = ProductosDB::selectProductos();
     $productosJSON = ProductosDB::selectProductosJSON();
-    $categorias = ProductosDB::selectCategorias();
+    // $categorias = ProductosDB::selectCategorias();
+    // $tallas = ProductosDB::selectTallas();
+    // $tiposProducto = ProductosDB::selectTipoProducto();
     $currentPage = 'catalogo';
     // header("Location: ../src/views/catalogo.php");
     require '../src/views/catalogo.php';

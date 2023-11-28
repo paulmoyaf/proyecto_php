@@ -3,6 +3,7 @@ const divBotones = document.querySelector('#btn-categorias');
 const textContador = document.querySelector('#contador');
 const btnEliminarTodo = document.querySelector('#btn-delete-all');
 const filterItems = document.querySelector('#lista-items-filter');
+const divListaItems = document.querySelector('#lista-items');
 
 
 let contador = 0;
@@ -171,43 +172,148 @@ const sumarContador = () => {
   setCookie("contador", contador, 365);
 }
 
-const createButtonsCategories = () =>{
+const buttonsCategories = () =>{
+
+  const btnCategoriaAll = document.createElement('button');
+  btnCategoriaAll.classList.add('btn', 'btn-outline-dark', 'btn-sm' , 'mx-1');
+  btnCategoriaAll.innerHTML = 'Mostrar Todo';
+
+  divBotones.appendChild(btnCategoriaAll);
+
+  btnCategoriaAll.addEventListener('click', function() {
+
+    filterItems.innerHTML = "";
+    // divListaItems.classList.add('d-block');
+    divListaItems.classList.add('d-none');
+    divListaItems.classList.add('d-block');
+    // divListaItems.style.display = 'block';
+
+    // divListaItems.innerHTML="";
+    
+    // const listaItems = document.createElement('div');
+    // listaItems.classList.add('pb-5');
+    // // listaItems.classList.add('col-lg-4','col-md-4','col-sm-12','pb-5','px-3');
+    
+    // productos.forEach(function(producto) {
+    //   const card = createCardElementJson(producto);
+    //   listaItems.appendChild(card);
+    // });
+
+    // divListaItems.appendChild(listaItems);
+  });
+
+ 
 
   categorias.forEach(function (category) {
+
     const btnCategoria = document.createElement('button');
     btnCategoria.classList.add('btn', 'btn-outline-dark', 'btn-sm' , 'mx-1');
     btnCategoria.innerHTML = category.nombre;
-
-    const newItemFilter = document.createElement('div');
-    // newItemFilter.classList.add('');
-
     
     btnCategoria.addEventListener('click', function() {
-
+      filterItems.innerHTML = "";
+      // divListaItems.innerHTML="";
+      divListaItems.classList.add('d-none');
+  
       const productosCategoriaFilter = productos.filter(function(producto) {
         return producto.categoria_id === category.id;
       });
   
-      console.log(category.id + " - " + category.nombre);
       productosCategoriaFilter.forEach(function(producto) {
-        
-        newItemFilter.innerHTML = producto.nombre;
+        const card = createCardElementJson(producto);
         filterItems.style.display="block";
-        newItemFilter.appendChild(filterItems)
-        console.log(producto.nombre);
+
+        const divFilterItems = document.createElement('div');
+        divFilterItems.classList.add('col-lg-4','col-md-4','col-sm-12','pb-5','px-3');
+
+        divFilterItems.appendChild(card);
+        filterItems.appendChild(divFilterItems);
       });
-      // showItems(newItemFilter);
     });
+
     divBotones.appendChild(btnCategoria);
-
-
     
   });
 
-  // productos.forEach(function  (product){
-  //   console.log(product.nombre);
-  // })
 
+
+}
+
+function createCardElementJson(producto) {
+
+  const card = document.createElement('div');
+  card.classList.add('card', 'bg-light', 'text-center');
+
+  const cardBody = document.createElement('div');
+  cardBody.classList.add('card-body');
+
+  const nombreProducto = producto.nombre;
+  const descripcion = producto.descripcion;
+  const categoria_id = producto.categoria_id;
+  const talla_id = producto.talla_id;
+  const tipoProducto   = producto.tipo_producto_id;
+  const descuento   = producto.descuento;
+  const precio = producto.precio;
+  const precio_final = producto.precio_final;
+  const imgProducto    = producto.imagen_url;
+
+
+  const nombreElement = document.createElement('div');
+  nombreElement.classList.add('card-header');
+  nombreElement.textContent = nombreProducto;
+
+  const descripcionElement = document.createElement('h6');
+  descripcionElement.classList.add('card-title');
+  descripcionElement.textContent = descripcion;
+
+  const imgElement = document.createElement('img');
+  imgElement.classList.add('card-img', 'w-75');
+  imgElement.src = imgProducto;
+
+  const categoriaElement = document.createElement('p');
+  categoriaElement.classList.add('card-text', 'text-muted');
+  categoriaElement.innerHTML = `Categoria: <strong>${categoria_id}</strong>`;
+
+  const tipoElement = document.createElement('p');
+  tipoElement.classList.add('card-text', 'text-muted');
+  tipoElement.innerHTML = `Tipo: <strong>${tipoProducto}</strong>`;
+
+  const precioElement = document.createElement('p');
+  precioElement.classList.add('card-text');
+  precioElement.innerHTML = `Precio Regular: ${precio} €`;
+
+  const precioFinalElement = document.createElement('div');
+  precioFinalElement.classList.add('card-footer');
+  precioFinalElement.innerHTML = `<strong>${precio_final} €</strong>`;
+
+  const btnAddToCar = document.createElement('button');
+  btnAddToCar.classList.add('btn', 'btn-warning');
+  btnAddToCar.innerHTML = 'Add To Car';
+
+  // btnAddToCar.addEventListener('click', function() {
+  //   const card = this.closest('.card');
+  //   card.remove();
+  //   contador--;
+  //   textContador.innerHTML = contador;
+  //   if (contador === 0) {
+  //     btnEliminarTodo.style.display = "none";
+  //   }
+  //   setCookie("cards", divHtml.innerHTML, 365);
+  //   setCookie("contador", contador, 365);
+  //   setCookie("btn_removeAll", btnEliminarTodo.style.display, 365);
+  // });
+
+  cardBody.appendChild(imgElement);
+  cardBody.appendChild(descripcionElement);
+  cardBody.appendChild(categoriaElement);
+  cardBody.appendChild(precioElement);
+  cardBody.appendChild(tipoElement);
+  
+  card.appendChild(nombreElement);
+  card.appendChild(cardBody);
+  card.appendChild(precioFinalElement);
+  card.appendChild(btnAddToCar);
+  return card;
 }
 
 const showItems = (text) =>{
@@ -216,5 +322,5 @@ const showItems = (text) =>{
   filterItems.textContent = text
 }
 
-createButtonsCategories();
+buttonsCategories();
 
