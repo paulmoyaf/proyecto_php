@@ -184,7 +184,7 @@ const buttonsCategories = () =>{
 
     filterItems.innerHTML = "";
     // divListaItems.classList.add('d-block');
-    divListaItems.classList.add('d-none');
+    divListaItems.classList.remove('d-none');
     divListaItems.classList.add('d-block');
     // divListaItems.style.display = 'block';
 

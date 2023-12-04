@@ -85,10 +85,11 @@
     </div>
     </dl>
 
-    <div class="col">
+
 
       <div class="p-5" style="background-color: rgba(0 , 0, 0,0.1);">
         <figure class="text-center">
+          <!-- <img src="../assets/img/portadas/BannerHorizontal.jpg" class="figure-img img-fluid rounded grayscale-filter" alt="imgen-grayscale"> -->
           <blockquote class="blockquote">
             <p>«No es de dónde tomas las cosas, es adónde las llevas.»</p>
           </blockquote>
@@ -96,6 +97,30 @@
             Jean-Luc Godard
           </figcaption>
         </figure>
+      </div>
+
+      <div class="container">
+
+        <div class="card my-3 p-4">
+          <div class="row g-3">
+            <div class="col-md-4">
+              <video controls poster="../assets/img/portadas/camisetas.jpg" width="100%" >
+                <source src="../assets/video/video.mp4" type="video/mp4">
+              </video>
+              <p class="card-text"><small class="text-muted">Code Jungle: cuando los animales descifran el código</small></p>
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">Code Jungle: When Animals Crack the Code</h5>
+                <p class="card-text">¿Te imaginas un mono, un jaguar y un delfín sentados alrededor de una computadora y programando? Suena como el comienzo de un chiste peculiar, ¿verdad?</p>
+                <audio controls>
+                  <source src="../assets/audio/audio.mp3" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                </audio>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
 

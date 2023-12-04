@@ -246,6 +246,10 @@ tbody img{
   padding: 2em 0;
 }
 
+.grayscale-filter{
+  filter: grayscale(100%);
+
+}
 
 
 @media (max-width:880px) {

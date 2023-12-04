@@ -58,6 +58,7 @@
 
       <div class="p-5" style="background-color: rgba(0 , 0, 0,0.1);">
         <figure class="text-center">
+        <img src="../assets/img/portadas/BannerHorizontal.jpg" class="figure-img img-fluid rounded grayscale-filter" alt="">
           <blockquote class="blockquote">
             <p>«No es de dónde tomas las cosas, es adónde las llevas.»</p>
           </blockquote>
