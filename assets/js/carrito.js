@@ -1,6 +1,8 @@
 const divHtml = document.querySelector('#new-product');
 const divBotones = document.querySelector('#btn-categorias');
 const textContador = document.querySelector('#contador');
+const textValorTotal = document.querySelector('#valor-total');
+const carroVacio = document.querySelector('#carro-vacio');
 const btnEliminarTodo = document.querySelector('#btn-delete-all');
 const filterItems = document.querySelector('#lista-items-filter');
 const divListaItems = document.querySelector('#lista-items');
@@ -13,43 +15,63 @@ const storedCounter = getCookie("contador");
 const storedValorTotal = getCookie("valorTotal");
 
 
+const mostrarCarroVacio = () => {
+  if(carroVacio){
+    carroVacio.classList.remove('d-none');
+    carroVacio.classList.add('d-block');
+  }
+}
+
 if (storedCounter) {
   contador = parseInt(storedCounter);
-  valorTotal = parseInt(storedValorTotal);
+  valorTotal = parseFloat(storedValorTotal);
 }
+
 textContador.innerHTML = contador;
-console.log(valorTotal);
+textValorTotal.innerHTML = valorTotal;
 
 if (!divHtml || !btnEliminarTodo) {
   sumarContador();
-  sumarValorTotal();
+  // sumarValorTotal();
 } else {
   const storedCards = getCookie("cards");
   const storedBtnRemoveAll = getCookie("btn_removeAll");
 
   if (storedCards) {
     divHtml.innerHTML = storedCards;
+    btnEliminarTodo.style.display = "block";
+    
     document.querySelectorAll('.btn-remove').forEach(function(button) {
       button.addEventListener('click', function() {
         const card = this.closest('.card');
+        const precioProducto = card.querySelector('strong').textContent;
+        console.log(`valor borrado: ${precioProducto}`);
+        valorTotal = valorTotal - parseFloat(precioProducto);
+        console.log(`valor actual: ${valorTotal}`);        
         card.remove();
         contador--;
         textContador.innerHTML = contador;
+        textValorTotal.innerHTML = valorTotal;
         if (contador === 0) {
           btnEliminarTodo.style.display = "none";
+          mostrarCarroVacio();
         }
         setCookie("cards", divHtml.innerHTML, 365);
         setCookie("contador", contador, 365);
-        setCookie("btn_removeAll", btnEliminarTodo.style.display, 365);
+        // setCookie("btn_removeAll", btnEliminarTodo.style.display, 365);
         setCookie("valorTotal", valorTotal, 365);
       });
     });
   }
+  else{
+    mostrarCarroVacio();
+  }
 
   if (storedBtnRemoveAll) {
     if (storedBtnRemoveAll === "none"){
+    }
     }else{
-    btnEliminarTodo.style.display = "block";
+    // btnEliminarTodo.style.display = "block";
     }
   }
 
@@ -57,15 +79,19 @@ if (!divHtml || !btnEliminarTodo) {
     button.addEventListener('click', function(e) {
       e.preventDefault();
       sumarContador();
-      sumarValorTotal();
+      
       btnEliminarTodo.style.display = "block";
       setCookie("btn_removeAll", btnEliminarTodo.style.display, 365);
       const card = createCardElement(this);
+
+      sumarValorTotal(parseFloat(this.getAttribute('data-precio')));
+      setCookie("valorTotal", valorTotal, 365);
+
       divHtml.appendChild(card);
       setCookie("cards", divHtml.innerHTML, 365);
     });
   });
-}
+
 
 function createCardElement(button) {
   const card = document.createElement('div');
@@ -110,9 +136,13 @@ function createCardElement(button) {
 
   btnRemove.addEventListener('click', function() {
     const card = this.closest('.card');
+    console.log(`valor borrado: ${precioProducto}`);
+    valorTotal = valorTotal - parseFloat(precioProducto);
+    console.log(`valor actual: ${valorTotal}`);
     card.remove();
     contador--;
     textContador.innerHTML = contador;
+    textValorTotal.innerHTML = valorTotal;
     if (contador === 0) {
       btnEliminarTodo.style.display = "none";
     }
@@ -140,9 +170,13 @@ function createCardElement(button) {
 btnEliminarTodo.addEventListener('click', function() {
   contador = 0;
   valorTotal = 0;
+  console.log(valorTotal);
   textContador.innerHTML = contador;
+  textValorTotal.innerHTML = valorTotal;
   divHtml.innerHTML = '';
   btnEliminarTodo.style.display = "none";
+  
+
   setCookie("contador", "", -1);
   setCookie("valorTotal", "", -1);
   setCookie("cards", "", -1);
@@ -176,13 +210,13 @@ const sumarContador = () => {
   textContador.innerHTML = contador;
   setCookie("contador", contador, 365);
 }
+
 const sumarValorTotal = (precio) => {
   valorTotal = valorTotal+precio;
   console.log(valorTotal);
-  setCookie("valorTotal", contador, 365);
+  textValorTotal.innerHTML = valorTotal;
+  setCookie("valorTotal", valorTotal, 365);
 }
-
-
 
 const buttonsCategories = () =>{
 
@@ -197,10 +231,7 @@ const buttonsCategories = () =>{
       filterItems.innerHTML = "";
       divListaItems.classList.remove('d-none');
       divListaItems.classList.add('d-block');
-  
     });
-  
-   
   
     categorias.forEach(function (category) {
   
@@ -210,7 +241,6 @@ const buttonsCategories = () =>{
       
       btnCategoria.addEventListener('click', function() {
         filterItems.innerHTML = "";
-        // divListaItems.innerHTML="";
         divListaItems.classList.add('d-none');
     
         const productosCategoriaFilter = productos.filter(function(producto) {
@@ -218,9 +248,10 @@ const buttonsCategories = () =>{
         });
     
         productosCategoriaFilter.forEach(function(producto) {
+          
           const card = createCardElementJson(producto);
           filterItems.style.display="block";
-  
+
           const divFilterItems = document.createElement('div');
           divFilterItems.classList.add('col-lg-4','col-md-4','col-sm-12','pb-5','px-3');
   
@@ -233,10 +264,6 @@ const buttonsCategories = () =>{
       
     });
   }
-
-
-
-
 
 }
 
@@ -311,8 +338,12 @@ function createCardElementJson(producto) {
         e.preventDefault();
         sumarContador();
         btnEliminarTodo.style.display = "block";
-        setCookie("btn_removeAll", btnEliminarTodo.style.display, 365);
+        // setCookie("btn_removeAll", btnEliminarTodo.style.display, 365);
+
         const card = createCardElement(this);
+        sumarValorTotal(parseFloat(precio_final));
+        setCookie("valorTotal", valorTotal, 365);
+
         divHtml.appendChild(card);
         setCookie("cards", divHtml.innerHTML, 365);
   });
@@ -330,7 +361,9 @@ function createCardElementJson(producto) {
   return card;
 }
 
-
+// if(carroVacio){
+//   mostrarCarroVacio();
+// }
 
 buttonsCategories();
 

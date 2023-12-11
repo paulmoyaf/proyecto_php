@@ -60,11 +60,23 @@
                 <div class="d-flex flex-wrap" id="lista-items-filter" style="display: none"></div>
             </div>
             <div class="col-md-4 col-12 px-3" id="div-carrito">
-                <div class="d-flex justify-content-around gap-2 pb-3">
-                    <span class="">Productos en el Carrito: </span>
-                    <!-- <span id="contador"></span> -->
-                    <button class="btn btn-danger btn-small" id="btn-delete-all" style="display: none">Vaciar Carrito</button>
+                <div class="">
+                <!-- <div class="d-flex justify-content-between gap-2 pb-3"> -->
+                    <div class="d-flex justify-content-between pb-2">
+                        <h4 class="font-weight-bold">Carrito:</h4>
+                        <button class="btn btn-danger btn-small" id="btn-delete-all" style="display: none">Vaciar Carrito</button>
+                    </div>
+                    <!-- <div class="d-flex">
+                        <h6 class="mx-2">Cantidad Productos: </h6>
+                        <p id="contador"></p>
+                    </div> -->
+                    <div class="d-flex">
+                        <h6 class="mx-2">Valor Carrito:</h6>
+                        <h6 id="valor-total"></h6>
+                        <h6>€</h6>
+                    </div>
                 </div>
+                <hr>
                 <span class="" id="new-product"></span>
             </div>
         </div>

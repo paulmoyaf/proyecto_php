@@ -26,10 +26,20 @@
         </div>
         <div class="px-3" id="items-carrito">
             <div class="d-flex justify-content-around gap-2 pb-3">
-                <span class="">Productos en el Carrito: </span>
+                <div class="d-flex">
+                    <span class="mx-3">Productos en el Carrito: </span>
+                    <p id="valor-total"></p>
+                    <p>€</p>
+                </div>
                 <button class="btn btn-danger btn-small" id="btn-delete-all" style="display: none">Vaciar Carrito</button>
             </div>
+            
             <span class="" id="new-product"></span>
+            <div class="d-none text-center" id="carro-vacio">
+                <div class="alert alert-warning" role="alert">Su Carro está vacio</div>
+                <img class="w-50" src="../assets/img/varios/carro-vacio.jpg" alt="carro-vacio">
+            </div>
+
         </div>
     </div>
 
