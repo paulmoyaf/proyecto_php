@@ -45,12 +45,12 @@
                                         <img id="img-producto" src="<?php echo $producto->getImagenURL() ?>" class="img-fluid rounded-start py-3" style="width: 15em" alt="Card title">
                                         <h5 class="card-title"><?php echo $producto->getDescripcion() ?></h5>
                                         <p class="card-text">Categoría: <?php echo $nombre_tipo_categoria ?></p>
-                                        <p class="card-text text-muted">Precio: <?php echo $producto->getPrecio() ?></p>
+                                        <p class="card-text text-muted">Precio: <?php echo $producto->getPrecio() ?>€</p>
                                         <p class="card-text" id="tipo-producto">Tipo: <?php echo $nombre_tipo_producto ?></p>
                                     </div>
                                 </a>
                                 <div class="card-footer">
-                                    <p class="card-text font-weight-bold" style="font-size: larger;" id="price-producto"><?php echo $producto->getPrecioFinal() ?> €</p>
+                                    <p class="card-text font-weight-bold" style="font-size: larger;" id="price-producto"><?php echo $producto->getPrecioFinal() ?>€</p>
                                 </div>
                                 <button class="btn btn-warning w-100 btn-add" data-nombre="<?php echo $producto->getNombre() ?>" data-imagen="<?php echo $producto->getImagenURL() ?>" data-precio="<?php echo $producto->getPrecioFinal() ?>" data-tipo="<?php echo $nombre_tipo_producto ?>">Agregar al carrito</button>
                             </div>

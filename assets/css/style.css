@@ -231,6 +231,14 @@ grid-column: span 2;
   padding-left: 1em; 
 }
 
+#items-carrito{
+  padding: 1em;
+}
+
+#items-carrito img{
+  width: 1em;
+}
+
 .btn-small {
   padding: 5px 10px;
   font-size: 12px;
