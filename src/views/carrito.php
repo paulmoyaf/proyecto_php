@@ -25,9 +25,9 @@
             <hr>
         </div>
         <div class="px-3" id="items-carrito">
-            <div class="d-flex justify-content-around gap-2 pb-3">
-                <div class="d-flex">
-                    <span class="mx-3">Productos en el Carrito: </span>
+            <div class="d-flex justify-content-between align-items-center pb-3">
+                <div class="d-flex display-6">
+                    <span class="mx-3">Total Carrito: </span>
                     <p id="valor-total"></p>
                     <p>€</p>
                 </div>
@@ -35,6 +35,7 @@
             </div>
             
             <span class="" id="new-product"></span>
+
             <div class="d-none text-center" id="carro-vacio">
                 <div class="alert alert-warning" role="alert">Su Carro está vacio</div>
                 <img class="w-50" src="../assets/img/varios/carro-vacio.jpg" alt="carro-vacio">

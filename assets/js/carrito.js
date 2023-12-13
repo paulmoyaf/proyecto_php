@@ -82,7 +82,7 @@ if (!divHtml || !btnEliminarTodo) {
       
       btnEliminarTodo.style.display = "block";
       setCookie("btn_removeAll", btnEliminarTodo.style.display, 365);
-      const card = createCardElement(this);
+      const card = createCardToCar(this);
 
       sumarValorTotal(parseFloat(this.getAttribute('data-precio')));
       setCookie("valorTotal", valorTotal, 365);
@@ -92,8 +92,8 @@ if (!divHtml || !btnEliminarTodo) {
     });
   });
 
-
-function createCardElement(button) {
+//funcion para crear las cards de los productos agregados al carrito
+function createCardToCar(button) {
   const card = document.createElement('div');
   card.classList.add('card', 'mb-3', 'p-3', 'w-100');
 
@@ -133,6 +133,7 @@ function createCardElement(button) {
   const btnRemove = document.createElement('button');
   btnRemove.classList.add('btn', 'btn-danger', 'col-12', 'btn-remove');
   btnRemove.innerHTML = 'Borrar';
+
 
   btnRemove.addEventListener('click', function() {
     const card = this.closest('.card');
@@ -276,6 +277,8 @@ function obtenerNombreTipoProducto(id) {
   return tipo_producto ? tipo_producto.nombre : 'Tipo Producto no encontrado';
 }
 
+
+//funcion para crear las cards de los productos por tipo de producto
 function createCardElementJson(producto) {
 
   const card = document.createElement('div');
@@ -340,7 +343,7 @@ function createCardElementJson(producto) {
         btnEliminarTodo.style.display = "block";
         // setCookie("btn_removeAll", btnEliminarTodo.style.display, 365);
 
-        const card = createCardElement(this);
+        const card = createCardToCar(this);
         sumarValorTotal(parseFloat(precio_final));
         setCookie("valorTotal", valorTotal, 365);
 
@@ -360,10 +363,6 @@ function createCardElementJson(producto) {
   card.appendChild(btnAddToCar);
   return card;
 }
-
-// if(carroVacio){
-//   mostrarCarroVacio();
-// }
 
 buttonsCategories();
 
