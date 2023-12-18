@@ -3,12 +3,31 @@ const element = document.querySelector('#element-id');
 const mensajeEnviado = document.querySelector('#mensaje-enviado');
 
 
+
 const name = document.querySelector("#name");
 const phone = document.querySelector("#phone");
 const email = document.querySelector("#email");
 const msn = document.querySelector("#message");
 
 
+const nuevoMensaje = document.querySelector('#nuevo-mensaje');
+const btnEnviar = document.querySelector('#btn-enviar');
+
+nuevoMensaje.addEventListener('click', () => {
+    borrarInputs();
+    mensajeEnviado.innerHTML = "";
+    element.classList.remove('d-block');
+    element.classList.add('d-none');
+    nuevoMensaje.classList.add('d-none');
+    btnEnviar.classList.remove('d-none');
+    btnEnviar.classList.add('d-block');
+
+    name.disabled = false;
+    phone.disabled = false;
+    email.disabled = false;
+    msn.disabled = false;
+
+});
 
 
 const borrarInputs = () =>{
@@ -20,9 +39,13 @@ const borrarInputs = () =>{
 
 formulario.addEventListener('submit', function(e) {
     e.preventDefault();
-    // if (!formValidacion()) {
-    //     return;
-    // }
+
+    // formValidacion();
+    if (!formValidacion()) {
+        return;
+    } else {
+
+    
 
     const formData = new FormData(formulario);
     formData.append('name',  name.value);
@@ -38,19 +61,27 @@ formulario.addEventListener('submit', function(e) {
         
         .then(data => {
             console.log('Success:', data);
-            showMessage(data.message);
+            // showMessage(data.message);
             borrarInputs();
 
             showDatosMensaje(formData);
 
             element.innerHTML = data.message;
+            console.log(data.message);
+            //mostrar mensaje enviado
             element.classList.remove('d-none');
             element.classList.add('d-block');          
+
+            btnEnviar.classList.add('d-none');
+            nuevoMensaje.classList.remove('d-none');
+            nuevoMensaje.classList.add('d-block');
+            
 
         })
         .catch(error => {
             console.error('Error:', error);
         });
+    }
 });
 
 const formValidacion = () => {
@@ -58,7 +89,7 @@ const formValidacion = () => {
         showError("No has metido toda la información....");
         return false; // Return false to indicate validation failure
     }
-    showMessage("No has metido los datos");
+    // showMessage("No has metido los datos");
     return true; // Return true to indicate validation success
 }
 
@@ -68,11 +99,11 @@ const showDatosMensaje = (formData) => {
     mensajeEnviado.innerHTML = "";
 
     for (let [key, valor] of formData.entries()) {
+
         const paragraph = document.createElement('p');
         paragraph.textContent = `${key}: ${valor}`;
         mensajeEnviado.appendChild(paragraph);
-        // name.value = `New: ${valor}`;
-        // name.disabled = true;
+
       
         // Selecciona el elemento del formulario por su nombre y deshabilítalo
         const formElement = document.querySelector(`#${key}`);
@@ -82,6 +113,8 @@ const showDatosMensaje = (formData) => {
         }
     }
 }
+
+
 
 
 const showMessage = (text) =>{

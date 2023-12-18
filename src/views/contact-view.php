@@ -33,7 +33,7 @@
           <form id="form-contacto" class="formulario">
             <h1 class="h4">Contáctanos</h1>
             <hr>
-            <p class="pb-3 text-muted">Ayudanos con tu información</p>
+            <p class="pb-3 text-muted">Esperamos tu mensaje</p>
     
               <div class="row">
     
@@ -55,16 +55,19 @@
                 <textarea class="form-control" id="message" rows="6"></textarea>
               </div>
               <div class="text-md-end">
-                <button type="submit" class="btn btn-outline-secondary mt-2 button-form w-lg-auto w-md-100">Enviar</button>
+                <button type="submit" id="btn-enviar" class="btn btn-outline-secondary mt-2 button-form w-lg-auto w-md-100">Enviar</button>
               </div>
+              <div class="text-md-end">
+                <button type="button" id="nuevo-mensaje" class="btn btn-secondary mt-2 button-form w-lg-auto w-md-100 d-none">Nuevo Mensaje</button>
+              </div>
+              <div class="alert alert-success text-center d-none" id="element-id"></div>
             </form>
-          
-        </div>
+            
+          </div>
+          <div id="mensaje-enviado" class="d-none"></div>
  
         
 
-        <div class="alert alert-success text-center d-none" id="element-id"></div>
-        <div id="mensaje-enviado"></div>
    </main>
 
 

@@ -2,7 +2,7 @@
 <header class="header">
   <!-- <h6>MoyaCreative</h2> -->
   <a href="../public/">
-    <img src="../assets/img/logo/logo2.png" alt="" id="logo">
+    <img src="../assets/img/logo/logo2.png" alt="" id="logo-header">
     <!-- <h2>MoyaCreative</h2>  -->
   </a>
   <div class="d-flex align-items-center gap-3">

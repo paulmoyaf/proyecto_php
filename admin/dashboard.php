@@ -8,7 +8,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 
-<body class="">
+<body class="container-admin">
 
     <div class="container-fluid">
         <div class="row">
@@ -25,6 +25,7 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
                             <h4 class="card-title text-uppercase text-center">Items List</h4>
+                            <button class="btn btn-warning" onclick="window.location.href='../admin/messages/index.php'">View Messages</button>
                             <button class="btn btn-outline-dark" onclick="window.location.href='../admin/add/index.php'">Add New Item</button>
                         </div>
                         <hr>
