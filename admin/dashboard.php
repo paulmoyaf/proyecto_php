@@ -16,18 +16,34 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <img class="card-img-top logo" src="../assets/img/logo/logo.png" alt="Logo">
                     <h1 class="h3 text-black-50 text-end">Menu - Administrador</h1>
-                    <button class="btn btn-warning btn-sm " onclick="window.location.href='logout.php'" style="height: fit-content">Log Out</button>
+                    <button class="btn btn-warning btn-sm " onclick="window.location.href='logout.php'" style="height: fit-content">Log Out</button>  
+                    
                 </div>
                 <hr>
+
+                <div class="card mb-2">
+                    <div class="card-body">
+                        <div class="d-flex gap-3">
+                            <h4 class="card-title">Opciones: </h4>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-outline-dark btn-sm" onclick="window.location.href='../admin/index.php'">Dashboard</button>
+                                <button class="btn btn-outline-dark btn-sm" onclick="window.location.href='../admin/messages/index.php'">View Messages</button>
+                                <button class="btn btn-outline-dark btn-sm" onclick="window.location.href='../admin/add/index.php'">Add New Item</button>
+                                <button class="btn btn-outline-dark btn-sm" onclick="window.location.href='../admin/categorias/index.php'">Add Category</button>
+                                      
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
                 <div class="card bg-light">
                     <!-- <img class="card-img-top" src="" alt="Portada_Dashboard"> -->
                     <!-- <img class="card-img-top" src="../assets/img/portadas/BannerHorizontal.jpg" alt="Portada_Dashboard"> -->
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
                             <h4 class="card-title text-uppercase text-center">Items List</h4>
-                            <button class="btn btn-warning" onclick="window.location.href='../admin/messages/index.php'">View Messages</button>
-                            <button class="btn btn-outline-dark" onclick="window.location.href='../admin/add/index.php'">Add New Item</button>
-                        </div>
+                 </div>
                         <hr>
 
                         <!-- <div class="">

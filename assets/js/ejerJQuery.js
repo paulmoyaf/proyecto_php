@@ -2,7 +2,7 @@ $(document).ready(function() {
     $('#btn-enviar').click(function() {  
             $.ajax({
                 type: "POST",    
-                url: "../db/insert.php", 
+                url: "../db/insertMessage.php", 
                 data: $("#formulario").serialize(),          
                 success: function(data) {
 

@@ -53,7 +53,7 @@ formulario.addEventListener('submit', function(e) {
     formData.append('email', email.value);
     formData.append('message', msn.value);
 
-    fetch('../db/insert.php', {
+    fetch('../db/insertMessage.php', {
             method: 'POST',
             body: formData
         })

@@ -243,11 +243,13 @@ const buttonsCategories = () =>{
       btnCategoria.addEventListener('click', function() {
         filterItems.innerHTML = "";
         divListaItems.classList.add('d-none');
-    
+
         const productosCategoriaFilter = productos.filter(function(producto) {
           return producto.categoria_id === category.id;
         });
-    
+
+        console.log(JSON.stringify(productosCategoriaFilter));
+
         productosCategoriaFilter.forEach(function(producto) {
           
           const card = createCardElementJson(producto);
@@ -255,7 +257,7 @@ const buttonsCategories = () =>{
 
           const divFilterItems = document.createElement('div');
           divFilterItems.classList.add('col-lg-4','col-md-4','col-sm-12','pb-5','px-3');
-  
+
           divFilterItems.appendChild(card);
           filterItems.appendChild(divFilterItems);
         });
