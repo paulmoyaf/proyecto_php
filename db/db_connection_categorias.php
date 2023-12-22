@@ -70,21 +70,40 @@ try {
         }
     }
 
-
-    public static function insertCategoria($categoria){
-
+    public static function insertCategoria($nombre){
         try{
             $db = conexionMySql(); 
-            // $db = new PDO (DB_PATH);
-            $sql = "insert into categoria (nombre) values";
-            $sql = $sql . "('" .$categoria->getNombre() . "')";
-            $res = $db->exec($sql);
-            return $res;
-        } catch (Exception $e){
-            echo "<p>Error:" .$e->getMessage() . "</p>\n";
-            return 0;
+    
+            $stmt = $db->prepare("INSERT INTO categoria (nombre) VALUES (?)");
+            $stmt->bindParam("1", $nombre);
+            $stmt->execute();
+    
+            $id = $db->lastInsertId(); // Obtiene el ID de la nueva categoría
+    
+            return array(
+                'id' => $id,
+                'nombre' => $nombre
+            );
+        } catch (Exception $e) {
+            echo "<p>Error:" . $e->getMessage() . "</p>\n";
+            return null;
         }
     }
+
+    // public static function insertCategoria($categoria){
+
+    //     try{
+    //         $db = conexionMySql(); 
+    //         // $db = new PDO (DB_PATH);
+    //         $sql = "insert into categoria (nombre) values";
+    //         $sql = $sql . "('" .$categoria->getNombre() . "')";
+    //         $res = $db->exec($sql);
+    //         return $res;
+    //     } catch (Exception $e){
+    //         echo "<p>Error:" .$e->getMessage() . "</p>\n";
+    //         return 0;
+    //     }
+    // }
 
     public static function editCategoria($categoria){
 

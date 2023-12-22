@@ -14,10 +14,6 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-// require_once('conexion.php');
-// $db = conexionMySql(); 
-// include 'db_connection.php';
-
 // Prepara y vincula los parámetros
 $stmt = $conn->prepare("INSERT INTO mensajes (name, phone, email, message, create_time) VALUES (?, ?, ?, ?, ?)");
 

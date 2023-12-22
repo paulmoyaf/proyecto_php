@@ -47,19 +47,20 @@
     </div>
 
     <div class="card mt-5">
-        <div class="card-body">
-            <form id="categoria-form" class="row g-3 needs-validation" novalidate>
-                <label for="nombre" class="form-label">Añadir nueva categoria</label>
-                <div class="d-flex">
-                    <input type="text" class="form-control" id="nombre" placeholder="Categoria Nueva" required>
-                    <div class="invalid-feedback">
-                     Ponga un nombre valido
-                    </div>
-                    <button class="btn btn-success" type="submit">Añadir Categoria</button>
-                </div>
-        </form>
+    <div class="card-body">
+
+    <form id="categoria-form" class="row g-3 needs-validation" novalidate>
+    <label for="nombre" class="form-label">Añadir nueva categoria</label>
+    <div class="d-flex">
+        <input type="text" class="form-control" id="nombre" placeholder="Categoria Nueva" required>
+        <div class="invalid-feedback">
+            Ponga un nombre valido
         </div>
+        <button id="btn-agregar" class="btn btn-success" type="button">Añadir Categoria</button>
     </div>
+</form>
+
+</div>
 
 
     <script>var categorias = <?php echo $categoriasJSON; ?>;</script>
