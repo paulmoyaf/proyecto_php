@@ -13,6 +13,7 @@ const msn = document.querySelector("#message");
 const nuevoMensaje = document.querySelector('#nuevo-mensaje');
 const btnEnviar = document.querySelector('#btn-enviar');
 
+
 nuevoMensaje.addEventListener('click', () => {
     borrarInputs();
     mensajeEnviado.innerHTML = "";
@@ -45,8 +46,6 @@ formulario.addEventListener('submit', function(e) {
         return;
     } else {
 
-    
-
     const formData = new FormData(formulario);
     formData.append('name',  name.value);
     formData.append('phone', phone.value);
@@ -68,6 +67,7 @@ formulario.addEventListener('submit', function(e) {
 
             element.innerHTML = data.message;
             console.log(data.message);
+
             //mostrar mensaje enviado
             element.classList.remove('d-none');
             element.classList.add('d-block');          
@@ -76,7 +76,6 @@ formulario.addEventListener('submit', function(e) {
             nuevoMensaje.classList.remove('d-none');
             nuevoMensaje.classList.add('d-block');
             
-
         })
         .catch(error => {
             console.error('Error:', error);
@@ -93,7 +92,7 @@ const formValidacion = () => {
     return true; // Return true to indicate validation success
 }
 
-
+// esto es lo que se muestra en el form despues de haber envaido el mensaje
 const showDatosMensaje = (formData) => {
     const mensajeEnviado = document.querySelector('#mensaje-enviado');
     mensajeEnviado.innerHTML = "";
@@ -108,7 +107,7 @@ const showDatosMensaje = (formData) => {
         // Selecciona el elemento del formulario por su nombre y deshabilítalo
         const formElement = document.querySelector(`#${key}`);
         if (formElement) {
-          formElement.value = `New: ${valor}`;
+          formElement.value = `Value Sent: ${valor}`;
           formElement.disabled = true;
         }
     }

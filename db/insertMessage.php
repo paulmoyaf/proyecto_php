@@ -1,10 +1,10 @@
 
 
 <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "1234";
-    $dbname = "catalogo";
+$servername = "localhost";
+$username = "root";
+$password = "1234";
+$dbname = "catalogo";
 
 
 $conn = new mysqli($servername, $username, $password, $dbname);

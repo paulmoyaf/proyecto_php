@@ -23,7 +23,6 @@ function handlePostRequest() {
     // $nuevaCategoria =  CategoriasDB::insertCategoria($nombre);
     // echo json_encode($nuevaCategoria);
 
-
     $nombre = $_POST['nombre'];
     $nuevaCategoria = CategoriasDB::insertCategoria($nombre);
     echo json_encode($nuevaCategoria);

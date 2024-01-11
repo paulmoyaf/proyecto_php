@@ -1,6 +1,6 @@
 <?php
 
-define('DB_PATH', 'sqlite:C:\\xampp\\htdocs\\proyecto_php\\db\\catalogo.db');
+define('DB_PATH', 'sqlite:' . __DIR__ . '/catalogo.db');
 function conexionMySql() {
     $servername = "localhost";
     $username = "root";

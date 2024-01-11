@@ -10,7 +10,7 @@ CREATE TABLE categoria (
 );
 
 -- Insertar datos en la tabla "categoria"
-INSERT INTO categoria (nombre) VALUES ('Nuevo'), ('Usado');
+INSERT INTO categoria (nombre) VALUES ('Deportiva'), ('Polo'),('Elegant');
 
 -- Crear la tabla "tiene_descuento"
 CREATE TABLE tipo_producto (

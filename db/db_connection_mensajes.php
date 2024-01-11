@@ -139,21 +139,21 @@ class MensajesDB{
     // }
 
 
-    // public static function removeProduct($producto){
+    public static function removeMensaje($mensaje){
 
-    //     try{
-    //         $db = conexionMySql(); 
-    //         // $db = new PDO (DB_PATH);
-    //         $sql = "DELETE FROM productos ";
-    //         $sql = $sql . " WHERE id = " .$producto->getId() . "";
-    //         $resultado = $db->exec($sql);
-    //         $_SESSION['mensaje'] = "Producto se ha borrrado exitosamente.";
-    //         return $resultado;
-    //     } catch (Exception $e){
-    //         echo "<p>Error:" .$e->getMessage() . "</p>\n";
-    //         return 0;
-    //     }
-    // }
+        try{
+            $db = conexionMySql(); 
+            // $db = new PDO (DB_PATH);
+            $sql = "DELETE FROM mensajes ";
+            $sql = $sql . " WHERE id = " .$mensaje->getId() . "";
+            $resultado = $db->exec($sql);
+            $_SESSION['mensaje'] = "Mensaje se ha borrrado exitosamente.";
+            return $resultado;
+        } catch (Exception $e){
+            echo "<p>Error:" .$e->getMessage() . "</p>\n";
+            return 0;
+        }
+    }
 
 
 }
