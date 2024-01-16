@@ -15,7 +15,9 @@
 <body class="container py-5">
 
     <div class="header-titulo">
-        <img class="card-img-top logo" src="../../assets/img/logo/logo.png" alt="Title">
+    <a href='../../admin/index.php' >
+                <img class="card-img-top logo" src="../../assets/img/logo/logo.png" alt="Logo">
+            </a>     
         <p class="h2">Delete Item</p>
     </div>
     <hr>

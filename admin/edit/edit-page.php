@@ -11,8 +11,9 @@
 
 <body class="container py-5">
 
-        <div class="header-titulo">
-            <img class="card-img-top logo" src="../../assets/img/logo/logo.png" alt="Logo">
+<a href='../../admin/index.php' >
+                <img class="card-img-top logo" src="../../assets/img/logo/logo.png" alt="Logo">
+            </a>     
             <p class="h2">Edit Item</p>
         </div>
         <hr>

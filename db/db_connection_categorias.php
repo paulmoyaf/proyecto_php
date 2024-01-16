@@ -30,24 +30,24 @@ class CategoriasDB{
 
     public static function selectCategoriasJSON()
     {
-try {
-        $db = conexionMySql();
-        $registros = $db->query("select * from categoria");
-        $categorias = array(); // Inicializa el array $categorias
-        if ($registro = $registros->fetch()) {
-            do {
-                $categoria = array(
-                    'id' => (int)$registro['id'],
-                    'nombre' => $registro['nombre']
-                );
-                $categorias[] = $categoria; // Agrega $categoria a $categorias
-            } while ($registro = $registros->fetch());
-            return json_encode($categorias, JSON_UNESCAPED_UNICODE);
+        try {
+            $db = conexionMySql();
+            $registros = $db->query("select * from categoria");
+            $categorias = array(); // Inicializa el array $categorias
+            if ($registro = $registros->fetch()) {
+                do {
+                    $categoria = array(
+                        'id' => (int)$registro['id'],
+                        'nombre' => $registro['nombre']
+                    );
+                    $categorias[] = $categoria; // Agrega $categoria a $categorias
+                } while ($registro = $registros->fetch());
+                return json_encode($categorias, JSON_UNESCAPED_UNICODE);
+            }
+        } catch (Exception $e) {
+            echo "<p>Error:" . $e->getMessage() . "</p>\n";
+            return null;
         }
-    } catch (Exception $e) {
-        echo "<p>Error:" . $e->getMessage() . "</p>\n";
-        return null;
-    }
     }
 
     public static function selectCategoria($id){
@@ -73,20 +73,15 @@ try {
     public static function insertCategoria($nombre){
         try{
             $db = conexionMySql(); 
-    
+
             $stmt = $db->prepare("INSERT INTO categoria (nombre) VALUES (?)");
-            $stmt->bindParam("1", $nombre);
+            $stmt->bindParam(1, $nombre);
             $stmt->execute();
     
-            $id = $db->lastInsertId(); // Obtiene el ID de la nueva categoría
-    
-            return array(
-                'id' => $id,
-                'nombre' => $nombre
-            );
+            return true;
         } catch (Exception $e) {
             echo "<p>Error:" . $e->getMessage() . "</p>\n";
-            return null;
+            return false;
         }
     }
 
@@ -125,13 +120,13 @@ try {
     }
 
 
-    public static function removeCategoria($categoria){
+    public static function removeCategoria($id){
 
         try{
             $db = conexionMySql(); 
             // $db = new PDO (DB_PATH);
             $sql = "DELETE FROM categoria ";
-            $sql = $sql . " WHERE id = " .$categoria->getId() . "";
+            $sql = $sql . " WHERE id = " .$id . "";
             $resultado = $db->exec($sql);
             $_SESSION['mensaje'] = "Categoria se ha borrrado exitosamente.";
             return $resultado;

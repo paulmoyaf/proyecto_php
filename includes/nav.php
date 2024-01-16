@@ -37,8 +37,11 @@
           </div>
       </li>
       <li class="nav-item">
-                    <a class="nav-link <?php echo ($currentPage === 'contacto') ? 'active' : ''; ?>" href="../public/contacto.php" disabled>Contacto</a>
-                </li>
+          <a class="nav-link <?php echo ($currentPage === 'clima') ? 'active' : ''; ?>" href="../public/weather.php" disabled>Clima</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link <?php echo ($currentPage === 'contacto') ? 'active' : ''; ?>" href="../public/contacto.php" disabled>Contacto</a>
+      </li>
     </ul>
   </div>
 </div>

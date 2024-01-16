@@ -11,7 +11,9 @@
 
 
         <div class="header-titulo">
-            <img class="card-img-top logo" src="../../assets/img/logo/logo.png" alt="Title">
+        <a href='../../admin/index.php' >
+                <img class="card-img-top logo" src="../../assets/img/logo/logo.png" alt="Logo">
+            </a>     
             <p class="h2">Add Item</p>
         </div>
         <hr>

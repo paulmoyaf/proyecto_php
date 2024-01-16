@@ -7,6 +7,7 @@ class Mensaje{
     private $email;
     private $mensaje;
     private $fecha;
+    private $status;
 
     public function __construct() {
         $this->fecha = date("Y-m-d H:i:s");
@@ -58,6 +59,13 @@ class Mensaje{
 
     public function setFecha($fecha) {
         $this->fecha= $fecha;
+    }
+    public function getStatus() {
+        return $this->status;
+    }
+
+    public function setStatus($status) {
+        $this->status= $status;
     }
     
 

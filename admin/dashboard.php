@@ -14,7 +14,9 @@
         <div class="row">
             <div class="py-5 col-md-6 col-12 custom-dashboard">
                 <div class="d-flex justify-content-between align-items-center">
-                    <img class="card-img-top logo" src="../assets/img/logo/logo.png" alt="Logo">
+                    <a href='../admin/index.php' >
+                        <img class="card-img-top logo" src="../assets/img/logo/logo.png" alt="Logo">
+                    </a>
                     <h1 class="h3 text-black-50 text-end">Menu - Administrador</h1>
                     <button class="btn btn-warning btn-sm " onclick="window.location.href='logout.php'" style="height: fit-content">Log Out</button>  
                     
@@ -26,10 +28,11 @@
                         <div class="d-flex gap-3">
                             <h4 class="card-title">Opciones: </h4>
                             <div class="d-flex gap-2">
-                                <button class="btn btn-outline-dark btn-sm" onclick="window.location.href='../admin/index.php'">Dashboard</button>
-                                <button class="btn btn-outline-dark btn-sm" onclick="window.location.href='../admin/messages/index.php'">View Messages</button>
+                                <!-- <button class="btn btn-outline-dark btn-sm" onclick="window.location.href='../admin/index.php'">Dashboard</button> -->
                                 <button class="btn btn-outline-dark btn-sm" onclick="window.location.href='../admin/add/index.php'">Add New Item</button>
                                 <button class="btn btn-outline-dark btn-sm" onclick="window.location.href='../admin/categorias/index.php'">Add Category</button>
+                                <button class="btn btn-outline-dark btn-sm" onclick="window.location.href='../admin/messages/index.php'">View Messages</button>
+                                <button class="btn btn-outline-dark btn-sm" onclick="window.location.href='../admin/users/index.php'">View Users (*)</button>
                                       
                             </div>
                         </div>

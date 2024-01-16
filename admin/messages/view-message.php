@@ -44,7 +44,7 @@
                         <td>
                             <form method="post" action="view-message.php">
                                 <input type="hidden" name="id" value="<?= htmlspecialchars($mensaje->getId()) ?>">
-                                <input type="submit" value="Ver" id="btn-view" class="btn btn-primary btn-small disabled">
+                                <input type="submit" value="Ver" id="btn-view" class="btn btn-primary btn-small">
                             </form>
                             <form method="post" action="index.php">
                                 <input type="hidden" name="id" value="<?= htmlspecialchars($mensaje->getId()) ?>">

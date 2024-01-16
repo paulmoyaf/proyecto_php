@@ -85,6 +85,38 @@ class MensajesDB{
         }
     }
 
+    public static function insertMensaje($mensaje){
+
+        
+
+        try{
+            $db = conexionMySql(); 
+            // $db = new PDO (DB_PATH);
+
+            $stmt = $db->prepare("INSERT INTO mensajes (name, phone, email, message, create_time) VALUES (?, ?, ?, ?, ?)");
+
+            // Obtener la fecha actual
+            $currentTime = date("Y-m-d H:i:s");
+            
+            $stmt->bindParam(1, $name);
+            $stmt->bindParam(2, $phone);
+            $stmt->bindParam(3, $email);
+            $stmt->bindParam(4, $msn);
+            $stmt->bindParam(5, $currentTime);
+            $name = $_POST['name'];
+            $phone = $_POST['phone'];
+            $email = $_POST['email'];
+            $msn = $_POST['message'];
+            $stmt->execute();
+            
+            echo json_encode(["message" => "Mensaje enviado con éxito"]);
+            
+        } catch (Exception $e){
+            echo "<p>Error:" .$e->getMessage() . "</p>\n";
+            return 0;
+        }
+    }
+
 
     // public static function insertProduct($producto){
 
