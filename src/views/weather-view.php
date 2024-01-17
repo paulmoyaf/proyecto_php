@@ -25,7 +25,7 @@
 
 
   <main class="container">
-    <div class="container-fluid py-5 w-75" style="height: 80vh;">
+    <div class="container-fluid py-5 w-75" style="min-height: 73vh;">
 
       <!-- <form id="form-contacto" class="formulario"> -->
       <h1 class="h4">Clima</h1>

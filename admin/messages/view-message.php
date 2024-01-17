@@ -17,54 +17,55 @@
         <a href='../../admin/index.php'>
             <img class="card-img-top logo" src="../../assets/img/logo/logo.png" alt="Logo">
         </a>
-        <p class="h2 text-center">View Messages</p>
+        <p class="h2 text-center">View Message</p>
     </div>
     <hr>
 
-    <div class="table-responsive mt-5">
-        <table class="table table-bordered text-center">
-            <thead>
-                <tr>
-                    <th scope="col">Fecha Creación</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Mensaje</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Opciones</th>
-                </tr>
-            </thead>
-            <tbody class="align-middle">
-                <?php foreach ($mensajes as $mensaje) : ?>
-                    <tr>
-                        <td><?= htmlspecialchars($mensaje->getFecha()) ?></td>
-                        <td><?= htmlspecialchars($mensaje->getNombre()) ?></td>
-                        <td><?= htmlspecialchars($mensaje->getEmail()) ?></td>
-                        <td><?= htmlspecialchars($mensaje->getMensaje()) ?></td>
-                        <td><?= htmlspecialchars($mensaje->getStatus()) ?></td>
-                        <td>
-                            <form method="post" action="view-message.php">
-                                <input type="hidden" name="id" value="<?= htmlspecialchars($mensaje->getId()) ?>">
-                                <input type="submit" value="Ver" id="btn-view" class="btn btn-primary btn-small">
-                            </form>
-                            <form method="post" action="index.php">
-                                <input type="hidden" name="id" value="<?= htmlspecialchars($mensaje->getId()) ?>">
-                                <input type="hidden" name="eliminar" value="true">
-                                <input type="submit" value="Eliminar" id="btn-delete" class="btn btn-danger btn-small">
-                            </form>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+    <div class="mb-3">
+
+        <div class="display-6 mb-5">Mensaje:</div>
+
+        <div class="mensaje-view">
+
+            <div class="d-flex align-items-center gap-3">
+                <label for="" class="form-label">Fecha de Creación:</label>
+                <input type="text" readonly class="form-control w-50" value="<?= htmlspecialchars($mensaje->getFecha()) ?>">
+            </div>
+            <div class="d-flex align-items-center gap-3">
+                <label for="" class="form-label">Nombre:</label>
+                <input type="text" readonly class="form-control w-50" value="<?= htmlspecialchars($mensaje->getNombre()) ?>">
+            </div>
+            <div class="d-flex align-items-center gap-3">
+                <label for="" class="form-label">Teléfono:</label>
+                <input type="text" readonly class="form-control w-50" value="<?= htmlspecialchars($mensaje->getTelefono()) ?>">
+            </div>
+            <div class="d-flex align-items-center gap-3">
+                <label for="" class="form-label">Email:</label>
+                <input type="text" readonly class="form-control w-50" value="<?= htmlspecialchars($mensaje->getEmail()) ?>">
+            </div>
+            <div class="d-flex align-items-center gap-3">
+                <label for="" class="form-label">Status:</label>
+                <form method="post" action="index.php">
+                    <input type="hidden" name="id" value="<?= htmlspecialchars($mensaje->getId()) ?>">
+                    <input type="checkbox" name="status" value="leido" <?= $mensaje->getStatus() == 'leido' ? 'checked' : '' ?>>
+                    <label for="status"><?= $mensaje->getStatus() == 'leido' ? 'Leído' : 'Sin leer' ?></label>
+                    <button type="submit" class="btn btn-sm btn-primary">Actualizar estado</button>
+                </form>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+                <label for="" class="form-label">Mensaje:</label>
+                <textarea readonly class="form-control w-50"><?= htmlspecialchars($mensaje->getMensaje()) ?></textarea>
+            </div>
+        </div>
     </div>
 
+
+
     <div class="d-flex justify-content-between gap-3 row mx-5">
-        <a class="btn btn-outline-secondary col" href="../../admin/index.php" role="button">Regresar al Menu</a>
+        <a class="btn btn-outline-secondary col" href="../../admin/messages/" role="button">Ver Todos los Mensajes</a>
     </div>
 
     <script src="../../assets/js/mensajes.js"></script>
 </body>
 
 </html>
-                        
-                  

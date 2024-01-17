@@ -14,9 +14,11 @@
     <?php include '../includes/header.php'; ?>
     <?php include '../includes/nav.php';  ?>
 
+<main class="custom-dashboard">
 
 
-    <div class="container py-5">
+
+    <div class="container py-5" style="min-height: 73vh;">
 
         <div class="container pb-3">
             <div class="d-flex align-items-center justify-content-between">
@@ -82,6 +84,7 @@
         </div>
     </div>
     <?php include '../includes/footer.php';  ?>
+    </main>
 
 
     <script>

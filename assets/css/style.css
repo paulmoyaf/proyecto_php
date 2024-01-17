@@ -22,7 +22,7 @@ body{
     /* font-family: 'Akatab', sans-serif; */
     font-family: 'Albert Sans', sans-serif;
     /* font-family: 'Amiko', sans-serif; */
-
+  /* min-height: 100vh; */
 }
 
 
@@ -50,7 +50,11 @@ body{
 .custom-dashboard{
   width: 100%;
   margin: 0 auto;
+
 }
+
+  /* Resto del código... */
+
 
 #logo{
     height: 2em;
@@ -114,6 +118,14 @@ body{
   width: 3em;
 }
 
+.mensaje-view label{
+  font-size: large;
+  width: 6em;
+}
+
+.mensaje-view div{
+padding: 1em;
+}
 
 
 /* #lista-items{

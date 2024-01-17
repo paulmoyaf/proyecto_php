@@ -20,6 +20,7 @@ class MensajesDB{
                 $mensaje->setEmail($registro['email']);
                 $mensaje->setMensaje($registro['message']);
                 $mensaje->setFecha($registro['create_time']);
+                $mensaje->setStatus($registro['status']);
                 $mensajes[] = $mensaje;                
             }
 
@@ -47,7 +48,8 @@ class MensajesDB{
                         'telefono' => $registro['phone'],
                         'email' => $registro['email'],
                         'mensaje' => $registro['message'],
-                        'fecha' => $registro['create_time']
+                        'fecha' => $registro['create_time'],
+                        'status' => $registro['status'] == 1 ? 'Activo' : 'Inactivo'
 
                     );
                     $mensajes[] = $mensaje;
@@ -71,11 +73,12 @@ class MensajesDB{
             if ($registro = $registros->fetch()){
                 $mensaje = new Mensaje();
                 $mensaje->setId($registro['id']);
-                $mensaje->setNombre($registro['nombre']);
-                $mensaje->setTelefono($registro['telefono']);
+                $mensaje->setNombre($registro['name']);
+                $mensaje->setTelefono($registro['phone']);
                 $mensaje->setEmail($registro['email']);
-                $mensaje->setMensaje($registro['mensaje']);
-                $mensaje->setFecha($registro['fecha']);
+                $mensaje->setMensaje($registro['message']);
+                $mensaje->setFecha($registro['create_time']);
+                $mensaje->setStatus($registro['status']);
 
             }
             return  $mensaje;
@@ -141,6 +144,26 @@ class MensajesDB{
     //         return 0;
     //     }
     // }
+
+    public static function updateMensaje($mensaje){
+
+        try{
+            $db = conexionMySql(); 
+            // $db = new PDO (DB_PATH);
+
+            $sql = "UPDATE mensajes SET ";
+            $sql = $sql . "status = '" .$mensaje->getStatus() . "'";
+
+            $sql = $sql . " WHERE id = " .$mensaje->getId() . "";
+
+            $resultado = $db->exec($sql);
+            $_SESSION['mensaje'] = "Mensaje se ha editado correctamente.";
+            return $resultado;
+        } catch (Exception $e){
+            echo "<p>Error:" .$e->getMessage() . "</p>\n";
+            return 0;
+        }
+    }
 
     // public static function editProduct($producto){
 

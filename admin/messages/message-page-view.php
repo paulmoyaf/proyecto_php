@@ -40,11 +40,16 @@
                         <td><?= htmlspecialchars($mensaje->getNombre()) ?></td>
                         <td><?= htmlspecialchars($mensaje->getEmail()) ?></td>
                         <td><?= htmlspecialchars($mensaje->getMensaje()) ?></td>
-                        <td><?= htmlspecialchars($mensaje->getStatus()) ?></td>
                         <td>
-                            <form method="post" action="view-message.php">
+                            <input type="checkbox" name="status" value="leido" <?= $mensaje->getStatus() == 'leido' ? 'checked' : '' ?> disabled>
+                            <label for="status"><?= $mensaje->getStatus() == 'leido' ? 'Leído' : 'Sin leer' ?></label>
+                        </td>
+
+                        <td>
+                            <form method="post" action="index.php">
                                 <input type="hidden" name="id" value="<?= htmlspecialchars($mensaje->getId()) ?>">
-                                <input type="submit" value="Ver" id="btn-view" class="btn btn-primary btn-small disabled">
+                                <input type="hidden" name="ver-item" value="true">
+                                <input type="submit" value="Ver" id="btn-view" class="btn btn-primary btn-small">
                             </form>
                             <form method="post" action="index.php">
                                 <input type="hidden" name="id" value="<?= htmlspecialchars($mensaje->getId()) ?>">
@@ -66,5 +71,3 @@
 </body>
 
 </html>
-                        
-                  

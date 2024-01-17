@@ -11,24 +11,64 @@ if (!$admin) {
     exit;
 }
 
-if (isset($_POST['eliminar'], $_POST['id'])) {
-    $id = filter_var($_POST['id'], FILTER_VALIDATE_INT);
-
+function validateInput($input) {
+    $id = filter_var($input, FILTER_VALIDATE_INT);
     if ($id === false) {
-        header("HTTP/1.0 400 Bad Request");
-        include '../../src/views/400.php';
-        exit;
+        throw new Exception("Invalid input");
     }
+    return $id;
+}
 
+function createMensajeFromId($id) {
     $mensaje = new Mensaje();
     $mensaje->setId($id);
+    return $mensaje;
+}
 
-    if (MensajesDB::removeMensaje($mensaje) > 0) {
-        header("Location: index.php"); 
-        exit;
-    } else {
-        $messageError = "Error: No se ha podido completar la acción deseada";
+try {
+    if (isset($_POST['eliminar'], $_POST['id'])) {
+        $id = validateInput($_POST['id']);
+        $mensaje = createMensajeFromId($id);
+
+        if (MensajesDB::removeMensaje($mensaje) > 0) {
+            header("Location: index.php"); 
+            exit;
+        } else {
+            $messageError = "Error: No se ha podido completar la acción deseada";
+        }
     }
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if (isset($_POST['ver-item'], $_POST['id'])) {
+            $id = validateInput($_POST['id']);
+            $mensaje = createMensajeFromId($id);
+            $mensaje = MensajesDB::selectMensaje($id);
+            if ($mensaje === false) {
+                throw new Exception("Mensaje not found");
+            }
+            require('view-message.php');
+            exit;
+        } else {
+            $id = validateInput($_POST['id']);
+            $status = isset($_POST['status']) ? filter_var($_POST['status']) : null;
+            if ($status === false) {
+                throw new Exception("Invalid status");
+            }
+            $mensaje = createMensajeFromId($id);
+            $mensaje->setStatus($status);
+            if (MensajesDB::updateMensaje($mensaje) > 0) {
+                $mensaje = MensajesDB::selectMensaje($id);
+                require('view-message.php');
+                exit;
+            } else {
+                $messageError = "Error: No se ha podido completar la acción deseada";
+            }
+        }
+    }
+} catch (Exception $e) {
+    header("HTTP/1.0 400 Bad Request");
+    include '../../src/views/400.php';
+    exit;
 }
 
 $mensajes = MensajesDB::selectMensajes();

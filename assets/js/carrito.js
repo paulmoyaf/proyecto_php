@@ -250,17 +250,27 @@ const buttonsCategories = () =>{
 
         console.log(JSON.stringify(productosCategoriaFilter));
 
-        productosCategoriaFilter.forEach(function(producto) {
-          
-          const card = createCardElementJson(producto);
+        if (productosCategoriaFilter.length === 0) {
+          const alerta = document.createElement('div');
+          alerta.classList.add('alert', 'alert-warning', 'text-center', 'mt-3', 'w-100');
+          alerta.innerHTML = "No hay productos en esta categoría"
+          filterItems.appendChild(alerta);
           filterItems.style.display="block";
+        } 
+        else
+        {
+          productosCategoriaFilter.forEach(function(producto) {
+            
+            const card = createCardElementJson(producto);
+            filterItems.style.display="block";
 
-          const divFilterItems = document.createElement('div');
-          divFilterItems.classList.add('col-lg-4','col-md-4','col-sm-12','pb-5','px-3');
+            const divFilterItems = document.createElement('div');
+            divFilterItems.classList.add('col-lg-4','col-md-4','col-sm-12','pb-5','px-3');
 
-          divFilterItems.appendChild(card);
-          filterItems.appendChild(divFilterItems);
-        });
+            divFilterItems.appendChild(card);
+            filterItems.appendChild(divFilterItems);
+          });
+        }
       });
   
       divBotones.appendChild(btnCategoria);
