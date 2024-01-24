@@ -82,7 +82,30 @@ if ($admin == true) {
     header("location: ../index.php");
 }
 
+// if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+//     // Comprueba si el archivo fue cargado sin errores
+//     if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] == 0) {
+//         $nombreArchivo = $_FILES['imagen']['name'];
+//         $rutaTemporal = $_FILES['imagen']['tmp_name'];
+//         $rutaDestino = 'assets/img/camisetas/' . $nombreArchivo;
 
+//         // Mueve el archivo a la carpeta deseada
+//         if (move_uploaded_file($rutaTemporal, $rutaDestino)) {
+//             // Construye la URL de la imagen
+//             // $imagenUrl = 'http://tu-dominio.com/' . $rutaDestino;
+//             $imagenUrl = $rutaDestino;
+            
+//             // Inserta la URL de la imagen en la base de datos
+//             // Asegúrate de que $db es una instancia de PDO y $tabla es el nombre de tu tabla
+//             $stmt = $db->prepare("INSERT INTO $tabla (imagen_url) VALUES (?)");
+//             $stmt->execute([$imagenUrl]);
+//         } else {
+//             echo 'Error al mover el archivo';
+//         }
+//     } else {
+//         echo 'Error al cargar el archivo';
+//     }
+// }
 
 
 

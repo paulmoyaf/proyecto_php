@@ -20,6 +20,14 @@
 
     <div class="container py-5" style="min-height: 73vh;">
 
+
+
+    <!-- <div class="card text-dark bg-light p-3 mb-5">
+                <p class="card-text">Buscar:</p>
+                <input type="text" id="search-input" placeholder="Buscar Producto">
+            <div id="results-container"></div>
+    </div> -->
+
         <div class="container pb-3">
             <div class="d-flex align-items-center justify-content-between">
                 <div class="display-6 text-center">Catálogo</div>
@@ -30,6 +38,7 @@
             </div>
             <hr>
         </div>
+
         <div class="row d-flex flex-wrap-reverse">
             <div class="col-md-8 col-12 div-productos">
                 

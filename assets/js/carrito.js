@@ -239,6 +239,8 @@ const buttonsCategories = () =>{
       const btnCategoria = document.createElement('button');
       btnCategoria.classList.add('btn', 'btn-outline-dark', 'btn-sm' , 'mx-1');
       btnCategoria.innerHTML = category.nombre;
+
+      console.log(JSON.stringify(productos));
       
       btnCategoria.addEventListener('click', function() {
         filterItems.innerHTML = "";

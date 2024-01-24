@@ -17,7 +17,7 @@ function validateAdmin() {
     $admin = isset($_SESSION['usuario']) && $_SESSION['usuario'] == "admin";
 
     if (!$admin) {
-        header("location: ../index.php");
+        header('Location: index.php');
         exit();
     }
 }
@@ -51,7 +51,7 @@ function handlePostRequest() {
 
         if (CategoriasDB::removeCategoria($id) > 0){
             $_SESSION['messageDelete'] = 'Categoria eliminada con éxito';
-            header("Location: index.php"); 
+            header('Location: index.php'); 
             exit;
         } else {
             $_SESSION['messageError'] = 'Error: No se ha podido completar la acción deseada';

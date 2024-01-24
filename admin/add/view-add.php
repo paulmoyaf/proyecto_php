@@ -80,10 +80,14 @@
                     </div>
                     <div class="form-group-item mb-3">
                         <label for="imagen_url" class="form-label">Imagen:</label>
-                        <!-- <input type="text" name="imagen_url" id="imagen_url" class="form-control" value="../assets/img/camisetas/cam(#).png"> -->
                         <input type="text" name="imagen_url" id="imagen_url" class="form-control" value="<?php echo $imagen_url?>" placeholder="../assets/img/camisetas/cam(#).png">
-                        <!-- <input type="file" name="imagen_url" id="imagen_url" class="form-control"> -->
                     </div>
+
+                    <!-- <div class="form-group-item mb-3">
+                        <label for="imagen_url" class="form-label">Imagen:</label>
+                        <input type="file" name="imagen" id="imagen" class="form-control">
+                    </div> -->
+                    
                     <div class="row gap-3 mx-3">
                         <input name="guardar" id="" class="btn btn-primary col" type="submit" value="Save">
                         <a class="btn btn-outline-secondary col" href="../../admin/index.php" role="button">Back to Menu</a>
