@@ -39,8 +39,14 @@ body{
 }
 
 
+/* .dropdown {
+  position: relative;
+} */
 
-
+/* .dropdown-menu {
+  width: 100%;
+  left: 0;
+} */
 
 .custom-width {
   width: 60%;

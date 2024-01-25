@@ -4,6 +4,7 @@
 <head>
     <title>Catalogo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
@@ -22,11 +23,38 @@
 
 
 
-    <!-- <div class="card text-dark bg-light p-3 mb-5">
+    <div class="card text-dark bg-light p-3 mb-5">
                 <p class="card-text">Buscar:</p>
-                <input type="text" id="search-input" placeholder="Buscar Producto">
+                <input type="text" class="dropdown" id="search-input" placeholder="Buscar Producto">
             <div id="results-container"></div>
-    </div> -->
+    </div> 
+
+    <!-- <div class="dropdown">
+        <input type="text" id="search-input" class="form-control" data-toggle="dropdown">
+        <div id="results-container" class="dropdown-menu" aria-labelledby="search-input">
+  </div> -->
+
+  <!-- <div class="dropdown">
+    <button
+        class="btn btn-secondary dropdown-toggle"
+        type="button"
+        id="triggerId"
+        data-bs-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+    >
+        Dropdown
+    </button>
+    <div class="dropdown-menu" aria-labelledby="triggerId">
+        <a class="dropdown-item" href="#">Action</a>
+        <a class="dropdown-item disabled" href="#">Disabled action</a>
+        <h6 class="dropdown-header">Section header</h6>
+        <a class="dropdown-item" href="#">Action</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#">After divider action</a>
+    </div>
+  </div> -->
+  
 
         <div class="container pb-3">
             <div class="d-flex align-items-center justify-content-between">
@@ -50,7 +78,7 @@
                         <div class="col-lg-4 col-md-4 col-sm-12 pb-5 px-3">
 
                             <div class="card bg-light text-center">
-                                <a class="text-dark" href='../public/catalogo.php?id=<?= $producto->getId() ?>'>
+                                <a class="link-dark" href='../public/catalogo.php?id=<?= $producto->getId() ?>'>
                                     <div class="card-header" id="name-producto"><?php echo $producto->getNombre() ?></div>
                                     <div class="card-body">
                                         <img id="img-producto" src="<?php echo $producto->getImagenURL() ?>" class="img-fluid rounded-start py-3" style="width: 15em" alt="Card title">

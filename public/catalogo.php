@@ -6,6 +6,7 @@ $categorias = ProductosDB::selectCategorias();
 $tallas = ProductosDB::selectTallas();
 $tiposProducto = ProductosDB::selectTipoProducto();
 
+
 if (isset($_GET['id'])) {
 
     $id = $_GET['id'];

@@ -26,4 +26,3 @@ if (!empty($q)) {
 } else {
     require('users-page-view.php');
 }
-?>
