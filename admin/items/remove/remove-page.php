@@ -2,10 +2,10 @@
 <html>
 
 <head>
-    <title>Delete Item</title>
+    <title>Borrar Item</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../assets/css/style.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
@@ -15,10 +15,10 @@
 <body class="container py-5">
 
     <div class="header-titulo">
-    <a href='../../admin/index.php' >
-                <img class="card-img-top logo" src="../../assets/img/logo/logo.png" alt="Logo">
+    <a href='../../items/index.php' >
+                <img class="card-img-top logo" src="../../../assets/img/logo/logo.png" alt="Logo">
             </a>     
-        <p class="h2">Delete Item</p>
+        <p class="h2">Borrar Item</p>
     </div>
     <hr>
 
@@ -47,7 +47,7 @@
             </thead>
             <tbody class="align-middle">
                 <tr class="">
-                    <td><img src="../<?php echo $producto->getImagenURL()  ?>"></td>
+                    <td><img src="../../<?php echo $producto->getImagenURL()  ?>"></td>
                     <td><?php echo $producto->getNombre()  ?></td>
                     <td><?php echo $producto->getDescripcion() ?></td>
                     <td><?php echo $nombre_tipo_categoria ?></td>
@@ -64,9 +64,9 @@
     <div class="row gap-3 mx-3">
         <form action="" method="post" class="col">
             <input type="hidden" name="eliminar" value="<?php echo $producto->getId() ?>">
-            <input type="submit" value="Delete Item" class="btn btn-danger w-100">
+            <input type="submit" value="Borrar Item" class="btn btn-danger w-100">
         </form>
-        <a class="btn btn-outline-secondary col" href="../../admin/index.php" role="button">Back to Menu</a>
+        <a class="btn btn-outline-secondary col" href="../../items/index.php" role="button">Regresar al Menu</a>
     </div>
 
 </body>

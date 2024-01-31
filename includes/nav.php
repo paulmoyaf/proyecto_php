@@ -1,8 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light ">
 
 <div class="container">
-  <a class="navbar-brand pt-3" href="index.php">
-    <img src="../assets/img/logo/logo.png" alt="" id="logo">
+  <a class="navbar-brand pt-3" aria-label="Ir al Inicio" href="index.php">
+    <img src="../assets/img/logo/logo.png" alt="Logo de la Empresa" id="logo">
     <!-- <h2>MoyaCreative</h2> -->
   </a>
 

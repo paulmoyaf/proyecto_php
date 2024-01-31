@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Add Item</title>
+    <title>Añadir Item</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../assets/css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body class="container py-5">
 
 
         <div class="header-titulo">
-        <a href='../../admin/index.php' >
-                <img class="card-img-top logo" src="../../assets/img/logo/logo.png" alt="Logo">
+        <a href='../../items/index.php' >
+                <img class="card-img-top logo" src="../../../assets/img/logo/logo.png" alt="Logo">
             </a>     
-            <p class="h2">Add Item</p>
+            <p class="h2">Añadir Item</p>
         </div>
         <hr>
 
@@ -33,7 +33,7 @@
                 <form class="form-group" action="" method="post" enctype="multipart/form-data">
                     <div class="form-group-item mb-3">
                         <label for="nombre" class="form-label">Nombre:</label>
-                        <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Add name" value="<?php echo $nombre ?>" >
+                        <input type="text" name="nombre" id="nombre" class="form-control" placeholder="" value="<?php echo $nombre ?>" >
                     </div>
                     <div class="form-group-item mb-3">
                         <label for="descripcion" class="form-label">Descripcion:</label>
@@ -89,8 +89,8 @@
                     </div> -->
                     
                     <div class="row gap-3 mx-3">
-                        <input name="guardar" id="" class="btn btn-primary col" type="submit" value="Save">
-                        <a class="btn btn-outline-secondary col" href="../../admin/index.php" role="button">Back to Menu</a>
+                        <input name="guardar" id="" class="btn btn-primary col" type="submit" value="Guardar">
+                        <a class="btn btn-outline-secondary col" href="../../items/index.php" role="button">Regresar al Menu</a>
                     </div>
                 </form>
             </div>

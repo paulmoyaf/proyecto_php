@@ -6,6 +6,10 @@ $categorias = ProductosDB::selectCategorias();
 $tallas = ProductosDB::selectTallas();
 $tiposProducto = ProductosDB::selectTipoProducto();
 
+$title = "Catalogo";
+$favicon = "../assets/img/logo/favicon.ico";
+$css = "../assets/css/style.css";
+$currentPage = 'catalogo';
 
 if (isset($_GET['id'])) {
 
@@ -43,7 +47,10 @@ if (isset($_GET['id'])) {
     // $categorias = ProductosDB::selectCategorias();
     // $tallas = ProductosDB::selectTallas();
     // $tiposProducto = ProductosDB::selectTipoProducto();
-    $currentPage = 'catalogo';
+    $title = "Catalogo";
+    $favicon = "../assets/img/logo/favicon.ico";
+    $css = "../assets/css/style.css";
+    // $currentPage = 'catalogo';
     // header("Location: ../src/views/catalogo.php");
     require '../src/views/catalogo.php';
 }

@@ -11,8 +11,11 @@ if (isset($_SESSION['usuario']) && $_SESSION['usuario'] == "admin") {
     //     $admin = true;
 }
 
-require('../../db/db_connection.php');
-require('../../src/objects/productos.php');
+define('BASE_PATH', '../../../');
+
+require(BASE_PATH . '/db/db_connection.php');
+require(BASE_PATH . '/src/objects/productos.php');
+
 
 if ($admin == true) {
     if (isset($_GET['id'])) {

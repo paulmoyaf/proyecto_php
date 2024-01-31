@@ -2,19 +2,20 @@
 <html>
 
 <head>
-    <title>Edit Item</title>
+    <title>Editar Item</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../assets/css/style.css">
 
 </head>
 
 <body class="container py-5">
 
-<a href='../../admin/index.php' >
-                <img class="card-img-top logo" src="../../assets/img/logo/logo.png" alt="Logo">
+        <div class="header-titulo">       
+            <a href='../../admin/index.php' >
+                <img class="card-img-top logo" src="../../../assets/img/logo/logo.png" alt="Logo">
             </a>     
-            <p class="h2">Edit Item</p>
+            <p class="h2 text-center">Editar Item</p>
         </div>
         <hr>
 
@@ -80,14 +81,14 @@
                     <div class="form-group-item mb-3">
                         <label for="imagen_url" class="form-label">Imagen:</label>
                         <div class="d-flex gap-3">
-                            <img class="form-control w-25" src="../<?php echo $producto->getImagenURL() ?>" alt="imagen-item">
+                            <img class="form-control w-25" src="../../<?php echo $producto->getImagenURL() ?>" alt="imagen-item">
                             <input style="height: 3em" type="text" name="imagen_url" id="imagen_url" class="form-control" value="<?php echo $imagen_url ?>" >
                         </div>
                         <!-- <input type="file" name="imagen_url" id="imagen_url" class="form-control"> -->
                     </div>
                     <div class="row gap-3 mx-3">
-                        <input class="btn btn-success col" name="editar" type="submit" value="Update">
-                        <a class="btn btn-outline-secondary col" href="../../admin/index.php" role="button">Back to Menu</a>
+                        <input class="btn btn-success col" name="editar" type="submit" value="Actualizar">
+                        <a class="btn btn-outline-secondary col" href="../../items/index.php" role="button">Regresar al Menu</a>
                     </div>
                 </form>
 

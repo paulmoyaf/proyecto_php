@@ -1,7 +1,7 @@
 <?php
 session_start();
-require('../db/db_connection.php');
-require('../src/objects/productos.php');
+require('../../db/db_connection.php');
+require('../../src/objects/productos.php');
 $admin = false;
 if (isset($_POST['ingresar'])) {
     if ($_POST['usuario'] == "admin" && $_POST['password'] == "admin") {
@@ -13,12 +13,10 @@ if (isset($_POST['ingresar'])) {
 }
 if ($admin == true) {
     $productos = ProductosDB::selectProductos();
-    include 'dashboard.php';
+    include 'view-items.php';
 } else {
-    if (isset($_POST['ingresar'])) {
-        $error_message = "Datos incorrectos...";
-    }
-    include 'login.php';
+    // if (isset($_POST['ingresar'])) {
+    //     $error_message = "Datos incorrectos...";
+    // }
+    // include 'login.php';
 }
-
-

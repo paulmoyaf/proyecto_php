@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>View Message</title>
+    <title>Ver Mensaje</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../../assets/css/style.css">
@@ -17,7 +17,7 @@
         <a href='../../admin/index.php'>
             <img class="card-img-top logo" src="../../assets/img/logo/logo.png" alt="Logo">
         </a>
-        <p class="h2 text-center">View Message</p>
+        <p class="h2 text-center">Ver Mensaje</p>
     </div>
     <hr>
 
@@ -49,7 +49,7 @@
                     <input type="hidden" name="id" value="<?= htmlspecialchars($mensaje->getId()) ?>">
                     <input type="checkbox" name="status" value="leido" <?= $mensaje->getStatus() == 'leido' ? 'checked' : '' ?>>
                     <label for="status"><?= $mensaje->getStatus() == 'leido' ? 'Leído' : 'Sin leer' ?></label>
-                    <button type="submit" class="btn btn-sm btn-primary">Actualizar estado</button>
+                    <button type="submit" class="btn btn-sm btn-warning">Actualizar estado</button>
                 </form>
             </div>
             <div class="d-flex align-items-center gap-3">

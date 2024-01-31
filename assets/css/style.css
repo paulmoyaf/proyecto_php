@@ -59,8 +59,25 @@ body{
 
 }
 
-  /* Resto del código... */
+.full-height {
+  min-height: 100vh;
+}
 
+#btn-opciones{
+  width: 80%;
+  height: 15em;
+  /* margin: 1em; */
+  transition: all 100ms;
+}
+
+#btn-opciones:hover {
+  transform: scale(1.05);
+
+}
+
+#btn-opciones img {
+  width: 4em;
+}
 
 #logo{
     height: 2em;

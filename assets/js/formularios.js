@@ -84,13 +84,14 @@ formulario.addEventListener('submit', function(e) {
             body: formData
         })
         .then(response => response.json())
+
         
         .then(data => {
             console.log('Success:', data);
             // showMessage(data.message);
             limpiarInputs();
 
-            showDatosMensaje(formData);
+            // showDatosMensaje(formData);
 
             console.log(data.message);
             alertMensaje.innerHTML = data.message;
@@ -98,16 +99,22 @@ formulario.addEventListener('submit', function(e) {
             $(alertMensaje).hide().slideDown(500);
             setTimeout(() => {
                 $(alertMensaje).slideUp(500);
-            },3000);
+            },5000);
 
-            btnEnviar.classList.add('d-none');
-            nuevoMensaje.classList.remove('d-none');
-            nuevoMensaje.classList.add('d-block');
-
+            // btnEnviar.classList.add('d-none');
+            // nuevoMensaje.classList.remove('d-none');
+            // nuevoMensaje.classList.add('d-block');
 
         })
         .catch(error => {
             console.error('Error:', error);
+            alertMensaje.innerHTML = "Error encontrado: " + error;
+            alertMensaje.classList.add('alert', 'alert-danger', 'text-center');
+            $(alertMensaje).hide().slideDown(500);
+            setTimeout(() => {
+                $(alertMensaje).slideUp(500);
+            },5000);
+            
         });
     }
 });
@@ -127,7 +134,7 @@ function esNombreValido(nombre) {
 }
 
 function esEmailValido(email) {
-    const regex = /^[a-zA-Z]+@[a-zA-Z]{2,}[.][a-zA-Z]{2,}$/;
+    const regex = /^[a-zA-Z.-_0-9]+@[a-zA-Z]{2,}[.][a-zA-Z]{2,}$/;
     return regex.test(email);
 }
 
@@ -137,7 +144,8 @@ function esNumeroValido(phone) {
 }
 
 function esMensajeValido(msn) {
-    const regex = /^[a-zA-ZñÑ0-9\s]{10,}$/;
+    const regex = /^[a-zA-Z0-9!@#\$%\^\&*\)\(,"`'?¿+=._-ñÑ\s]{10,}$/g;
+    // const regex = /^[a-zA-ZñÑ0-9\s]{10,}$/;
     return regex.test(msn);
 }
 

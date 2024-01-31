@@ -1,12 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>Catalogo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <?php include '../includes/head.php'; ?>
 </head>
 
 <body>
@@ -84,7 +80,7 @@
                                         <img id="img-producto" src="<?php echo $producto->getImagenURL() ?>" class="img-fluid rounded-start py-3" style="width: 15em" alt="Card title">
                                         <h5 class="card-title"><?php echo $producto->getDescripcion() ?></h5>
                                         <p class="card-text">Categoría: <?php echo $nombre_tipo_categoria ?></p>
-                                        <p class="card-text text-muted">Precio: <?php echo $producto->getPrecio() ?>€</p>
+                                        <p class="card-text">Precio: <?php echo $producto->getPrecio() ?>€</p>
                                         <p class="card-text" id="tipo-producto">Tipo: <?php echo $nombre_tipo_producto ?></p>
                                     </div>
                                 </a>
@@ -99,22 +95,17 @@
                 <div class="d-flex flex-wrap" id="lista-items-filter" style="display: none"></div>
             </div>
             <div class="col-md-4 col-12 px-3" id="div-carrito">
-                <div class="">
-                <!-- <div class="d-flex justify-content-between gap-2 pb-3"> -->
-                    <div class="d-flex justify-content-between pb-2">
-                        <h4 class="font-weight-bold">Carrito:</h4>
-                        <button class="btn btn-danger btn-small" id="btn-delete-all" style="display: none">Vaciar Carrito</button>
-                    </div>
-                    <!-- <div class="d-flex">
-                        <h6 class="mx-2">Cantidad Productos: </h6>
-                        <p id="contador"></p>
-                    </div> -->
-                    <div class="d-flex">
-                        <h6 class="mx-2">Valor Carrito:</h6>
-                        <h6 id="valor-total"></h6>
-                        <h6>€</h6>
-                    </div>
+
+                <div class="d-flex justify-content-between pb-2">
+                    <p class="lead font-weight-bold">Carrito:</p>
+                    <button class="btn btn-danger btn-small" id="btn-delete-all" style="display: none">Vaciar Carrito</button>
                 </div>
+                <div class="d-flex">
+                    <p class="mx-2">Valor Carrito:</p>
+                    <p id="valor-total"></p>
+                    <p>€</p>
+                </div>
+                
                 <hr>
                 <span class="" id="new-product"></span>
             </div>

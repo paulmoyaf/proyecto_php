@@ -1,32 +1,28 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <title>Edit Item</title>
+    <title>Base de Datos</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../../../assets/css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="../../assets/css/style.css">
-
 </head>
-
 <body class="container pt-5">
 
             <?php
-            $messages = [
-                'success' => $message ?? null,
-                'warning' => $messageWarning ?? null,
-                'error' => $messageError ?? null
-            ];
-
-            foreach ($messages as $type => $message) {
-                if ($message) {
-                    echo "<div class=\"alert alert-$type\" role=\"alert\">$message</div>\n";
-                }
+            if (isset($message)) {
+                echo "<div class=\"alert alert-success\" role=\"alert\"> $message </div>\n";
             }
-            ?>          
+            if (isset($messageWarning)) {
+                echo "<div class=\"alert alert-warning\" role=\"alert\">$messageWarning </div>\n";
+            }
+            if (isset($messageError)) {
+                echo "<div class=\"alert alert-danger\" role=\"alert\">$messageError </div>\n";
+            }
+            ?>
+
 
         <div class="table-responsive">
-
             <table class="table table-bordered text-center">
                 <thead class="">
                     <tr>
@@ -43,23 +39,20 @@
                 </thead>
                 <tbody class="align-middle">
                     <tr class="">
-                        <td><img src="../<?php echo $imagen_url ?>" alt="imagen-item"></td>
+                        <td><img src="../../<?php echo $imagen_url ?>" alt="imagen-item"></td>
                         <td><?php echo $nombre  ?></td>
                         <td><?php echo $descripcion ?></td>
-                        <td><?php echo $nombre_tipo_categoria ?></td>
-                        <td><?php echo $nombre_talla ?></td>
-                        <td><?php echo $nombre_tipo_producto ?></td>
+                        <td><?php echo $nombre_categoria_nuevo ?></td>
+                        <td><?php echo $nombre_talla_nuevo ?></td>
+                        <td><?php echo $nombre_tipo_nuevo ?></td>
                         <td><?php echo $precio  ?> €</td>
                         <td><?php echo $descuento ?>%</td>
                         <td><?php echo $producto->getPrecioFinal() ?>€</td>
                     </tr>
                 </tbody>
             </table>
-
-
         </div>
-        <a class="btn btn-outline-secondary" href="../../admin/index.php" role="button">Regresar al Menú</a>
-   
-</body>
+        <a class="btn btn-outline-secondary" href="../../items/index.php" role="button">Regresar al Menu</a>
 
+</body>
 </html>

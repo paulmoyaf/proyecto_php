@@ -3,15 +3,6 @@ session_start();
 require('../../db/db_connection_categorias.php');
 require('../../src/objects/categorias.php');
 
-validateAdmin();
-
-handleMessages();
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    handlePostRequest();
-} 
-
-handleGetRequest();
 
 function validateAdmin() {
     $admin = isset($_SESSION['usuario']) && $_SESSION['usuario'] == "admin";
@@ -76,7 +67,47 @@ function handlePostRequest() {
     }
 }
 
+
+function handlePutRequest() {
+    // if (isset($_POST['editar'], $_POST['id'])) {
+    $data = json_decode(file_get_contents('php://input'), true);
+    $id = filter_var($data['id'], FILTER_VALIDATE_INT);
+    $nombre = $data['nombre'];
+
+    
+    if ($id === false) {
+        header("HTTP/1.0 400 Bad Request");
+        include '../../src/views/400.php';
+        exit;
+    }
+
+    if (CategoriasDB::editarCategoria($id, $nombre)) {
+        $_SESSION['message'] = 'Categoría actualizada con éxito';
+        echo json_encode(['status' => 'success', 'message' => 'Categoría actualizada con éxito']);
+        exit();
+    } else {
+        $_SESSION['messageErrorCategoria'] = 'Error al actualizar la categoría';
+        echo json_encode(['status' => 'error', 'message' => 'Categoría actualizada con éxito']);
+        exit();
+    }
+// }
+}
+
 function handleGetRequest() {
     $categorias = CategoriasDB::selectCategorias();
     require('categorias.php');
 }
+
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    handlePostRequest();
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
+    handlePutRequest();
+}
+
+
+validateAdmin();
+handleMessages();
+handleGetRequest();

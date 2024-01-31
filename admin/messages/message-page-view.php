@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>View Message</title>
+    <title>Mensajes</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../../assets/css/style.css">
@@ -17,7 +17,7 @@
         <a href='../../admin/index.php'>
             <img class="card-img-top logo" src="../../assets/img/logo/logo.png" alt="Logo">
         </a>
-        <p class="h2 text-center">View Messages</p>
+        <p class="h2 text-center">Mensajes</p>
     </div>
     <hr>
 
@@ -49,12 +49,12 @@
                             <form method="post" action="index.php">
                                 <input type="hidden" name="id" value="<?= htmlspecialchars($mensaje->getId()) ?>">
                                 <input type="hidden" name="ver-item" value="true">
-                                <input type="submit" value="Ver" id="btn-view" class="btn btn-primary btn-small">
+                                <input type="submit" value="Editar" id="btn-view" class="btn btn-outline-secondary btn-small w-100 mb-2">
                             </form>
                             <form method="post" action="index.php">
                                 <input type="hidden" name="id" value="<?= htmlspecialchars($mensaje->getId()) ?>">
                                 <input type="hidden" name="eliminar" value="true">
-                                <input type="submit" value="Eliminar" id="btn-delete" class="btn btn-danger btn-small">
+                                <input type="submit" value="Eliminar" id="btn-delete" class="btn btn-danger btn-small w-100">
                             </form>
                         </td>
                     </tr>

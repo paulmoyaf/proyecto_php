@@ -100,25 +100,21 @@ class CategoriasDB{
     //     }
     // }
 
-    public static function editCategoria($categoria){
-
+        public static function editarCategoria($id, $nombre){
         try{
             $db = conexionMySql(); 
-            // $db = new PDO (DB_PATH);
 
-            $sql = "UPDATE categoria SET ";
-            $sql = $sql . "nombre = '" .$categoria->getNombre() . "'";
-            $sql = $sql . " WHERE id = " .$categoria->getId() . "";
-
-            $resultado = $db->exec($sql);
-            $_SESSION['mensaje'] = "Categoria se ha editado correctamente.";
-            return $resultado;
-        } catch (Exception $e){
-            echo "<p>Error:" .$e->getMessage() . "</p>\n";
-            return 0;
+            $stmt = $db->prepare("UPDATE categoria SET nombre = ? WHERE id = ?");
+            $stmt->bindParam(1, $nombre);
+            $stmt->bindParam(2, $id);
+            $stmt->execute();
+    
+            return true;
+        } catch (Exception $e) {
+            echo "<p>Error:" . $e->getMessage() . "</p>\n";
+            return false;
         }
     }
-
 
     public static function removeCategoria($id){
 
@@ -138,4 +134,3 @@ class CategoriasDB{
 
 
 }
-?>

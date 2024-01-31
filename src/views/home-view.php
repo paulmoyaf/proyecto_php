@@ -2,21 +2,7 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Web Pool - Diseño de Camisetas</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-  <script> src="https://code.jquery.com/jquery-3.7.1.js"</script>
-
-  <link rel="stylesheet" href="../assets/css/style.css">
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <?php include '../includes/head.php';?>
 
 </head>
 
@@ -27,8 +13,6 @@
   <?php include '../includes/nav.php'; ?>
 
 
- 
-
   <div class="card content" id="imagen-principal" style="background-color: rgba(128, 125, 125, 0.1);">
     <!-- <img class="card-img-top" src="holder.js/100x180/" alt="Title"> -->
     <div class="card-body d-flex flex-column justify-content-center align-items-center text-center">
@@ -38,7 +22,7 @@
         <span>Quito, Ecuador</span>
       </div>
       <p class="card-text">
-        <a type="button" class="col btn btn-outline-secondary btn-sm " href="#">Contacto</a>
+        <a type="button" class="col btn btn-outline-secondary btn-sm " href="../public/catalogo.php">Contacto</a>
       </p>
     </div>
   </div>
@@ -85,7 +69,7 @@
         </div>
       </section>
     </div>
-    </dl>
+    
 
 
 
