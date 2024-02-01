@@ -39,7 +39,7 @@
 
 
         <div class="col">
-          <div class="card">
+          <div id="card-datos" class="card d-none">
             <div class="card-body">
               <div class="d-flex">
                 <h5 id="city-name" class="card-title"></h5>

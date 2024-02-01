@@ -20,6 +20,8 @@
                 <img class="card-img-top logo" src="../../assets/img/logo/logo.png" alt="Logo">
             </a>     
         <p class="h2">Categorias</p>
+        <button class="btn btn-warning btn-sm " onclick="window.location.href='../logout.php'" style="height: fit-content">Cerrar Sesión</button>  
+
     </div>
     <hr>
 
@@ -35,7 +37,7 @@
                         <label for="nombre" class="form-label rounded-end">Añadir nueva categoria</label>
                         <div class="d-flex">
                             <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Categoria Nueva" required>
-                            <button id="btn-agregar" class="btn btn-small btn-warning rounded-start" type="submit">Añadir Categoria</button>
+                            <button id="btn-agregar" class="btn btn-small btn-warning rounded-start" type="click">Añadir Categoria</button>
                         </div>
                     </form>
 
@@ -56,15 +58,16 @@
                     <tbody>
 
                         <?php foreach ($categorias as $categoria) : ?>
-                            <tr>
+                            <tr class="align-middle">
                                 <td><?= htmlspecialchars($categoria->getNombre()) ?></td>
-                                <td>
-                                    <form method="post" action="index.php">
+                                <td class="d-flex gap-3 justify-content-center">
+                                    <button id="btn-editar" class="btn btn-small btn-outline-secondary" data-id="<?= htmlspecialchars($categoria->getId()) ?>">Editar</button>
+                                    <button id="btn-eliminar" class="btn btn-small btn-danger" data-id="<?= htmlspecialchars($categoria->getId()) ?>">Eliminar</button>
+                                    <!-- <form method="post" action="index.php">
                                         <input type="hidden" name="id" value="<?= htmlspecialchars($categoria->getId()) ?>">
                                         <input type="hidden" name="eliminar" value="true">
                                         <input type="submit" value="Eliminar" id="btn-eliminar" class="btn btn-small btn-danger">
-                                    </form>
-                                    <button id="btn-editar" class="btn btn-small btn-outline-secondary" data-id="<?= htmlspecialchars($categoria->getId()) ?>">Editar</button>
+                                    </form> -->
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -74,6 +77,8 @@
         </div>
 
     </div>
+
+    <div id="mensaje"></div>
 
     <div class="d-flex justify-content-between gap-3 row m-5">
         <a class="btn btn-outline-secondary col" href="../../admin/index.php" role="button">Regresar al Menu</a>

@@ -7,6 +7,8 @@ const humidity = document.getElementById("city-humidity");
 const wind = document.getElementById("city-wind");
 const icon = document.getElementById("city-icon");
 
+const cardDatos = document.getElementById("card-datos");
+
 
 
 const btnPronostico = document.getElementById("btn-pronostico");
@@ -35,8 +37,10 @@ const getWeatherByCity = async (city) => {
 }
 
 
-btnPronostico.addEventListener("click", () => {
+btnPronostico.addEventListener("click", (event) => {
     event.preventDefault();
+    cardDatos.classList.remove("d-none");
+    cardDatos.classList.add("d-block");
     const cityValue = city.value;
     if (validateInput(cityValue)) {
         getWeatherByCity(cityValue)
@@ -60,8 +64,9 @@ function validateInput(input) {
 }
 
 
-btnPronosticoUbicacion.addEventListener("click", () => {
+btnPronosticoUbicacion.addEventListener("click", (event) => {
     event.preventDefault();
+    city.value = "";
     navigator.geolocation.getCurrentPosition(position => {
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
@@ -74,6 +79,8 @@ btnPronosticoUbicacion.addEventListener("click", () => {
                 humidity.innerHTML = `Humedad: ${data.main.humidity}%`;
                 wind.innerHTML = `Viento: ${data.wind.speed} km/h`;
                 icon.src = `${IMG_URL}${data.weather[0].icon}${IMG_EXT}`;
+                cardDatos.classList.remove("d-none");
+                cardDatos.classList.add("d-block");
             })
             .catch(error => console.log(error));
     });

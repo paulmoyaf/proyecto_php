@@ -30,51 +30,76 @@ function handleMessages() {
     echo '</script>';
 }
 
-function handlePostRequest() {
-    if (isset($_POST['eliminar'], $_POST['id'])) {
-        $id = filter_var($_POST['id'], FILTER_VALIDATE_INT);
+
+function handleDeleteRequest() {
+    $data = json_decode(file_get_contents('php://input'), true);
+
+    if (isset($data['id'])) {
+        $id = filter_var($data['id'], FILTER_VALIDATE_INT);
 
         if ($id === false) {
-            header("HTTP/1.0 400 Bad Request");
-            include '../../src/views/400.php';
+            http_response_code(400);
+            echo json_encode(['status' => 'error', 'message' => 'ID inválido']);
             exit;
         }
 
-        if (CategoriasDB::removeCategoria($id) > 0){
-            $_SESSION['messageDelete'] = 'Categoria eliminada con éxito';
-            header('Location: index.php'); 
-            exit;
+        if (CategoriasDB::removeCategoria($id)) {
+            $_SESSION['message'] = 'Categoría eliminada con éxito';
+            echo json_encode(['status' => 'success', 'message' => 'Categoría eliminada con éxito']);
         } else {
-            $_SESSION['messageError'] = 'Error: No se ha podido completar la acción deseada';
-        };
-    }
-
-    if (isset($_POST['nombre']) && !empty($_POST['nombre'])) {
-        $nombre = $_POST['nombre'];
-        if (CategoriasDB::insertCategoria($nombre)) {
-            $_SESSION['message'] = 'Categoría agregada con éxito';
-            header('Location: index.php');
-            exit();
-        } else {
-            $_SESSION['messageErrorCategoria'] = 'Error al agregar la categoría';
-            header('Location: index.php');
-            exit();
+            $_SESSION['messageErrorCategoria'] = 'Error al eliminar la categoría';
+            http_response_code(500);
+            echo json_encode(['status' => 'error', 'message' => 'Error al eliminar la categoría']);
         }
     } else {
-        $_SESSION['messageErrorCategoria'] = 'Nombre de categoría no proporcionado';
-        header('Location: index.php');
+        $_SESSION['messageErrorCategoria'] = 'ID no proporcionado';
+        http_response_code(400);
+        echo json_encode(['status' => 'error', 'message' => 'ID no proporcionado']);
+    }
+    exit;
+
+}
+
+function handlePostRequest() {
+
+    $data = json_decode(file_get_contents('php://input'), true);
+    $nombre = $data['nombre'];
+
+    if (CategoriasDB::insertCategoria($nombre)) {
+        $_SESSION['message'] = 'Categoría agregada con éxito';
+        echo json_encode(['status' => 'success', 'message' => 'Categoría agregada con éxito']);
+        exit();
+    } else {
+        $_SESSION['messageErrorCategoria'] = 'Error al agregar la categoría';
+        echo json_encode(['status' => 'error', 'message' => 'Error al agregar la categoría']);
         exit();
     }
+    
+    // if (isset($_POST['nombre']) && !empty($_POST['nombre'])) {
+    //     $nombre = $_POST['nombre'];
+    //     if (CategoriasDB::insertCategoria($nombre)) {
+    //         $_SESSION['message'] = 'Categoría agregada con éxito';
+    //         header('Location: index.php');
+    //         exit();
+    //     } else {
+    //         $_SESSION['messageErrorCategoria'] = 'Error al agregar la categoría';
+    //         header('Location: index.php');
+    //         exit();
+    //     }
+    // } else {
+    //     $_SESSION['messageErrorCategoria'] = 'Nombre de categoría no proporcionado';
+    //     header('Location: index.php');
+    //     exit();
+    // }
 }
 
 
 function handlePutRequest() {
-    // if (isset($_POST['editar'], $_POST['id'])) {
+
     $data = json_decode(file_get_contents('php://input'), true);
     $id = filter_var($data['id'], FILTER_VALIDATE_INT);
     $nombre = $data['nombre'];
 
-    
     if ($id === false) {
         header("HTTP/1.0 400 Bad Request");
         include '../../src/views/400.php';
@@ -90,7 +115,6 @@ function handlePutRequest() {
         echo json_encode(['status' => 'error', 'message' => 'Categoría actualizada con éxito']);
         exit();
     }
-// }
 }
 
 function handleGetRequest() {
@@ -105,6 +129,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
     handlePutRequest();
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
+    handleDeleteRequest();
 }
 
 

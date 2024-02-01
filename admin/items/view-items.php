@@ -18,7 +18,7 @@
                         <img class="card-img-top logo" src="../../assets/img/logo/logo.png" alt="Logo">
                     </a>
                     <h1 class="h3 text-black-50 text-end">Lista de Items</h1>
-                    <button class="btn btn-warning btn-sm " onclick="window.location.href='logout.php'" style="height: fit-content">Salir</button>  
+                    <button class="btn btn-warning btn-sm " onclick="window.location.href='../logout.php'" style="height: fit-content">Cerrar Sesión</button>  
                     
                 </div>
                 <hr>

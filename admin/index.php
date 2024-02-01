@@ -7,12 +7,14 @@ if (isset($_POST['ingresar'])) {
     if ($_POST['usuario'] == "admin" && $_POST['password'] == "admin") {
         $admin = true;
         $_SESSION['usuario'] = "admin";
+        header('Location: ../admin/index.php');
+        exit;
     }
 } else if (isset($_SESSION['usuario']) && $_SESSION['usuario'] == "admin") {
     $admin = true;
 }
 if ($admin == true) {
-    $productos = ProductosDB::selectProductos();
+    // $productos = ProductosDB::selectProductos();
     include 'dashboard.php';
 } else {
     if (isset($_POST['ingresar'])) {

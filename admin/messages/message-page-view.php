@@ -18,6 +18,8 @@
             <img class="card-img-top logo" src="../../assets/img/logo/logo.png" alt="Logo">
         </a>
         <p class="h2 text-center">Mensajes</p>
+        <button class="btn btn-warning btn-sm " onclick="window.location.href='../logout.php'" style="height: fit-content">Cerrar Sesión</button>  
+
     </div>
     <hr>
 
