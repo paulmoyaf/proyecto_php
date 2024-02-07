@@ -45,11 +45,18 @@
             </div>
             <div class="d-flex align-items-center gap-3">
                 <label for="" class="form-label">Status:</label>
+
+                    <div id="spinner" style="display: none;">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="sr-only">Cargando...</span>
+                        </div>
+                    </div>
+                    
                 <form method="post" action="index.php">
                     <input type="hidden" name="id" value="<?= htmlspecialchars($mensaje->getId()) ?>">
-                    <input type="checkbox" name="status" value="leido" <?= $mensaje->getStatus() == 'leido' ? 'checked' : '' ?>>
+                    <input id="status" type="checkbox" name="status" value="leido" <?= $mensaje->getStatus() == 'leido' ? 'checked' : '' ?>>
                     <label for="status"><?= $mensaje->getStatus() == 'leido' ? 'Leído' : 'Sin leer' ?></label>
-                    <button type="submit" class="btn btn-sm btn-warning">Actualizar estado</button>
+                    <button id="btn-actualizar" type="submit" class="btn btn-sm btn-warning" disabled>Actualizar estado</button>
                 </form>
             </div>
             <div class="d-flex align-items-center gap-3">

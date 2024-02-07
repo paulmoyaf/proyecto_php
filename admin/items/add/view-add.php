@@ -80,7 +80,7 @@
                     </div>
                     <div class="form-group-item mb-3">
                         <label for="imagen_url" class="form-label">Imagen:</label>
-                        <input type="text" name="imagen_url" id="imagen_url" class="form-control" value="<?php echo $imagen_url?>" placeholder="../assets/img/camisetas/cam(#).png">
+                        <input type="text" name="imagen_url" id="imagen_url" class="form-control" value="<?php echo $imagen_url?>" placeholder="../assets/img/camisetas/cam_#_.webp">
                     </div>
 
                     <!-- <div class="form-group-item mb-3">

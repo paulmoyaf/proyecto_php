@@ -17,10 +17,18 @@ const nombre = document.querySelector("#name");
 const phone = document.querySelector("#phone");
 const email = document.querySelector("#email");
 const msn = document.querySelector("#message");
+const statusCheck = document.querySelector("#status");
+
+const btnActualizar = document.querySelector('#btn-actualizar');
+
+
+statusCheck.addEventListener('change', function() { 
+    btnActualizar.disabled = false;
+});
+
 
 if (nombre) {
   
-
 nombre.addEventListener('keyup', verificarNombre);
 nombre.addEventListener('input', verificarNombre);
 phone.addEventListener('keyup', verificarPhone);

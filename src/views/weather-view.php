@@ -22,6 +22,8 @@
 
       <h1 class="h4">Clima</h1>
       <hr>
+      <div class="display-6 text-center mb-4">Mira como está el clima para basarte que producto comprar! 😎</div>
+      
       <div class="row">
 
         <div class="col">
