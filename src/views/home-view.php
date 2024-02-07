@@ -22,7 +22,7 @@
         <span>Quito, Ecuador</span>
       </div>
       <p class="card-text">
-        <a type="button" class="col btn btn-outline-secondary btn-sm " href="../public/catalogo.php">Contacto</a>
+        <a type="button" class="col btn btn-secondary btn-sm " href="../public/catalogo.php">Contacto</a>
       </p>
     </div>
   </div>
@@ -117,7 +117,7 @@
     <hr>
 
     <div id="carouselIdLogo" class="carousel slide col-12 col-md-12 col-lg-12 p-2 p-lg-5" data-bs-ride="carousel">
-      <div class="carousel-inner" role="listbox">
+      <div class="carousel-inner">
         <div class="carousel-item active">
           <div class="d-flex justify-content-around">
             <img src="../assets/img/shops/shop1.png" class="d-block mx-auto img-fluid" alt="First slide">
@@ -160,7 +160,7 @@
               <li data-bs-target="#carouselId" data-bs-slide-to="1" aria-label="Second slide"></li>
               <li data-bs-target="#carouselId" data-bs-slide-to="2" aria-label="Third slide"></li>
             </ol>
-            <div class="carousel-inner" role="listbox">
+            <div class="carousel-inner" >
               <div class="carousel-item active">
                 <img src="../assets/img/portadas/camisetasFoto.jpg" class="w-100 d-block rounded-3" alt="First slide">
                 <div class="carousel-caption d-none d-md-block">
@@ -209,7 +209,7 @@
     <?php include '../includes/footer.php'; ?>
 
 
-  <script src="../assets/js/formularios.js"></script>
+  <script src="../assets/js/mensajes.js"></script>
   <script src="../assets/js/carrito.js"></script>
 
 </body>

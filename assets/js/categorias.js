@@ -11,6 +11,9 @@ const btnEliminar = document.querySelectorAll('#btn-eliminar');
 btnAgregar.addEventListener('click', function(event) {
     event.preventDefault();
     const nombreCategoria = document.querySelector('#nombre').value;
+    if (!condicionesNombreCatergoria(nombreCategoria)) {
+        return;
+    }
     const data = { nombre: nombreCategoria };
     fetch('index.php', {
         method: 'POST',

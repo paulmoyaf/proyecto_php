@@ -24,7 +24,7 @@
     </div>
     <div id="alerta-mensaje"></div>
     <div class="text-md-end">
-        <button type="submit" id="btn-enviar" class="btn btn-outline-secondary mt-2 button-form w-lg-auto w-md-100">Enviar</button>
+        <button type="submit" id="btn-enviar" class="btn btn-secondary mt-2 button-form w-lg-auto w-md-100">Enviar</button>
     </div>
     <div class="text-md-end">
         <button type="button" id="nuevo-mensaje" class="btn btn-secondary mt-2 button-form w-lg-auto w-md-100 d-none">Nuevo Mensaje</button>

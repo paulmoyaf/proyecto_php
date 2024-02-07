@@ -44,7 +44,7 @@
       
     <div class="">
 
-      <div class="p-5" style="background-color: rgba(0 , 0, 0,0.1);">
+      <div class="p-5">
         <figure class="text-center">
         <img src="../assets/img/portadas/BannerHorizontal.jpg" class="figure-img img-fluid rounded grayscale-filter" alt="">
           <blockquote class="blockquote">

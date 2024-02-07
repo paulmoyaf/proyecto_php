@@ -50,6 +50,7 @@ if (isset($_GET['id'])) {
     $title = "Catalogo";
     $favicon = "../assets/img/logo/favicon.ico";
     $css = "../assets/css/style.css";
+    $description = "Diseño de camisetas personalizadas en Quito, Ecuador";
     // $currentPage = 'catalogo';
     // header("Location: ../src/views/catalogo.php");
     require '../src/views/catalogo.php';

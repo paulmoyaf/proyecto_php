@@ -1,6 +1,12 @@
 
 
 <?php
+
+// Verifica que el método de la petición sea POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Inserta el mensaje
+
+
 $servername = "localhost";
 $username = "root";
 $password = "1234";
@@ -32,5 +38,10 @@ echo json_encode(["message" => "Mensaje enviado con éxito"]);
 
 $stmt->close();
 $conn->close();
-?>
+
+} else {
+  // Maneja otros métodos HTTP o devuelve un error
+  http_response_code(405);
+  echo json_encode(['error' => 'Method not allowed']);
+}
 

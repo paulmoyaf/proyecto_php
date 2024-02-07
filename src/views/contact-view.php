@@ -30,7 +30,7 @@
   <?php include '../includes/footer.php'; ?>
 
 
-  <script src="../assets/js/formularios.js"></script>
+  <script src="../assets/js/mensajes.js"></script>
   <script src="../assets/js/carrito.js"></script>
 
 </body>

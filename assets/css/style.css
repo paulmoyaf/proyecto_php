@@ -202,7 +202,7 @@ padding: 1em;
 #form-contacto{
     border: 1px rgb(144, 144, 144) solid;
     border-radius: 1em;
-    background-color: var(--gris);
+    /* background-color: var(--gris); */
     padding: 2em;
     /* width: auto; */
     

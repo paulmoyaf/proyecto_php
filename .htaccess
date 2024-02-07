@@ -1,0 +1,2 @@
+RewriteEngine On
+RewriteRule ^api/messages$ db/insertMessage.php [NC,L]
