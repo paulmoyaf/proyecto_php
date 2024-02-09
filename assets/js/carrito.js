@@ -195,6 +195,7 @@ function createCardToCar(button) {
   const imgProducto = button.getAttribute('data-imagen');
   const tipoProducto = button.getAttribute('data-tipo');
   const precioProducto = button.getAttribute('data-precio');
+  const descuentoProducto = button.getAttribute('data-descuento');
 
   const nombreElement = document.createElement('h6');
   nombreElement.classList.add('card-title');
@@ -211,6 +212,11 @@ function createCardToCar(button) {
   const precioElement = document.createElement('p');
   precioElement.classList.add('card-text');
   precioElement.innerHTML = `<strong>${precioProducto} €</strong>`;
+
+  const descuentoElement = document.createElement('p');
+  descuentoElement.classList.add('card-text', 'text-danger');
+  descuentoElement.innerHTML = `-${descuentoProducto}%`;
+
 
   const btnRemove = document.createElement('button');
   btnRemove.classList.add('btn', 'btn-danger', 'col-12', 'btn-remove');
@@ -238,7 +244,15 @@ function createCardToCar(button) {
   columnaIzquierda.appendChild(imgElement);
   columnaDerecha.appendChild(cardBody);
   cardBody.appendChild(nombreElement);
-  cardBody.appendChild(tipoElement);
+
+  //TODO
+
+  if (tipoProducto === "Prime") {
+    cardBody.appendChild(tipoElement);
+    // cardBody.appendChild(descuentoElement);
+  }
+
+  // cardBody.appendChild(descuentoElement);
   cardBody.appendChild(precioElement);
 
   filaCard.appendChild(columnaIzquierda);
@@ -416,29 +430,56 @@ function createCardElementJson(producto) {
   const imgProducto    = producto.imagen_url;
 
 
-  const nombreElement = document.createElement('div');
-  nombreElement.classList.add('card-header');
+  const categoriaElement = document.createElement('div');
+  categoriaElement.classList.add('card-header');
+  categoriaElement.textContent = nombreCategoria;
+
+  const nombreElement = document.createElement('h5');
+  nombreElement.classList.add('card-title');
   nombreElement.textContent = nombreProducto;
 
-  const descripcionElement = document.createElement('h6');
-  descripcionElement.classList.add('card-title');
+
+
+  const descripcionElement = document.createElement('p');
+  descripcionElement.classList.add('card-text','text-muted');
   descripcionElement.textContent = descripcion;
 
   const imgElement = document.createElement('img');
-  imgElement.classList.add('card-img');
+  imgElement.classList.add('card-img', 'py-3');
   imgElement.src = imgProducto;
-
-  const categoriaElement = document.createElement('p');
-  categoriaElement.classList.add('card-text', 'text-muted');
-  categoriaElement.innerHTML = `Categoria: <strong>${nombreCategoria}</strong>`;
 
   const tipoElement = document.createElement('p');
   tipoElement.classList.add('card-text', 'text-muted');
   tipoElement.innerHTML = `Tipo: <strong>${nombreTipoProducto}</strong>`;
 
-  const precioElement = document.createElement('p');
-  precioElement.classList.add('card-text');
-  precioElement.innerHTML = `Precio Regular: ${precio}€`;
+  const precioPrimeElement = document.createElement('div');
+  precioPrimeElement.classList.add('d-flex', 'justify-content-center', 'align-items-center', 'gap-2');
+
+
+    const precioElement = document.createElement('div');
+    precioElement.classList.add('card-text');
+    precioElement.classList.add('text-decoration-line-through', 'text-danger');
+    precioElement.innerHTML = `${precio}€`; // Mover esta línea fuera del bloque if
+    
+    const ofertaElement = document.createElement('div');
+    ofertaElement.classList.add('d-flex', 'flex-column', 'flex-lg-row', 'gap-1', 'align-items-center');
+    
+      const textoOferta = document.createElement('div');
+      textoOferta.classList.add('text-danger');
+      textoOferta.innerHTML = 'Oferta: ';
+      
+      const descuentoElement = document.createElement('span');
+      descuentoElement.classList.add('badge', 'bg-danger');
+      descuentoElement.innerHTML = `-${descuento}%`;
+    
+    if (producto.tipo_producto_id == 1) {
+        
+        ofertaElement.appendChild(textoOferta);
+        ofertaElement.appendChild(descuentoElement);
+
+        precioPrimeElement.appendChild(precioElement);
+        precioPrimeElement.appendChild(ofertaElement);
+    }
 
   const precioFinalElement = document.createElement('div');
   precioFinalElement.classList.add('card-footer');
@@ -449,6 +490,7 @@ function createCardElementJson(producto) {
   btnAddToCar.setAttribute('data-nombre', nombreProducto);
   btnAddToCar.setAttribute('data-imagen', imgProducto);
   btnAddToCar.setAttribute('data-tipo', nombreTipoProducto);
+  btnAddToCar.setAttribute('data-descuento', descuento);
   btnAddToCar.setAttribute('data-precio', precio_final); 
   btnAddToCar.innerHTML = 'Agregar al carrito';
 
@@ -467,12 +509,13 @@ function createCardElementJson(producto) {
   });
 
   cardBody.appendChild(imgElement);
+  cardBody.appendChild(nombreElement);
   cardBody.appendChild(descripcionElement);
-  cardBody.appendChild(categoriaElement);
-  cardBody.appendChild(precioElement);
+  // cardBody.appendChild(precioElement);
   cardBody.appendChild(tipoElement);
+  cardBody.appendChild(precioPrimeElement);
   
-  cardLink.appendChild(nombreElement);
+  cardLink.appendChild(categoriaElement);
   cardLink.appendChild(cardBody);
   cardLink.appendChild(precioFinalElement);
   

@@ -17,7 +17,7 @@
 
     <div class="container pt-2">
 
-      <div class="display-6 text-center p-5">NOSOTROS</div>
+      <div class="display-6 text-center p-5"><?php echo $textos['nosotros']; ?></div>
 
       <div class="row d-flex flex-column-reverse flex-md-row pb-5">
 
@@ -48,7 +48,7 @@
         <figure class="text-center">
         <img src="../assets/img/portadas/BannerHorizontal.jpg" class="figure-img img-fluid rounded grayscale-filter" alt="">
           <blockquote class="blockquote">
-            <p>«No es de dónde tomas las cosas, es adónde las llevas.»</p>
+            <p>«<?php echo $textos['frase']; ?>»</p>
           </blockquote>
           <figcaption class="blockquote-footer">
             Jean-Luc Godard
@@ -59,12 +59,12 @@
       <div class="container">
         <section class="row py-5 text-center" id="servicios">
 
-          <div class="display-6 text-uppercase pb-4 text-black-50">Por qué Comprar con Nosotros?</div>
+          <div class="display-6 text-uppercase pb-4 text-black-50"><?php echo $textos['titulo-nosotros']; ?></div>
   
           <div class="col-md-3 col-6 card p-sm-3">
             <div class="card-body">
               <img class="card-img-top img-nosotros" src="../assets/img/nosotros/price.png" alt="Title">
-              <h4 class="card-title titulo-img-nosotros">Mejor Precio</h4>  
+              <h4 class="card-title titulo-img-nosotros"><?php echo $textos['mejor-precio']; ?></h4>  
               <p class="card-text pt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
               <!-- <a href="#" class="btn btn-outline-dark">Ver más...</a> -->
             </div>
@@ -73,7 +73,7 @@
           <div class="col-md-3 col-6 card p-sm-3">
             <div class="card-body">
               <img class="card-img-top img-nosotros" src="../assets/img/nosotros/devs.png" alt="Title">
-              <h4 class="card-title titulo-img-nosotros">Para Devs</h4>
+              <h4 class="card-title titulo-img-nosotros"><?php echo $textos['para-devs']; ?></h4>
               <p class="card-text pt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
               <!-- <a href="#" class="btn btn-outline-dark">Ver más...</a> -->
             </div>
@@ -82,7 +82,7 @@
           <div class="col-md-3 col-6 card p-sm-3">
             <div class="card-body">
               <img class="card-img-top img-nosotros" src="../assets/img/nosotros/free.png" alt="Title">
-              <h4 class="card-title titulo-img-nosotros">Envío Gratis</h4>
+              <h4 class="card-title titulo-img-nosotros"><?php echo $textos['envio-gratis']; ?></h4>
               <p class="card-text pt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
               <!-- <a href="#" class="btn btn-outline-dark">Ver más...</a> -->
             </div>
@@ -91,7 +91,7 @@
           <div class="col-md-3 col-6 card p-sm-3">
             <div class="card-body">
               <img class="card-img-top img-nosotros" src="../assets/img/nosotros/quality.png" alt="Title">
-              <h4 class="card-title titulo-img-nosotros">Mejor Calidad</h4>
+              <h4 class="card-title titulo-img-nosotros"><?php echo $textos['mejor-calidad']; ?></h4>
               <p class="card-text pt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
               <!-- <a href="#" class="btn btn-outline-dark">Ver más...</a> -->
             </div>

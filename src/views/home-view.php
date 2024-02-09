@@ -17,12 +17,13 @@
     <!-- <img class="card-img-top" src="holder.js/100x180/" alt="Title"> -->
     <div class="card-body d-flex flex-column justify-content-center align-items-center text-center">
       <div class="card-title">
-        <div class="h2">Diseño de Camisetas Personalizadas</div>
+        <div class="h2"><?php echo $textos['title-home']; ?></div>
+        <!-- <div class="h2">Diseño de Camisetas Personalizadas</div> -->
         <img class="col img-fluid" src="../assets/img/gps.png" id="imgGps" alt="">
         <span>Quito, Ecuador</span>
       </div>
       <p class="card-text">
-        <a type="button" class="col btn btn-secondary btn-sm " href="../public/catalogo.php">Contacto</a>
+        <a type="button" class="col btn btn-secondary btn-sm " href="../public/catalogo.php"><?php echo $textos['contacto']; ?></a>
       </p>
     </div>
   </div>
@@ -34,37 +35,37 @@
       <section class="row py-5 text-center" id="servicios">
 
         <div class="col-md-3 col-sm-12 card p-sm-3">
-          <h4 class="card-title">Abierto 24h</h4>
+          <h4 class="card-title"><?php echo $textos['proceso-1']; ?></h4>
           <div class="card-body">
             <img class="card-img-top" src="../assets/img/iconos/open.png" alt="Title">
             <p class="card-text pt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            <a href="#" class="btn btn-outline-dark">Ver más...</a>
+            <a href="#" class="btn btn-outline-dark"><?php echo $textos['ver-mas']; ?></a>
           </div>
         </div>
 
         <div class="col-md-3 col-sm-12 card p-sm-3">
-          <h4 class="card-title">Devolucion</h4>
+          <h4 class="card-title"><?php echo $textos['proceso-2']; ?></h4>
           <div class="card-body">
             <img class="card-img-top" src="../assets/img/iconos/devolucion.png" alt="Title">
             <p class="card-text pt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            <a href="#" class="btn btn-outline-dark">Ver más...</a>
+            <a href="#" class="btn btn-outline-dark"><?php echo $textos['ver-mas']; ?></a>
           </div>
         </div>
 
         <div class="col-md-3 col-sm-12 card p-sm-3">
-          <h4 class="card-title">Entrega a Correos</h4>
+          <h4 class="card-title"><?php echo $textos['proceso-3']; ?></h4>
           <div class="card-body">
             <img class="card-img-top" src="../assets/img/iconos/CORREO.png" alt="Title">
             <p class="card-text pt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            <a href="#" class="btn btn-outline-dark">Ver más...</a>
+            <a href="#" class="btn btn-outline-dark"><?php echo $textos['ver-mas']; ?></a>
           </div>
         </div>
         <div class="col-md-3 col-sm-12 card p-sm-3">
-          <h4 class="card-title">Pago Seguro</h4>
+          <h4 class="card-title"><?php echo $textos['proceso-4']; ?></h4>
           <div class="card-body">
             <img class="card-img-top" src="../assets/img/iconos/pago_seguro.png" alt="Title">
             <p class="card-text pt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            <a href="#" class="btn btn-outline-dark">Ver más...</a>
+            <a href="#" class="btn btn-outline-dark"><?php echo $textos['ver-mas']; ?></a>
           </div>
         </div>
       </section>
@@ -77,7 +78,7 @@
         <figure class="text-center">
           <!-- <img src="../assets/img/portadas/BannerHorizontal.jpg" class="figure-img img-fluid rounded grayscale-filter" alt="imgen-grayscale"> -->
           <blockquote class="blockquote">
-            <p>«No es de dónde tomas las cosas, es adónde las llevas.»</p>
+            <p>«<?php echo $textos['frase']; ?>»</p>
           </blockquote>
           <figcaption class="blockquote-footer">
             Jean-Luc Godard
@@ -93,12 +94,12 @@
               <video controls poster="../assets/img/portadas/camisetas.jpg" width="100%" >
                 <source src="../assets/video/video.mp4" type="video/mp4">
               </video>
-              <p class="card-text"><small class="text-muted">Code Jungle: cuando los animales descifran el código</small></p>
+              <p class="card-text"><small class="text-muted"><?php echo $textos['descripcion-video']; ?></small></p>
             </div>
             <div class="col-md-8">
               <div class="card-body">
-                <h5 class="card-title">Code Jungle: When Animals Crack the Code</h5>
-                <p class="card-text">¿Te imaginas un mono, un jaguar y un delfín sentados alrededor de una computadora y programando? Suena como el comienzo de un chiste peculiar, ¿verdad?</p>
+                <h5 class="card-title"><?php echo $textos['titulo-video']; ?></h5>
+                <p class="card-text"><?php echo $textos['descripcion-audio']; ?></p>
                 <audio controls>
                   <source src="../assets/audio/audio.mp3" type="audio/mpeg">
                   Your browser does not support the audio element.
@@ -112,8 +113,8 @@
 
   <!-- <div class="logosUnis text-center" style="background-color: aqua; height: 20em"> -->
   <div class="container py-5 py-lg-5" id="logosUnis">
-    <div class="h6">Vendidas en las</div>
-    <div class="h4">Mejores Cadenas de Ropa:</div>
+    <div class="h6"><?php echo $textos['titulo-tiendas']; ?></div>
+    <div class="h4"><?php echo $textos['descripcion-tiendas']; ?></div>
     <hr>
 
     <div id="carouselIdLogo" class="carousel slide col-12 col-md-12 col-lg-12 p-2 p-lg-5" data-bs-ride="carousel">
@@ -164,21 +165,21 @@
               <div class="carousel-item active">
                 <img src="../assets/img/portadas/camisetasFoto.jpg" class="w-100 d-block rounded-3" alt="First slide">
                 <div class="carousel-caption d-none d-md-block">
-                  <h3>Calidad</h3>
+                  <h3><?php echo $textos['calidad']; ?></h3>
                   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
                 </div>
               </div>
               <div class="carousel-item">
                 <img src="../assets/img/portadas/camisetasBanner.jpg" class="w-100 d-block rounded-3" alt="Second slide">
                 <div class="carousel-caption d-none d-md-block">
-                  <h3>Precio</h3>
+                  <h3><?php echo $textos['precio']; ?></h3>
                   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
                 </div>
               </div>
               <div class="carousel-item">
                 <img src="../assets/img/portadas/camisetasBanner2.jpg" class="w-100 d-block rounded-3" alt="Third slide">
                 <div class="carousel-caption d-none d-md-block">
-                  <h3>Descuentos</h3>
+                  <h3><?php echo $textos['descuentos']; ?></h3>
                   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
                 </div>
               </div>

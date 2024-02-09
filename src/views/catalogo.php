@@ -20,8 +20,8 @@
 
 
     <div class="card text-dark bg-light p-3 mb-5">
-                <p class="card-text">Buscar:</p>
-                <input type="text" class="dropdown" id="search-input" placeholder="Buscar Producto">
+                <p class="card-text"><?php echo $textos['buscar']; ?></p>
+                <input type="text" class="dropdown" id="search-input" placeholder="<?php echo $textos['buscar-producto']; ?>">
             <div id="results-container"></div>
     </div> 
 
@@ -54,9 +54,9 @@
 
         <div class="container pb-3">
             <div class="d-flex align-items-center justify-content-between">
-                <div class="display-6 text-center">Catálogo</div>
+                <div class="display-6 text-center"><?php echo $textos['catalogo']; ?></div>
                 <div class="right-side d-grid mx-3">
-                    <h6 class="h6">Categorias: </h6>
+                    <h6 class="h6"><?php echo $textos['categorias']; ?></h6>
                     <div id="btn-categorias"></div>
                 </div>
             </div>
@@ -75,19 +75,35 @@
 
                             <div class="card bg-light text-center">
                                 <a class="link-dark" href='../public/catalogo.php?id=<?= $producto->getId() ?>'>
-                                    <div class="card-header" id="name-producto"><?php echo $producto->getNombre() ?></div>
+                                    <div class="card-header"><?php echo $nombre_tipo_categoria ?></div>
                                     <div class="card-body">
                                         <img id="img-producto" src="<?php echo $producto->getImagenURL() ?>" class="img-fluid rounded-start py-3" style="width: 15em" alt="Card title">
-                                        <h5 class="card-title"><?php echo $producto->getDescripcion() ?></h5>
-                                        <p class="card-text">Categoría: <?php echo $nombre_tipo_categoria ?></p>
-                                        <p class="card-text">Precio: <?php echo $producto->getPrecio() ?>€</p>
-                                        <p class="card-text" id="tipo-producto">Tipo: <?php echo $nombre_tipo_producto ?></p>
+                                        <h5 class="card-title"><?php echo $producto->getNombre() ?></h5>
+                                        <p class="card-text text-muted"><?php echo $producto->getDescripcion() ?></p>
+                                        <p class="card-text text-muted" id="tipo-producto"><?php echo $textos['tipo']; ?> <strong><?php echo $nombre_tipo_producto ?></strong> </p>
+                                        <?php if ($producto->getTipoProductoId() == 1): ?>
+                                            <div class="d-flex justify-content-center align-items-center gap-2">
+
+                                                <div class="card-text <?php echo $producto->getTipoProductoId() == 1 ? 'text-decoration-line-through text-danger' : ''; ?>">
+                                                        <?php echo $producto->getPrecio() ?>€
+                                                </div>
+                                                    
+                                                <div class="d-flex flex-column flex-lg-row gap-1 align-items-center">
+                                                    <div class="text-danger"><?php echo $textos['oferta']; ?>:
+                                                    </div>
+                                                    <!-- <div class="font-sm text-light rounded bg-danger">-<?php echo $producto->getTipoProductoId() == 1 ? $producto->getDescuento() . '%' : ''; ?></div> -->
+                                                    <span class="badge bg-danger">
+                                                        <p class="text-light m-0">-<?php echo $producto->getTipoProductoId() == 1 ? $producto->getDescuento() . '%' : ''; ?></p>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        <?php endif; ?>
                                     </div>
                                 </a>
                                 <div class="card-footer">
                                     <p class="card-text font-weight-bold" style="font-size: larger;" id="price-producto"><?php echo $producto->getPrecioFinal() ?>€</p>
                                 </div>
-                                <button class="btn btn-warning w-100 btn-add" data-nombre="<?php echo $producto->getNombre() ?>" data-imagen="<?php echo $producto->getImagenURL() ?>" data-precio="<?php echo $producto->getPrecioFinal() ?>" data-tipo="<?php echo $nombre_tipo_producto ?>">Agregar al carrito</button>
+                                <button class="btn btn-warning w-100 btn-add" data-nombre="<?php echo $producto->getNombre() ?>" data-imagen="<?php echo $producto->getImagenURL() ?>" data-precio="<?php echo $producto->getPrecioFinal() ?>" data-tipo="<?php echo $nombre_tipo_producto ?>"><?php echo $textos['agregar-carrito']; ?></button>
                             </div>
                         </div>
                     <?php endforeach; ?>
@@ -97,11 +113,11 @@
             <div class="col-md-4 col-12 px-3" id="div-carrito">
 
                 <div class="d-flex justify-content-between pb-2">
-                    <p class="lead font-weight-bold">Carrito:</p>
-                    <button class="btn btn-danger btn-small" id="btn-delete-all" style="display: none">Vaciar Carrito</button>
+                    <p class="lead font-weight-bold"><?php echo $textos['carrito']; ?></p>
+                    <button class="btn btn-danger btn-small" id="btn-delete-all" style="display: none"><?php echo $textos['vaciar-carrito']; ?></button>
                 </div>
                 <div class="d-flex">
-                    <p class="mx-2">Valor Carrito:</p>
+                    <p class="mx-2"><?php echo $textos['precio-total']; ?>: </p>
                     <p id="valor-total"></p>
                     <p>€</p>
                 </div>

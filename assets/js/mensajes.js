@@ -22,10 +22,11 @@ const statusCheck = document.querySelector("#status");
 const btnActualizar = document.querySelector('#btn-actualizar');
 
 
-statusCheck.addEventListener('change', function() { 
-    btnActualizar.disabled = false;
-});
-
+if (statusCheck) {
+    statusCheck.addEventListener('change', function() { 
+        btnActualizar.disabled = false;
+    });
+}
 
 if (nombre) {
   

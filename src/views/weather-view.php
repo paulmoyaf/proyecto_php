@@ -20,22 +20,22 @@
     <div class="container-fluid py-5 w-75" style="min-height: 73vh;">
 
 
-      <h1 class="h4">Clima</h1>
+      <h1 class="h4"><?php echo $textos['clima']; ?></h1>
       <hr>
-      <div class="display-6 text-center mb-4">Mira como está el clima para basarte que producto comprar! 😎</div>
+      <div class="display-6 text-center mb-4"><?php echo $textos['titulo-clima']; ?> 😎</div>
       
       <div class="row">
 
         <div class="col">
 
           <div class="form-group-item mb-3">
-            <label for="city" class="form-label">Ciudad:</label>
+            <label for="city" class="form-label"><?php echo $textos['ciudad']; ?></label>
             <input type="text" name="city" id="city" class="form-control">
           </div>
 
           <div class="text-md-end">
-            <button type="submit" id="btn-pronostico" class="btn btn-outline-secondary mt-2 button-form w-lg-auto w-md-100">Obtener Pronostico</button>
-            <button type="submit" id="btn-ubicacion" class="btn btn-outline-secondary mt-2 button-form w-lg-auto w-md-100">Pronostico Ubicacion Actual</button>
+            <button type="submit" id="btn-pronostico" class="btn btn-outline-secondary mt-2 button-form w-lg-auto w-md-100"><?php echo $textos['pronostico']; ?></button>
+            <button type="submit" id="btn-ubicacion" class="btn btn-outline-secondary mt-2 button-form w-lg-auto w-md-100"><?php echo $textos['pronostico-actual']; ?></button>
           </div>
         </div>
 
