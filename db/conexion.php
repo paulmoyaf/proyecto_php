@@ -1,6 +1,6 @@
 <?php
 
-define('DB_PATH', 'sqlite:' . __DIR__ . '/catalogo.db');
+define('DB_PATH', 'sqlite:' . __DIR__ . '/db_tienda.db');
 function conexionMySql() {
     $servername = "localhost";
     $username = "root";
@@ -16,5 +16,5 @@ function conexionMySql() {
         return null;
     }
 }
-?>
+
 

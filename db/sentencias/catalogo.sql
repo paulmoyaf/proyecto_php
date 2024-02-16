@@ -18,11 +18,10 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
--- Eliminar la tabla si existe
-DROP TABLE IF EXISTS `categoria`;
---
--- Base de datos: `catalogo`
---
+
+DROP DATABASE IF EXISTS `catalogo`;
+CREATE DATABASE IF NOT EXISTS `catalogo` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `catalogo`;
 
 -- --------------------------------------------------------
 
@@ -86,33 +85,11 @@ CREATE TABLE `mensajes` (
 INSERT INTO `mensajes` (`id`, `create_time`, `name`, `phone`, `email`, `subject`, `message`, `status`) VALUES
 (103, '2024-01-10 11:39:06', 'Andres', '679034040', 'pausarikgabe@gmail.com', NULL, 'Este es un nuevo del 2024\r\n', 'leido'),
 (106, '2024-01-17 09:20:53', 'Andres', '6796', 'pausarikgabe@gmail.com', NULL, 'new message', ''),
-(107, '2024-01-17 10:44:38', 'Andres', '679034040', 'paul.moyaf@gmail.com', NULL, '\"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human ', 'leido'),
-(109, '2024-01-19 12:54:56', 'Iñigo', '66666663', 'igarcia@leartik.eus', NULL, 'Hola Paul!', NULL),
-(135, '2024-01-22 11:28:33', 'Andres', '679034040', 'asa@hajs.com', NULL, 'desde Contact', NULL),
-(136, '2024-01-23 11:34:56', 'Nadres', '111111111', 'asa@ha.com', NULL, 'aaaaaaaaaaa', NULL),
-(137, '2024-01-26 11:26:16', 'Andres', '123456789', 'a.123@gm.com', NULL, 'asassasasasa', NULL),
-(138, '2024-01-26 11:27:11', 'Andres', '679034040', 'asa@hajs.com', NULL, 'zazazazazaza', NULL),
-(139, '2024-01-26 11:27:53', 'Andres', '679034040', 'a.123@gm.com', NULL, 'este es un nuev', NULL),
-(140, '2024-01-26 11:31:51', 'Jose Ramon Olabarria', '946169002', 'jrolabarria@leartik.eus', NULL, 'Kaixo Mundua', NULL),
-(141, '2024-01-26 11:33:44', 'Jose Ramon Olabarria', '946169002', 'jrolabarria@leartik.eus', NULL, 'Kaixo Mundua!', NULL),
-(142, '2024-01-26 11:38:44', 'Andres', '679034040', 'pausarikgabe@gmail.com', NULL, 'gsgsgfsdgfgf', NULL),
-(143, '2024-01-26 11:40:58', 'Jose Ramon Olabarria', '946169002', 'jrolabarria@leartik.eus', NULL, 'Hello World!', NULL),
-(144, '2024-01-26 11:41:40', 'Andres', '679034040', 'asa@hajs.com', NULL, 'aaaaaaaaaaaaaaa', NULL),
-(145, '2024-01-26 11:41:50', 'Andres', '679034040', 'asa@google.com', NULL, 'sdddddddds', NULL),
+
 (146, '2024-01-26 11:42:33', 'Jose Ramon Olabarria', '946169002', 'jrolabarria@leartik.eus', NULL, 'Hola Mundo', NULL),
 (147, '2024-01-26 11:43:49', 'Andres', '679034040', 'pausarikgabe@gmail.com', NULL, 'jmklsjlgksg', NULL),
 (148, '2024-01-26 11:44:20', 'Jose Ramon Olabarria', '946169002', 'jrolabarria@leartik.eus', NULL, 'Kaixo Mundua', 'leido'),
-(149, '2024-01-26 12:36:53', 'Iñigo', '639999999', 'igarcia@leartik.eus', NULL, 'Holaaaaaaaaa', NULL),
-(150, '2024-01-26 12:38:13', 'Iñigo', '666666633', 'igarcia@leartik.eus', NULL, 'HOLAAAAAAAAAAAAA', NULL),
-(151, '2024-01-26 12:38:13', 'Iñigo', '666666633', 'igarcia@leartik.eus', NULL, 'HOLAAAAAAAAAAAAA', NULL),
-(152, '2024-01-26 12:38:13', 'Iñigo', '666666633', 'igarcia@leartik.eus', NULL, 'HOLAAAAAAAAAAAAA', NULL),
-(153, '2024-01-26 12:38:13', 'Iñigo', '666666633', 'igarcia@leartik.eus', NULL, 'HOLAAAAAAAAAAAAA', NULL),
-(154, '2024-01-26 12:38:14', 'Iñigo', '666666633', 'igarcia@leartik.eus', NULL, 'HOLAAAAAAAAAAAAA', NULL),
-(155, '2024-01-26 12:38:14', 'Iñigo', '666666633', 'igarcia@leartik.eus', NULL, 'HOLAAAAAAAAAAAAA', NULL),
-(156, '2024-01-26 12:45:29', 'Iñigo Garcia', '666666633', 'aa@aa.com', NULL, 'AAAAAAAAAAAA', NULL),
-(157, '2024-01-26 12:49:57', 'Jon', '123412341', 'asdf@adfsf.cr', NULL, 'SAD SAD DAS DASD ASD', NULL),
-(158, '2024-01-26 12:50:25', 'afg', '123412344', 'a@asd.dd', NULL, 'asdasdadsasdads', NULL),
-(159, '2024-01-29 10:09:05', 'aaaa', '679034040', 'asa@hajs.com', NULL, '!\"$%()=?¿ffffffAñÑMANSNJKFKF', NULL),
+
 (160, '2024-01-29 10:09:15', 'Andres', '679034040', 'aaapa@ajk.com', NULL, '!\"$%()=?¿ffffffAñÑMANSNJKFKF', NULL);
 
 -- --------------------------------------------------------
@@ -140,16 +117,7 @@ CREATE TABLE `productos` (
 
 INSERT INTO `productos` (`id`, `nombre`, `descripcion`, `categoria_id`, `talla_id`, `tipo_producto_id`, `descuento`, `precio`, `precio_final`, `imagen_url`) VALUES
 (3, 'Promo new', 'Camiseta de Algodon', 1, 1, 2, '50', '15.00', '15.00', '../assets/img/camisetas/cam(4).png'),
-(5, 'Camiseta1', 'Camiseta de Poliester', 4, 3, 1, '100', '85.00', '0.00', '../assets/img/camisetas/cam(6).png'),
-(6, 'Camiseta2', 'Camiseta de Poliester', 2, 4, 2, '15', '35.00', '35.00', '../assets/img/camisetas/cam(7).png'),
-(7, 'Camiseta Nueva3', 'Este es un nuevo producto', 2, 5, 2, '0', '15.00', '15.00', '../assets/img/camisetas/cam(1).png'),
-(9, 'Camiseta Nueva4', 'Este es un nuevo producto', 2, 3, 2, '0', '15.00', '15.00', '../assets/img/camisetas/cam(1).png'),
-(10, 'as5', 'sa', 3, 4, 1, '15', '50.00', '42.50', '../assets/img/camisetas/cam(9).png'),
-(11, 'as6', 'sa', 3, 6, 1, '15', '50.00', '42.50', '../assets/img/camisetas/cam(9).png'),
-(19, 'Sport', '12222 Poliester', 164, 1, 1, '15', '150.00', '127.50', '../assets/img/camisetas/cam(1).png'),
-(20, 'Papa', 'aaa', 164, 2, 1, '15', '100.00', '85.00', '../assets/img/camisetas/cam(9).png'),
-(21, 'Poliester', 'Camiseta de Poliester', 1, 1, 1, '100', '500.00', '0.00', '../assets/img/camisetas/cam(8).png'),
-(22, 'Cami Algodón', 'Camiseta de Algodon a', 4, 6, 1, '50', '100.00', '50.00', '../assets/img/camisetas/cam(4).png'),
+(5, 'Camiseta1', 'Camiseta de Poliester', 4, 3, 1, '100', '85.00', '0.00', '../assets/img/camisetas/cam(6).png'),,
 (23, 'Cami Algodón', 'Camiseta de Algodon a', 4, 6, 1, '50', '100.00', '50.00', '../assets/img/camisetas/cam(4).png');
 
 -- --------------------------------------------------------

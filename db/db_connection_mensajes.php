@@ -7,8 +7,8 @@ class MensajesDB{
 
     public static function selectMensajes(){
         try{
-            $db = conexionMySql(); 
-            // $db = new PDO (DB_PATH);
+            // $db = conexionMySql(); 
+            $db = new PDO (DB_PATH);
             $registros = $db->query("select * from mensajes");
             $mensajes = array();
 
@@ -35,8 +35,8 @@ class MensajesDB{
     public static function selectMensajesJSON()
     {
         try {
-            $db = conexionMySql();
-            // $db = new PDO (DB_PATH);
+            // $db = conexionMySql();
+            $db = new PDO (DB_PATH);
             $registros = $db->query("select * from mensajes");
             if ($registro = $registros->fetch()) {
                 $mensajes = array();
@@ -65,8 +65,8 @@ class MensajesDB{
 
     public static function selectMensaje($id){
         try{
-            $db = conexionMySql(); 
-
+            // $db = conexionMySql(); 
+            $db = new PDO (DB_PATH);
             $registros = $db->query("select * from mensajes where id=" .$id);
             $mensaje = null;
 
@@ -93,8 +93,8 @@ class MensajesDB{
         
 
         try{
-            $db = conexionMySql(); 
-            // $db = new PDO (DB_PATH);
+            // $db = conexionMySql(); 
+            $db = new PDO (DB_PATH);
 
             $stmt = $db->prepare("INSERT INTO mensajes (name, phone, email, message, create_time) VALUES (?, ?, ?, ?, ?)");
 
@@ -148,8 +148,8 @@ class MensajesDB{
     public static function updateMensaje($mensaje){
 
         try{
-            $db = conexionMySql(); 
-            // $db = new PDO (DB_PATH);
+            // $db = conexionMySql(); 
+            $db = new PDO (DB_PATH);
 
             $sql = "UPDATE mensajes SET ";
             $sql = $sql . "status = '" .$mensaje->getStatus() . "'";
@@ -197,8 +197,8 @@ class MensajesDB{
     public static function removeMensaje($mensaje){
 
         try{
-            $db = conexionMySql(); 
-            // $db = new PDO (DB_PATH);
+            // $db = conexionMySql(); 
+            $db = new PDO (DB_PATH);
             $sql = "DELETE FROM mensajes ";
             $sql = $sql . " WHERE id = " .$mensaje->getId() . "";
             $resultado = $db->exec($sql);
@@ -212,4 +212,3 @@ class MensajesDB{
 
 
 }
-?>

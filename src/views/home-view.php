@@ -23,7 +23,7 @@
         <span>Quito, Ecuador</span>
       </div>
       <p class="card-text">
-        <a type="button" class="col btn btn-secondary btn-sm " href="../public/catalogo.php"><?php echo $textos['contacto']; ?></a>
+        <a type="button" class="col btn btn-secondary btn-sm " href="../public/contacto.php"><?php echo $textos['contacto']; ?></a>
       </p>
     </div>
   </div>

@@ -95,7 +95,7 @@ class Producto {
             return $this->precio_final = $this->precio - ($this->precio * ($this->descuento / 100));
         } else {
             // Puedes manejar casos donde los valores no están definidos
-            return $this->precio_final =  $this->precio;
+            return $this->precio_final = $this->precio;
         }
     }
 
@@ -109,4 +109,3 @@ class Producto {
     }
 }
 
-?>

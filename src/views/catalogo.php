@@ -15,8 +15,7 @@
 
 
 
-    <div class="container py-5" style="min-height: 73vh;">
-
+    <div class="container-fluid py-5" style="min-height: 73vh;">
 
 
     <div class="card text-dark bg-light p-3 mb-5">
@@ -24,33 +23,6 @@
                 <input type="text" class="dropdown" id="search-input" placeholder="<?php echo $textos['buscar-producto']; ?>">
             <div id="results-container"></div>
     </div> 
-
-    <!-- <div class="dropdown">
-        <input type="text" id="search-input" class="form-control" data-toggle="dropdown">
-        <div id="results-container" class="dropdown-menu" aria-labelledby="search-input">
-  </div> -->
-
-  <!-- <div class="dropdown">
-    <button
-        class="btn btn-secondary dropdown-toggle"
-        type="button"
-        id="triggerId"
-        data-bs-toggle="dropdown"
-        aria-haspopup="true"
-        aria-expanded="false"
-    >
-        Dropdown
-    </button>
-    <div class="dropdown-menu" aria-labelledby="triggerId">
-        <a class="dropdown-item" href="#">Action</a>
-        <a class="dropdown-item disabled" href="#">Disabled action</a>
-        <h6 class="dropdown-header">Section header</h6>
-        <a class="dropdown-item" href="#">Action</a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#">After divider action</a>
-    </div>
-  </div> -->
-  
 
         <div class="container pb-3">
             <div class="d-flex align-items-center justify-content-between">
@@ -101,9 +73,9 @@
                                     </div>
                                 </a>
                                 <div class="card-footer">
-                                    <p class="card-text font-weight-bold" style="font-size: larger;" id="price-producto"><?php echo $producto->getPrecioFinal() ?>€</p>
+                                    <p class="card-text" style="font-size: larger;" id="price-producto"><?php echo $producto->getPrecioFinal() ?>€</p>
                                 </div>
-                                <button class="btn btn-warning w-100 btn-add" data-nombre="<?php echo $producto->getNombre() ?>" data-imagen="<?php echo $producto->getImagenURL() ?>" data-precio="<?php echo $producto->getPrecioFinal() ?>" data-tipo="<?php echo $nombre_tipo_producto ?>"><?php echo $textos['agregar-carrito']; ?></button>
+                                <button class="btn btn-warning w-100 btn-add" data-descuento="<?php echo $producto->getDescuento()?>" data-nombre="<?php echo $producto->getNombre() ?>" data-imagen="<?php echo $producto->getImagenURL() ?>" data-precio="<?php echo $producto->getPrecioFinal() ?>" data-tipo="<?php echo $producto->getTipoProductoId() ?>"><?php echo $textos['agregar-carrito']; ?></button>
                             </div>
                         </div>
                     <?php endforeach; ?>

@@ -138,10 +138,9 @@ if (!divHtml || !btnEliminarTodo) {
           btnEliminarTodo.style.display = "none";
           mostrarCarroVacio();
         }
-        setCookie("cards", divHtml.innerHTML, 365);
-        setCookie("contador", contador, 365);
-        // setCookie("btn_removeAll", btnEliminarTodo.style.display, 365);
-        setCookie("valorTotal", valorTotal, 365);
+        setCookie("cards", divHtml.innerHTML, 1);
+        setCookie("contador", contador, 1);
+        setCookie("valorTotal", valorTotal, 1);
       });
     });
   }
@@ -163,21 +162,21 @@ document.querySelectorAll('.btn-add').forEach(function(button) {
       sumarContador();
       
       btnEliminarTodo.style.display = "block";
-      setCookie("btn_removeAll", btnEliminarTodo.style.display, 365);
+      setCookie("btn_removeAll", btnEliminarTodo.style.display, 1);
       const card = createCardToCar(this);
 
       sumarValorTotal(parseFloat(this.getAttribute('data-precio')));
-      setCookie("valorTotal", valorTotal, 365);
+      setCookie("valorTotal", valorTotal, 1);
 
       divHtml.appendChild(card);
-      setCookie("cards", divHtml.innerHTML, 365);
+      setCookie("cards", divHtml.innerHTML, 1);
     });
 });
 
 //funcion para crear las cards de los productos agregados al carrito
 function createCardToCar(button) {
   const card = document.createElement('div');
-  card.classList.add('card', 'mb-3', 'p-3', 'w-100');
+  card.classList.add('card', 'mb-3', 'p-3', 'w-100' , 'bg-light', 'text-center');
 
   const filaCard = document.createElement('div');
   filaCard.classList.add('row');
@@ -211,15 +210,22 @@ function createCardToCar(button) {
 
   const precioElement = document.createElement('p');
   precioElement.classList.add('card-text');
-  precioElement.innerHTML = `<strong>${precioProducto} €</strong>`;
+  precioElement.innerHTML = `<strong>${precioProducto}€</strong>`;
 
-  const descuentoElement = document.createElement('p');
-  descuentoElement.classList.add('card-text', 'text-danger');
-  descuentoElement.innerHTML = `-${descuentoProducto}%`;
+  const ofertaElement = document.createElement('div');
+  ofertaElement.classList.add('d-flex','gap-1', 'align-items-center');
+  
+    const textoOferta = document.createElement('div');
+    textoOferta.classList.add('text-danger');
+    textoOferta.innerHTML = 'Oferta: ';
+    
+    const descuentoElement = document.createElement('span');
+    descuentoElement.classList.add('badge', 'bg-danger');
+    descuentoElement.innerHTML = `-${descuentoProducto}%`;
 
 
   const btnRemove = document.createElement('button');
-  btnRemove.classList.add('btn', 'btn-danger', 'col-12', 'btn-remove');
+  btnRemove.classList.add('btn', 'btn-small', 'btn-outline-danger', 'w-100', 'btn-remove');
   btnRemove.innerHTML = 'Borrar';
 
 
@@ -235,29 +241,30 @@ function createCardToCar(button) {
     if (contador === 0) {
       btnEliminarTodo.style.display = "none";
     }
-    setCookie("cards", divHtml.innerHTML, 365);
-    setCookie("contador", contador, 365);
-    setCookie("valorTotal", valorTotal, 365);
-    setCookie("btn_removeAll", btnEliminarTodo.style.display, 365);
+    setCookie("cards", divHtml.innerHTML, 1);
+    setCookie("contador", contador, 1);
+    setCookie("valorTotal", valorTotal, 1);
+    setCookie("btn_removeAll", btnEliminarTodo.style.display, 1);
   });
 
+  
   columnaIzquierda.appendChild(imgElement);
   columnaDerecha.appendChild(cardBody);
   cardBody.appendChild(nombreElement);
 
   //TODO
 
-  if (tipoProducto === "Prime") {
-    cardBody.appendChild(tipoElement);
-    // cardBody.appendChild(descuentoElement);
-  }
-
-  // cardBody.appendChild(descuentoElement);
+  // if (tipoProducto == 1) {
+  //   ofertaElement.appendChild(textoOferta);
+  //   ofertaElement.appendChild(descuentoElement);
+  //   cardBody.appendChild(ofertaElement);
+  // }
   cardBody.appendChild(precioElement);
+  columnaDerecha.appendChild(btnRemove);
 
   filaCard.appendChild(columnaIzquierda);
   filaCard.appendChild(columnaDerecha);
-  filaCard.appendChild(btnRemove);
+  // filaCard.appendChild(btnRemove);
 
   card.appendChild(filaCard);
 
@@ -288,16 +295,17 @@ function setCookie(name, value, days) {
 
 function getCookie(name) {
   const cookieName = encodeURIComponent(name) + "=";
-  const cookieArray = document.cookie.split(";");
+  const cookies = document.cookie.split(";").map(cookie => cookie.trim());
 
-  for (let i = 0; i < cookieArray.length; i++) {
-    let cookie = cookieArray[i];
-    while (cookie.charAt(0) === " ") {
-      cookie = cookie.substring(1);
-    }
-    if (cookie.indexOf(cookieName) === 0) {
-      return decodeURIComponent(cookie.substring(cookieName.length, cookie.length));
-    }
+  for (let cookie of cookies) {
+      if (cookie.startsWith(cookieName)) {
+          try {
+              return decodeURIComponent(cookie.substring(cookieName.length));
+          } catch (e) {
+              console.error(e);
+              return "";
+          }
+      }
   }
   return "";
 }
@@ -305,14 +313,14 @@ function getCookie(name) {
 const sumarContador = () => {
   contador++;
   textContador.innerHTML = contador;
-  setCookie("contador", contador, 365);
+  setCookie("contador", contador, 1);
 }
 
 const sumarValorTotal = (precio) => {
   valorTotal = valorTotal+precio;
   console.log(valorTotal);
   textValorTotal.innerHTML = valorTotal;
-  setCookie("valorTotal", valorTotal, 365);
+  setCookie("valorTotal", valorTotal, 1);
 }
 
 const buttonsCategories = () =>{
@@ -483,29 +491,36 @@ function createCardElementJson(producto) {
 
   const precioFinalElement = document.createElement('div');
   precioFinalElement.classList.add('card-footer');
-  precioFinalElement.innerHTML = `<strong>${precio_final}€</strong>`;
+  precioFinalElement.style.fontSize = "larger";
+  precioFinalElement.innerHTML = `${precio_final}€`;
 
   const btnAddToCar = document.createElement('button');
   btnAddToCar.classList.add('btn', 'btn-warning');
-  btnAddToCar.setAttribute('data-nombre', nombreProducto);
-  btnAddToCar.setAttribute('data-imagen', imgProducto);
-  btnAddToCar.setAttribute('data-tipo', nombreTipoProducto);
-  btnAddToCar.setAttribute('data-descuento', descuento);
-  btnAddToCar.setAttribute('data-precio', precio_final); 
+  btnAddToCar.setAttribute('data-nombre', producto.nombre);
+  btnAddToCar.setAttribute('data-imagen', producto.imagen_url);
+  btnAddToCar.setAttribute('data-tipo', producto.tipo_producto_id);
+  btnAddToCar.setAttribute('data-descuento', producto.descuento);
+  btnAddToCar.setAttribute('data-precio', producto.precio_final); 
   btnAddToCar.innerHTML = 'Agregar al carrito';
 
   btnAddToCar.addEventListener('click', function(e) {    
         e.preventDefault();
         sumarContador();
         btnEliminarTodo.style.display = "block";
-        // setCookie("btn_removeAll", btnEliminarTodo.style.display, 365);
+
 
         const card = createCardToCar(this);
         sumarValorTotal(parseFloat(precio_final));
-        setCookie("valorTotal", valorTotal, 365);
+
+        setCookie("valorTotal", valorTotal, 1);
 
         divHtml.appendChild(card);
-        setCookie("cards", divHtml.innerHTML, 365);
+        setCookie("cards", divHtml.innerHTML, 1);
+
+
+        let productInfo = JSON.parse(localStorage.getItem('productInfo')) || [];
+        productInfo.push(producto);
+        localStorage.setItem('productInfo', JSON.stringify(productInfo));
   });
 
   cardBody.appendChild(imgElement);

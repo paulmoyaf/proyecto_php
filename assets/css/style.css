@@ -197,6 +197,9 @@ padding: 1em;
     border: 0px;
   }
 
+  #servicios img{
+    height: 4em;
+  }
 
 
 #form-contacto{

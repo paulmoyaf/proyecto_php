@@ -7,8 +7,9 @@ class CategoriasDB{
 
     public static function selectCategorias(){
         try{
-            $db = conexionMySql(); 
-            // $db = new PDO (DB_PATH);
+            // $db = conexionMySql(); 
+            $db = new PDO (DB_PATH);
+
             $registros = $db->query("select * from categoria");
             $categorias = array();
 
@@ -31,7 +32,8 @@ class CategoriasDB{
     public static function selectCategoriasJSON()
     {
         try {
-            $db = conexionMySql();
+            // $db = conexionMySql();
+            $db = new PDO (DB_PATH);
             $registros = $db->query("select * from categoria");
             $categorias = array(); // Inicializa el array $categorias
             if ($registro = $registros->fetch()) {
@@ -52,8 +54,8 @@ class CategoriasDB{
 
     public static function selectCategoria($id){
         try{
-            $db = conexionMySql(); 
-
+            // $db = conexionMySql(); 
+            $db = new PDO (DB_PATH);
             $registros = $db->query("select * from categoria where id=" .$id);
             $categoria = null;
 
@@ -72,8 +74,8 @@ class CategoriasDB{
 
     public static function insertCategoria($nombre){
         try{
-            $db = conexionMySql(); 
-
+            // $db = conexionMySql(); 
+            $db = new PDO (DB_PATH);
             $stmt = $db->prepare("INSERT INTO categoria (nombre) VALUES (?)");
             $stmt->bindParam(1, $nombre);
             $stmt->execute();
@@ -102,8 +104,8 @@ class CategoriasDB{
 
         public static function editarCategoria($id, $nombre){
         try{
-            $db = conexionMySql(); 
-
+            // $db = conexionMySql(); 
+            $db = new PDO (DB_PATH);
             $stmt = $db->prepare("UPDATE categoria SET nombre = ? WHERE id = ?");
             $stmt->bindParam(1, $nombre);
             $stmt->bindParam(2, $id);
@@ -119,8 +121,8 @@ class CategoriasDB{
     public static function removeCategoria($id){
 
         try{
-            $db = conexionMySql(); 
-            // $db = new PDO (DB_PATH);
+            // $db = conexionMySql(); 
+            $db = new PDO (DB_PATH);
             $sql = "DELETE FROM categoria ";
             $sql = $sql . " WHERE id = " .$id . "";
             $resultado = $db->exec($sql);
