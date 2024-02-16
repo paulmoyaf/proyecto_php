@@ -75,7 +75,8 @@
                                 <div class="card-footer">
                                     <p class="card-text" style="font-size: larger;" id="price-producto"><?php echo $producto->getPrecioFinal() ?>€</p>
                                 </div>
-                                <button class="btn btn-warning w-100 btn-add" data-descuento="<?php echo $producto->getDescuento()?>" data-nombre="<?php echo $producto->getNombre() ?>" data-imagen="<?php echo $producto->getImagenURL() ?>" data-precio="<?php echo $producto->getPrecioFinal() ?>" data-tipo="<?php echo $producto->getTipoProductoId() ?>"><?php echo $textos['agregar-carrito']; ?></button>
+                                <!-- <button class="btn btn-warning w-100 btn-add" id="btn-add-to-car"><?php echo $textos['agregar-carrito']; ?></button> -->
+                                <button class="btn btn-warning w-100 btn-add"  id="btn-add-to-car" data-descuento="<?php echo $producto->getDescuento()?>" data-nombre="<?php echo $producto->getNombre() ?>" data-imagen="<?php echo $producto->getImagenURL() ?>" data-precio="<?php echo $producto->getPrecioFinal() ?>" data-tipo="<?php echo $producto->getTipoProductoId() ?>"><?php echo $textos['agregar-carrito']; ?></button>
                             </div>
                         </div>
                     <?php endforeach; ?>
