@@ -110,19 +110,19 @@ if (storedCounter) {
 }
 
 textContador.innerHTML = contador;
+// textValorTotal.innerHTML = sumarPrecioTotal();
 textValorTotal.innerHTML = valorTotal;
 
 
 if (!divHtml || !btnEliminarTodo) {
   sumarContador();
-  // sumarValorTotal();
 } else {
   const storedCards = getCookie("cards");
   const storedBtnRemoveAll = getCookie("btn_removeAll");
 
   if (storedCards) {
     divHtml.innerHTML = storedCards;
-    btnEliminarTodo.style.display = "block";
+    // btnEliminarTodo.style.display = "block";
     
     document.querySelectorAll('.btn-remove').forEach(function(button) {
       button.addEventListener('click', function() {
@@ -135,10 +135,7 @@ if (!divHtml || !btnEliminarTodo) {
         contador--;
         textContador.innerHTML = contador;
         textValorTotal.innerHTML = valorTotal;
-        if (contador === 0) {
-          btnEliminarTodo.style.display = "none";
-          mostrarCarroVacio();
-        }
+
         setCookie("cards", divHtml.innerHTML, 1);
         setCookie("contador", contador, 1);
         setCookie("valorTotal", valorTotal, 1);
@@ -148,15 +145,7 @@ if (!divHtml || !btnEliminarTodo) {
   else{
     mostrarCarroVacio();
   }
-
-  if (storedBtnRemoveAll) {
-    if (storedBtnRemoveAll === "none"){
-    }
-    }else{
-    // btnEliminarTodo.style.display = "block";
-    }
-  }
-
+}
 
 
 btnEliminarTodo.addEventListener('click', function() {
@@ -210,7 +199,9 @@ const sumarValorTotal = (precio) => {
   valorTotal = valorTotal+precio;
   console.log(valorTotal);
   textValorTotal.innerHTML = valorTotal;
+  // textValorTotal.innerHTML = sumarPrecioTotal();
   setCookie("valorTotal", valorTotal, 1);
+
 }
 
 const buttonsCategories = () =>{
@@ -365,10 +356,12 @@ function createCardToCar(producto) {
       console.log(`valor borrado: ${producto.precio_final}`);
       valorTotal = valorTotal - parseFloat(producto.precio_final);
       console.log(`valor actual: ${valorTotal}`);
+
       card.remove();
 
       eliminarProductoLocalStorage(producto);
       contarProductosLocalStorage();
+
       contador--;
       textContador.innerHTML = contador;
       textValorTotal.innerHTML = valorTotal;
@@ -377,7 +370,7 @@ function createCardToCar(producto) {
       }
       setCookie("contador", contador, 1);
       setCookie("valorTotal", valorTotal, 1);
-      setCookie("btn_removeAll", btnEliminarTodo.style.display, 1);
+
     });
 
     columnaIzquierda.appendChild(imgElement);
@@ -486,7 +479,7 @@ function createCardElementJson(producto) {
   precioFinalElement.innerHTML = `${precio_final}€`;
 
   const btnAddToCar = document.createElement('button');
-  btnAddToCar.classList.add('btn', 'btn-warning');
+  btnAddToCar.classList.add('btn', 'btn-warning', 'w-100', 'btn-add');
   btnAddToCar.setAttribute('data-nombre', producto.nombre);
   btnAddToCar.setAttribute('data-imagen', producto.imagen_url);
   btnAddToCar.setAttribute('data-tipo', producto.tipo_producto_id);
@@ -554,11 +547,11 @@ document.querySelectorAll('.btn-add').forEach(function(button) {
         divHtml.appendChild(card);
       }
 
-    sumarContador();
-    
-    btnEliminarTodo.style.display = "block";
-    setCookie("btn_removeAll", btnEliminarTodo.style.display, 1);
-
+      sumarContador();
+      
+      btnEliminarTodo.style.display = "block";
+      setCookie("btn_removeAll", btnEliminarTodo.style.display, 1);
+      
     sumarValorTotal(parseFloat(this.getAttribute('data-precio')));
     setCookie("valorTotal", valorTotal, 1);
   });
@@ -607,9 +600,22 @@ document.querySelectorAll('.btn-add').forEach(function(button) {
     return productoEncontrado;
   }
 
+  function obtenerPrecioTotalLocalStorage() {
+    const carritoProducts = obtenerProductosLocalStorage();
+    let total = 0;
+    carritoProducts.forEach(producto => {
+      total += parseFloat(producto.precio_final);
+    });
+    return total;
+  }
+
   mostrarProductosLocalStorage();
 
-
+  if (contarProductosLocalStorage() > 0) {
+    btnEliminarTodo.style.display = "block";
+  }else{
+    mostrarCarroVacio();
+  }
 
 buttonsCategories();
 
