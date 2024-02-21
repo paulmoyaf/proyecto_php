@@ -16,6 +16,9 @@ let valorTotal = 0;
 
 const storedCounter = getCookie("contador");
 const storedValorTotal = getCookie("valorTotal");
+let contadoresProductos = {};
+console.log('contadorProductos', contadoresProductos);
+
 
 // console.log(JSON.stringify(productos));
 
@@ -159,11 +162,13 @@ btnEliminarTodo.addEventListener('click', function() {
   
   
   eliminarProductosLocalStorage();
-  console.log('LocalStorage length:', localStorage.length);
+  console.log('Productos en el carrito', localStorage.length);
   setCookie("contador", "", -1);
   setCookie("valorTotal", "", -1);
   setCookie("cards", "", -1);
   setCookie("btn_removeAll", "", -1);
+
+
 });
 
 function setCookie(name, value, days) {
@@ -346,18 +351,61 @@ function createCardToCar(producto) {
       "btn",
       "btn-small",
       "btn-outline-danger",
-      "w-100",
+      "w-50",
       "btn-remove"
     );
+
+    const cantidad = contarMismoProductoLocalStorage(producto);
+    console.log(`Cantidad de ${producto.nombre} en add: ${cantidad}`);
+
+    const selectCantidad = document.createElement("select");
+    selectCantidad.classList.add("form-select", "w-50", "mx-auto", "mb-2");
+    selectCantidad.setAttribute("aria-label", "Default select example");
+    selectCantidad.setAttribute("name", producto.nombre);
+
+    // Obtiene el contador para este producto, o inicialízalo a 0 si no existe
+    contadorProducto = contadoresProductos[producto.nombre] || 0;
+
+    contadorProducto++; // Incrementa el contadorProducto por 1
+
+    for (let i = 1; i <= contadorProducto; i++) {
+      const option = document.createElement("option");
+      option.value = i; // El valor de la opción es i
+      option.textContent = i;
+      if (i === contadorProducto) {
+        option.selected = true;
+      }
+      selectCantidad.appendChild(option);
+    }
+
+    // Almacena el contador actualizado
+    contadoresProductos[producto.nombre] = contadorProducto;
+
+
+    
     btnRemove.innerHTML = "Borrar";
 
     btnRemove.addEventListener("click", function () {
       const card = this.closest(".card");
       console.log(`valor borrado: ${producto.precio_final}`);
-      valorTotal = valorTotal - parseFloat(producto.precio_final);
+
       console.log(`valor actual: ${valorTotal}`);
 
       card.remove();
+        
+      console.log(selectCantidad.value);
+      valorTotal = valorTotal - parseFloat(producto.precio_final)*selectCantidad.value;
+
+
+      let valorSelect = parseInt(selectCantidad.value);
+
+      // Si el valor del select es menor que el contador del producto, actualiza el contador
+      if (valorSelect < contadoresProductos[producto.nombre]) {
+        contadoresProductos[producto.nombre] = valorSelect;
+      } else if (valorSelect === 0 || valorSelect === 1) {
+        // Si el valor del select es 0 o 1, elimina el contador del producto
+        delete contadoresProductos[producto.nombre];
+      }
 
       eliminarProductoLocalStorage(producto);
       contarProductosLocalStorage();
@@ -377,19 +425,14 @@ function createCardToCar(producto) {
     columnaDerecha.appendChild(cardBody);
     cardBody.appendChild(nombreElement);
 
-    //TODO
+    //TODO - Agregar descuento a la card
 
-    // if (tipoProducto == 1) {
-    //   ofertaElement.appendChild(textoOferta);
-    //   ofertaElement.appendChild(descuentoElement);
-    //   cardBody.appendChild(ofertaElement);
-    // }
     cardBody.appendChild(precioElement);
+    columnaDerecha.appendChild(selectCantidad);
     columnaDerecha.appendChild(btnRemove);
 
     filaCard.appendChild(columnaIzquierda);
     filaCard.appendChild(columnaDerecha);
-    // filaCard.appendChild(btnRemove);
 
     card.appendChild(filaCard);
     return card;
@@ -490,23 +533,11 @@ function createCardElementJson(producto) {
   btnAddToCar.addEventListener('click', function(e) {
 
         e.preventDefault();
+        guardarCardLocalStorage(producto);
         sumarContador();
         btnEliminarTodo.style.display = "block";
-
-        
-        if(!buscarProductoLocalStorage(producto)){
-          const card = createCardToCar(producto);
-          divHtml.appendChild(card);
-        }
- 
-        guardarProductosLocalStorage(producto);
-        
         sumarValorTotal(parseFloat(precio_final));
-
         setCookie("valorTotal", valorTotal, 1);
-
-        // setCookie("cards", divHtml.innerHTML, 1);
-
   });
 
   cardBody.appendChild(imgElement);
@@ -538,18 +569,11 @@ document.querySelectorAll('.btn-add').forEach(function(button) {
       precio_final: this.getAttribute("data-precio"),
     };
     console.log(producto);
-    guardarProductosLocalStorage(producto);
-
     
-    if(!buscarProductoLocalStorage(producto)){
-      }else{
-        const card = createCardToCar(producto);
-        divHtml.appendChild(card);
-      }
+      guardarCardLocalStorage(producto);
 
-      sumarContador();
-      
       btnEliminarTodo.style.display = "block";
+      sumarContador();
       setCookie("btn_removeAll", btnEliminarTodo.style.display, 1);
       
     sumarValorTotal(parseFloat(this.getAttribute('data-precio')));
@@ -557,11 +581,44 @@ document.querySelectorAll('.btn-add').forEach(function(button) {
   });
 });
 
+function guardarCardLocalStorage(producto) {
+  const card = createCardToCar(producto);
+  // if(!buscarProductoLocalStorage(producto)){
+  //   divHtml.appendChild(card);
+  // }else{
+  // }
+  divHtml.appendChild(card);
+  guardarProductosLocalStorage(producto);
+  actualizarCantidad(producto, card);
+
+  const cantidad = contarMismoProductoLocalStorage(producto);
+  console.log(`Cantidad de ${producto.nombre}: ${cantidad}`);
+}
+
+function actualizarCantidad(producto, card) {
+  if(contarMismoProductoLocalStorage(producto) > 0){
+    const cantidad = contarMismoProductoLocalStorage(producto);
+    // Cambia el selector para buscar el select con el name del producto
+    const selectCantidad = card.querySelector(`select[name="${producto.nombre}"]`);
+    // Verifica si selectCantidad es null
+    if (!selectCantidad) {
+      console.log('No se encontró el elemento select');
+      return;
+    }
+    // Encuentra la opción con el valor igual a la cantidad
+    const option = [...selectCantidad.options].find(option => option.value == cantidad);
+    // Si la opción existe, hazla la opción seleccionada
+    if(option) {
+      selectCantidad.value = option.value;
+    }
+  }
+}
+
   function guardarProductosLocalStorage(producto) {
     let carritoProducts = JSON.parse(localStorage.getItem('carritoProducts')) || [];
     carritoProducts.push(producto);
     localStorage.setItem('carritoProducts', JSON.stringify(carritoProducts));
-    console.log('LocalStorage length:', carritoProducts.length);
+    console.log('Productos en el carrito', carritoProducts.length);
   }
   
   function obtenerProductosLocalStorage() {
@@ -570,7 +627,7 @@ document.querySelectorAll('.btn-add').forEach(function(button) {
 
   function mostrarProductosLocalStorage() {
     const carritoProducts = obtenerProductosLocalStorage();
-    console.log('LocalStorage Total:', carritoProducts.length);
+    console.log('Productos en el carrito:', carritoProducts.length);
     carritoProducts.forEach(producto => {
       const card = createCardToCar(producto);
       divHtml.appendChild(card);
@@ -579,11 +636,13 @@ document.querySelectorAll('.btn-add').forEach(function(button) {
 
   function eliminarProductosLocalStorage() {
     localStorage.removeItem('carritoProducts');
+    contadoresProductos = {};
+    console.log('contadorProductos', contadoresProductos);
   }
 
   function contarProductosLocalStorage() {
     const carritoProducts = obtenerProductosLocalStorage();
-    console.log('LocalStorage Total:', carritoProducts.length);
+    console.log('Productos en el carrito:', carritoProducts.length);
     return carritoProducts.length;
   }
 
@@ -596,9 +655,18 @@ document.querySelectorAll('.btn-add').forEach(function(button) {
   function buscarProductoLocalStorage(producto) {
     const carritoProducts = obtenerProductosLocalStorage();
     const productoEncontrado = carritoProducts.find(p => p.nombre === producto.nombre);
-    console.log('Producto encontrado:', productoEncontrado);
+    // console.log('Producto encontrado:', productoEncontrado);
     return productoEncontrado;
   }
+
+  function contarMismoProductoLocalStorage(producto) {
+
+    const carritoProducts = obtenerProductosLocalStorage();
+    const mismoProducto = carritoProducts.filter(p => p.nombre === producto.nombre);
+    return mismoProducto.length;
+  }
+
+
 
   function obtenerPrecioTotalLocalStorage() {
     const carritoProducts = obtenerProductosLocalStorage();

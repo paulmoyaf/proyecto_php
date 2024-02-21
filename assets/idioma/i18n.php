@@ -59,6 +59,7 @@ $idiomas = [
         'cantidad' => 'Cantidad',
         'parrafo-prime' => 'Para usuarios PRIME',
         'oferta' => 'Oferta',
+        'traduccion' => 'Traduccion',
     ],
     'en' => [
         'inicio' => 'Home',
@@ -119,6 +120,7 @@ $idiomas = [
         'cantidad' => 'Quantity',
         'parrafo-prime' => 'For PRIME users',
         'oferta' => 'Offer',
+        'traduccion' => 'Translation',
 
 
 
@@ -182,6 +184,7 @@ $idiomas = [
         'cantidad' => 'Kopurua',
         'parrafo-prime' => 'PRIME erabiltzaileentzat',
         'oferta' => 'Eskaintza',
+        'traduccion' => 'Itzulpena',
 
 
     ],

@@ -3,11 +3,10 @@
     <img src="../assets/img/logo/logo2.png" alt="Logo de MoyaCreative que lleva a la página de inicio" id="logo-header">
   </a>
   <div class="d-flex align-items-center gap-3">
-    <div class="button-idiomas">
-    <a href="?idioma=es" class="btn text-light btn-small" id="es">ES</a>
-    <a href="?idioma=eus" class="btn text-light btn-small" id="eus">EUS</a>
-    <a href="?idioma=en" class="btn text-light btn-small" id="en">EN</a>
-      <!-- <button class="btn btn-primary" id="en" onclick="cambiarIdioma(this.id)">EN</button> -->
+    <div class="button-idiomas d-flex">
+      <a href="?idioma=es" class="btn text-light btn-small  d-none d-md-block" id="es">ES</a>
+      <a href="?idioma=eus" class="btn text-light btn-small d-none d-md-block" id="eus">EUS</a>
+      <a href="?idioma=en" class="btn text-light btn-small  d-none d-md-block" id="en">EN</a>
     </div>
   <button type="button" class="btn btn-black position-relative" onclick="window.location.href = '../public/carrito.php';" aria-label="Ir al carrito de compras">
     <img src="../assets/img/carrito.png" alt="Imagen del Carrito" id="carrito">

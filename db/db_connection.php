@@ -38,6 +38,7 @@ class ProductosDB{
     {
         try {
             // $db = conexionMySql();
+            
             $db = new PDO (DB_PATH);
             $registros = $db->query("select * from productos");
             if ($registro = $registros->fetch()) {

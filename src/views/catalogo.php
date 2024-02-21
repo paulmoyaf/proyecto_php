@@ -18,13 +18,13 @@
     <div class="container-fluid py-5" style="min-height: 73vh;">
 
 
-    <div class="card text-dark bg-light p-3 mb-5">
-                <p class="card-text"><?php echo $textos['buscar']; ?></p>
+    <div class="card text-dark bg-light p-3 mx-3">
+                <p class="card-text"><?php echo $textos['buscar']; ?>:</p>
                 <input type="text" class="dropdown" id="search-input" placeholder="<?php echo $textos['buscar-producto']; ?>">
             <div id="results-container"></div>
     </div> 
 
-        <div class="container pb-3">
+        <div class="p-3">
             <div class="d-flex align-items-center justify-content-between">
                 <div class="display-6 text-center"><?php echo $textos['catalogo']; ?></div>
                 <div class="right-side d-grid mx-3">
