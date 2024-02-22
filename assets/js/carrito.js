@@ -283,7 +283,7 @@ function createCardToCar(producto) {
       "card",
       "mb-3",
       "p-3",
-      "col-3", 
+      "col-4", 
       "col-md-12",
       "col-lg-12",
       "bg-light",
@@ -330,11 +330,10 @@ function createCardToCar(producto) {
     descuentoElement.innerHTML = `-${producto.descuento}%`;
 
     const divCantidadMasBoton = document.createElement("div");
-    divCantidadMasBoton.classList.add("d-flex", "gap-1", "align-items-center", "mb-3");
-
+    divCantidadMasBoton.classList.add("d-flex", "align-items-center", "mb-3", "w-100", "w-md-50", "mx-auto", "gap-2");
 
     const selectCantidad = document.createElement("select");
-    selectCantidad.classList.add("form-select", "w-50", "mx-auto");
+    selectCantidad.classList.add("form-select");
     selectCantidad.setAttribute("aria-label", "Default select example");
     selectCantidad.setAttribute("name", producto.nombre);
 
@@ -354,7 +353,7 @@ function createCardToCar(producto) {
     });
 
     const btnAddProduct = document.createElement("button");
-    btnAddProduct.classList.add("btn", "btn-warning", "w-50", "btn-add");
+    btnAddProduct.classList.add("btn", "btn-sm", "btn-warning", "w-auto", "btn-add", "d-flex", "justify-content-center", "align-items-center");
     btnAddProduct.innerHTML = "+";
     btnAddProduct.addEventListener("click", function () {
       guardarCardLocalStorage(producto);
