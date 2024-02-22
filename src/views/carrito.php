@@ -31,7 +31,7 @@
                 <button class="btn btn-danger btn-small" id="btn-delete-all" style="display: none">Vaciar Carrito</button>
             </div>
             
-            <span class="" id="new-product"></span>
+            <div class="d-flex d-md-block flex-wrap justify-content-around" id="new-product"></div>
 
             <div class="d-none text-center" id="carro-vacio">
                 <div class="alert alert-warning" role="alert">Su Carro está vacio</div>

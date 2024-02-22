@@ -66,7 +66,7 @@
     </div>
 
     <div class="d-flex justify-content-between gap-3 row mx-5">
-        <a class="btn btn-outline-secondary col" href="../../admin/index.php" role="button">Regresar al Menu</a>
+        <a class="btn btn-outline-secondary col mt-3" href="../../admin/index.php" role="button">Regresar al Menu</a>
     </div>
 
     <script src="../../assets/js/mensajes.js"></script>

@@ -89,7 +89,7 @@
                     </div> -->
                     
                     <div class="row gap-3 mx-3">
-                        <input name="guardar" id="" class="btn btn-primary col" type="submit" value="Guardar">
+                        <input name="guardar" id="" class="btn btn-warning col" type="submit" value="Guardar">
                         <a class="btn btn-outline-secondary col" href="../../items/index.php" role="button">Regresar al Menu</a>
                     </div>
                 </form>

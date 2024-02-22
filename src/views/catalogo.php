@@ -43,7 +43,7 @@
                         $nombre_tipo_producto = ProductosDB::obtenerNombreTipoProducto($producto->getTipoProductoId());
                         $nombre_tipo_categoria = ProductosDB::obtenerNombreTipoCategoria($producto->getCategoriaId());
                     ?>
-                        <div class="col-lg-4 col-md-4 col-sm-6 pb-5 px-3">
+                        <div class="col-lg-4 col-md-4 col-6 pb-5 px-3">
 
                             <div class="card bg-light text-center">
                                 <a class="link-dark" href='../public/catalogo.php?id=<?= $producto->getId() ?>'>
@@ -96,7 +96,8 @@
                 </div>
                 
                 <hr>
-                    <div class="d-sm-flex flex-wrap" id="new-product"></div>                
+                
+                    <div class="d-flex d-md-block flex-wrap justify-content-around" id="new-product"></div>                
 
                 
 

@@ -17,7 +17,7 @@
             <!-- <img class="card-img-top logo" src="../src/img/logo/logo.png" alt="Title"> -->
             <!-- <p class="display-5 text-end">View Item</p> -->
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="catalogo.php"><?php echo $textos['catalogo']; ?></a></li>
+                <li class="breadcrumb-item text-dark"><a href="catalogo.php"><?php echo $textos['catalogo']; ?></a></li>
                 <li class="breadcrumb-item active" aria-current="page"><?php echo $producto->getNombre() ?></li>
             </ol>
         </div>

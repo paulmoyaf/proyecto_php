@@ -73,7 +73,7 @@
                                             <td><?= $producto->getDescuento() ?></td>
                                             <td><?= $producto->getPrecioFinal() ?></td>
                                             <td>
-                                                <a class="btn btn-outline-secondary btn-sm w-100 mb-1" href='../items/edit/index.php?id=<?= $producto->getId() ?>'>Editar</a>
+                                                <a class="btn btn-outline-secondary btn-sm w-100 mb-2" href='../items/edit/index.php?id=<?= $producto->getId() ?>'>Editar</a>
                                                 <a class="btn btn-danger btn-sm w-100" href='../items/remove/index.php?id=<?= $producto->getId() ?>'>Borrar</a>
                                             </td>
                                         </tr>
@@ -82,7 +82,7 @@
                             </table>
                         </div>
 
-                        <button class="btn btn-outline-secondary btn-sm w-100" onclick="window.location.href='../../admin/index.php'">Regresar al Menú</button> <!-- Added button to return to the menu -->
+                        <button class="btn btn-outline-secondary btn-sm w-100" onclick="window.location.href='../../admin/index.php'">Regresar al Menú</button> 
 
                         
                     </div>

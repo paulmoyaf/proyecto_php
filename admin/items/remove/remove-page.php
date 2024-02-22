@@ -61,12 +61,12 @@
         </table>
     </div>
 
-    <div class="row gap-3 mx-3">
+    <div class="row gap-3 m-3">
         <form action="" method="post" class="col">
             <input type="hidden" name="eliminar" value="<?php echo $producto->getId() ?>">
-            <input type="submit" value="Borrar Item" class="btn btn-danger w-100">
+            <input type="submit" value="Borrar Item" class="btn btn-danger btn-sm w-100">
         </form>
-        <a class="btn btn-outline-secondary col" href="../../items/index.php" role="button">Regresar al Menu</a>
+        <button class="btn btn-outline-secondary col btn-sm w-100" onclick="window.location.href='../../items/index.php'">Regresar al Menú</button> 
     </div>
 
 </body>

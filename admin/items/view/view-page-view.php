@@ -51,19 +51,14 @@
                             <td><?php echo $producto->getPrecio()  ?> €</td>
                             <td><?php echo $producto->getPrecioFinal()  ?> €</td>
                             <td>
-                                <a class="btn btn-outline-secondary col" href='../edit/index.php?id=<?= $producto->getId() ?>'>Editar</a>
-                                <a class="btn btn-danger col" href='../remove/index.php?id=<?= $producto->getId() ?>'>Borrar</a>        
+                                <a class="btn btn-outline-secondary mb-2" href='../edit/index.php?id=<?= $producto->getId() ?>'>Editar</a>
+                                <a class="btn btn-danger" href='../remove/index.php?id=<?= $producto->getId() ?>'>Borrar</a>        
                             </td>
                         </tr>
                     </tbody>
                 </table>
         </div>
-
-            <div class="d-flex justify-content-between gap-3 row mx-5">
-                <!-- <a class="btn btn-primary col" href='../edit/index.php?id=<?= $producto->getId() ?>'>Editar</a>
-                <a class="btn btn-danger col" href='../remove/index.php?id=<?= $producto->getId() ?>'>Borrar</a>         -->
-                <a class="btn btn-secondary col" href="../../items/index.php" role="button">Regresar al Menu</a>
-            </div>
+        <button class="btn btn-outline-secondary my-2 btn-sm w-100" onclick="window.location.href='../../items/index.php'">Regresar al Menú</button> 
 
 </body>
 

@@ -225,7 +225,7 @@ function filtrarProductosInput(criterio) {
       filterItems.style.display="block";
 
       const divFilterItems = document.createElement('div');
-      divFilterItems.classList.add('col-lg-4','col-md-4','col-sm-6','pb-5','px-3');
+      divFilterItems.classList.add('col-lg-4','col-md-4','col-6','pb-5','px-3');
 
       divFilterItems.appendChild(card);
       filterItems.appendChild(divFilterItems);
@@ -283,8 +283,7 @@ function createCardToCar(producto) {
       "card",
       "mb-3",
       "p-3",
-      "col-xs-3", 
-      "col-sm-3",
+      "col-3", 
       "col-md-12",
       "col-lg-12",
       "bg-light",

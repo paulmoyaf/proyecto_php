@@ -60,6 +60,9 @@ $idiomas = [
         'parrafo-prime' => 'Para usuarios PRIME',
         'oferta' => 'Oferta',
         'traduccion' => 'Traduccion',
+        'datosContacto' => 'Datos de Contacto',
+        'Ubicacion' => 'Ubicación',
+        'codigoPostal' => 'Código Postal',
     ],
     'en' => [
         'inicio' => 'Home',
@@ -121,6 +124,9 @@ $idiomas = [
         'parrafo-prime' => 'For PRIME users',
         'oferta' => 'Offer',
         'traduccion' => 'Translation',
+        'datosContacto' => 'Contact Information',
+        'Ubicacion' => 'Location',
+        'codigoPostal' => 'Postal Code',
 
 
 
@@ -185,6 +191,10 @@ $idiomas = [
         'parrafo-prime' => 'PRIME erabiltzaileentzat',
         'oferta' => 'Eskaintza',
         'traduccion' => 'Itzulpena',
+        'datosContacto' => 'Kontaktuaren Datuak',
+        'Ubicacion' => 'Kokapena',
+        'codigoPostal' => 'Posta Kodea',
+        
 
 
     ],
