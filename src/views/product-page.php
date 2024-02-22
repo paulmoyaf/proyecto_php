@@ -11,7 +11,7 @@
 <?php include '../includes/header.php'; ?>
 <?php include '../includes/nav.php';  ?>
 
-    <div class="container">
+    <div class="container" style="min-height: 100vh;">
 
         <div class="pt-5">
             <!-- <img class="card-img-top logo" src="../src/img/logo/logo.png" alt="Title"> -->

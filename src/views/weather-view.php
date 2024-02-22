@@ -17,8 +17,7 @@
 
 
   <main class="container">
-    <div class="container-fluid py-5 w-75" style="min-height: 73vh;">
-
+  <div class="py-5 w-100 d-flex flex-column" style="min-height: 100vh;">
 
       <h1 class="h4"><?php echo $textos['clima']; ?></h1>
       <hr>

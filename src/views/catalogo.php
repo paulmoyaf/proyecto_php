@@ -15,7 +15,7 @@
 
 
 
-    <div class="container-fluid py-5" style="min-height: 73vh;">
+    <div class="container-fluid py-5" style="min-height: 100vh;">
 
 
     <div class="card text-dark bg-light p-3 mx-3">
@@ -43,7 +43,7 @@
                         $nombre_tipo_producto = ProductosDB::obtenerNombreTipoProducto($producto->getTipoProductoId());
                         $nombre_tipo_categoria = ProductosDB::obtenerNombreTipoCategoria($producto->getCategoriaId());
                     ?>
-                        <div class="col-lg-4 col-md-4 col-sm-12 pb-5 px-3">
+                        <div class="col-lg-4 col-md-4 col-sm-6 pb-5 px-3">
 
                             <div class="card bg-light text-center">
                                 <a class="link-dark" href='../public/catalogo.php?id=<?= $producto->getId() ?>'>
@@ -96,7 +96,10 @@
                 </div>
                 
                 <hr>
-                <span class="" id="new-product"></span>
+                    <div class="d-sm-flex flex-wrap" id="new-product"></div>                
+
+                
+
             </div>
         </div>
     </div>

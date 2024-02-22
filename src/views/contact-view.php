@@ -16,7 +16,7 @@
 
 
   <main class="container">
-    <div class="container py-5 w-75">
+    <div class="container py-5 w-75"  style="min-height: 100vh;">
 
       <?php
       include '../includes/formContact.php';

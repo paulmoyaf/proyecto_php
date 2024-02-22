@@ -88,7 +88,8 @@ body{
   width: 8em;
 }
 #carrito{
-    height: 2.2em;
+    height: 1.5em;
+    margin-right: 0.2em;
     /* margin-left: 2em; */
 }
 #imgGps{

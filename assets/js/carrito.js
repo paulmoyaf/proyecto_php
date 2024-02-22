@@ -9,24 +9,22 @@ const divListaItems = document.querySelector('#lista-items');
 const resultsContainer = document.getElementById('results-container');
 const searchInput = document.getElementById('search-input');
 const btnAddCar = document.querySelectorAll('btn-add');
-let contador = 0;
-let valorTotal = 0;
 
 
 
-const storedCounter = getCookie("contador");
-const storedValorTotal = getCookie("valorTotal");
+
+
 let contadoresProductos = {};
 console.log('contadorProductos', contadoresProductos);
 
 
 // console.log(JSON.stringify(productos));
 
-
+function searchInputBuscador() {
 
 if (searchInput)  {
   searchInput.value = "";
-searchInput.addEventListener('input', (e) => {
+  searchInput.addEventListener('input', (e) => {
   const valorBusqueda = e.target.value.toLowerCase();
   const resultados = productos.filter(producto => producto.nombre.toLowerCase().includes(valorBusqueda));
 
@@ -90,6 +88,7 @@ searchInput.addEventListener('input', (e) => {
   resultsContainer.appendChild(dropdownList);
 });
 }
+}
 
 function seleccionarProducto(producto) {
   const searchInput = document.getElementById('search-input');
@@ -107,69 +106,31 @@ const mostrarCarroVacio = () => {
   }
 }
 
-if (storedCounter) {
-  contador = parseInt(storedCounter);
-  valorTotal = parseFloat(storedValorTotal);
-}
-
-textContador.innerHTML = contador;
-// textValorTotal.innerHTML = sumarPrecioTotal();
-textValorTotal.innerHTML = valorTotal;
-
-
-if (!divHtml || !btnEliminarTodo) {
-  sumarContador();
-} else {
-  const storedCards = getCookie("cards");
-  const storedBtnRemoveAll = getCookie("btn_removeAll");
-
-  if (storedCards) {
-    divHtml.innerHTML = storedCards;
-    // btnEliminarTodo.style.display = "block";
-    
-    document.querySelectorAll('.btn-remove').forEach(function(button) {
-      button.addEventListener('click', function() {
-        const card = this.closest('.card');
-        const precioProducto = card.querySelector('strong').textContent;
-        console.log(`valor borrado: ${precioProducto}`);
-        valorTotal = valorTotal - parseFloat(precioProducto);
-        console.log(`valor actual: ${valorTotal}`);        
-        card.remove();
-        contador--;
-        textContador.innerHTML = contador;
-        textValorTotal.innerHTML = valorTotal;
-
-        setCookie("cards", divHtml.innerHTML, 1);
-        setCookie("contador", contador, 1);
-        setCookie("valorTotal", valorTotal, 1);
-      });
-    });
-  }
-  else{
+function mostrarBotonEliminarTodo() {
+  if (contarProductosLocalStorage() > 0) {
+    btnEliminarTodo.style.display = "block";
+  }else{
     mostrarCarroVacio();
   }
 }
 
 
-btnEliminarTodo.addEventListener('click', function() {
-  contador = 0;
-  valorTotal = 0;
-  console.log(valorTotal);
-  textContador.innerHTML = contador;
-  textValorTotal.innerHTML = valorTotal;
-  divHtml.innerHTML = '';
-  btnEliminarTodo.style.display = "none";
-  
-  
-  eliminarProductosLocalStorage();
-  console.log('Productos en el carrito', localStorage.length);
-  setCookie("contador", "", -1);
-  setCookie("valorTotal", "", -1);
-  setCookie("cards", "", -1);
-  setCookie("btn_removeAll", "", -1);
+function funcionBtnEliminarProducto() {
+  if (btnEliminarTodo)  {
+    btnEliminarTodo.addEventListener('click', function() {
 
+      divHtml.innerHTML = '';
+      btnEliminarTodo.style.display = "none";
+      
+      eliminarProductosLocalStorage();
+      actualizarPrecioTotalLocalStorage();
+      actualizarContadorLocalStorage();
+      mostrarCarroVacio();
+      // setCookie("cards", "", -1);
+    });
+  }
+}
 
-});
 
 function setCookie(name, value, days) {
   const expires = new Date();
@@ -192,21 +153,6 @@ function getCookie(name) {
       }
   }
   return "";
-}
-
-const sumarContador = () => {
-  contador++;
-  textContador.innerHTML = contador;
-  setCookie("contador", contador, 1);
-}
-
-const sumarValorTotal = (precio) => {
-  valorTotal = valorTotal+precio;
-  console.log(valorTotal);
-  textValorTotal.innerHTML = valorTotal;
-  // textValorTotal.innerHTML = sumarPrecioTotal();
-  setCookie("valorTotal", valorTotal, 1);
-
 }
 
 const buttonsCategories = () =>{
@@ -279,7 +225,7 @@ function filtrarProductosInput(criterio) {
       filterItems.style.display="block";
 
       const divFilterItems = document.createElement('div');
-      divFilterItems.classList.add('col-lg-4','col-md-4','col-sm-12','pb-5','px-3');
+      divFilterItems.classList.add('col-lg-4','col-md-4','col-sm-6','pb-5','px-3');
 
       divFilterItems.appendChild(card);
       filterItems.appendChild(divFilterItems);
@@ -291,18 +237,56 @@ function obtenerNombreCategoria(id) {
   const categoria = categorias.find(categoria => categoria.id === id);
   return categoria ? categoria.nombre : 'Categoría no encontrada';
 }
+
 function obtenerNombreTipoProducto(id) {
   const tipo_producto = tiposProducto.find(tipo_producto => tipo_producto.id === id);
   return tipo_producto ? tipo_producto.nombre : 'Tipo Producto no encontrado';
 }
 
+function actualizarCardProducto(producto, card) {
+  const selectCantidad = card.querySelector('select');
+  const precioElement = card.querySelector('p.card-text');
+
+  if (selectCantidad) {
+      // Si el elemento select existe, eliminar todas las opciones existentes
+      selectCantidad.innerHTML = '';
+      precioElement.innerHTML = '';
+      
+      // Crear nuevas opciones y agregarlas al elemento select
+      let contadorProducto = contarMismoProductoLocalStorage(producto)+1;
+
+      for (let i = 1; i <= contadorProducto; i++) {
+          const option = document.createElement("option");
+          option.value = i;
+          option.textContent = i;
+          if (i === contadorProducto) {
+              option.selected = true;
+          }
+          selectCantidad.appendChild(option);
+          precioElement.innerHTML = `<strong>${producto.precio_final*selectCantidad.value}€</strong>`;
+      }
+  }
+}
+
 function createCardToCar(producto) {
+
+  const card = document.querySelector(`[name="${producto.nombre}"]`);
+
+
+    if (card) {
+      actualizarCardProducto(producto, card);
+    } else {
+
     const card = document.createElement("div");
+    card.setAttribute('name', producto.nombre);
     card.classList.add(
       "card",
       "mb-3",
       "p-3",
-      "w-100",
+      "col-xs-3", 
+      "col-sm-3",
+      "col-md-12",
+      "col-lg-12",
       "bg-light",
       "text-center"
     );
@@ -346,80 +330,60 @@ function createCardToCar(producto) {
     descuentoElement.classList.add("badge", "bg-danger");
     descuentoElement.innerHTML = `-${producto.descuento}%`;
 
+    const divCantidadMasBoton = document.createElement("div");
+    divCantidadMasBoton.classList.add("d-flex", "gap-1", "align-items-center", "mb-3");
+
+
+    const selectCantidad = document.createElement("select");
+    selectCantidad.classList.add("form-select", "w-50", "mx-auto");
+    selectCantidad.setAttribute("aria-label", "Default select example");
+    selectCantidad.setAttribute("name", producto.nombre);
+
+    const option = document.createElement('option');
+    option.text = contarMismoProductoLocalStorage(producto)+1;
+    selectCantidad.add(option);
+
+
+    selectCantidad.addEventListener("change", function () {
+      const precio = producto.precio_final * selectCantidad.value;
+      precioElement.innerHTML = `<strong>${precio}€</strong>`;
+      actualizarProductoLocalStorage(producto, selectCantidad.value);
+      informacionCarrito();
+      actualizarPrecioTotalLocalStorage();
+      actualizarContadorLocalStorage();
+
+    });
+
+    const btnAddProduct = document.createElement("button");
+    btnAddProduct.classList.add("btn", "btn-warning", "w-50", "btn-add");
+    btnAddProduct.innerHTML = "+";
+    btnAddProduct.addEventListener("click", function () {
+      guardarCardLocalStorage(producto);
+    });
+
+
     const btnRemove = document.createElement("button");
     btnRemove.classList.add(
       "btn",
       "btn-small",
       "btn-outline-danger",
-      "w-50",
+      "w-100",
       "btn-remove"
     );
-
-    const cantidad = contarMismoProductoLocalStorage(producto);
-    console.log(`Cantidad de ${producto.nombre} en add: ${cantidad}`);
-
-    const selectCantidad = document.createElement("select");
-    selectCantidad.classList.add("form-select", "w-50", "mx-auto", "mb-2");
-    selectCantidad.setAttribute("aria-label", "Default select example");
-    selectCantidad.setAttribute("name", producto.nombre);
-
-    // Obtiene el contador para este producto, o inicialízalo a 0 si no existe
-    contadorProducto = contadoresProductos[producto.nombre] || 0;
-
-    contadorProducto++; // Incrementa el contadorProducto por 1
-
-    for (let i = 1; i <= contadorProducto; i++) {
-      const option = document.createElement("option");
-      option.value = i; // El valor de la opción es i
-      option.textContent = i;
-      if (i === contadorProducto) {
-        option.selected = true;
-      }
-      selectCantidad.appendChild(option);
-    }
-
-    // Almacena el contador actualizado
-    contadoresProductos[producto.nombre] = contadorProducto;
-
-
-    
-    btnRemove.innerHTML = "Borrar";
-
+    btnRemove.innerHTML = "Borrar producto";
     btnRemove.addEventListener("click", function () {
-      const card = this.closest(".card");
-      console.log(`valor borrado: ${producto.precio_final}`);
-
-      console.log(`valor actual: ${valorTotal}`);
-
+      eliminarProductoLocalStorage(producto, selectCantidad.value);
       card.remove();
-        
-      console.log(selectCantidad.value);
-      valorTotal = valorTotal - parseFloat(producto.precio_final)*selectCantidad.value;
+      actualizarPrecioTotalLocalStorage();
+      actualizarContadorLocalStorage();
+      mostrarCarroVacio();
 
-
-      let valorSelect = parseInt(selectCantidad.value);
-
-      // Si el valor del select es menor que el contador del producto, actualiza el contador
-      if (valorSelect < contadoresProductos[producto.nombre]) {
-        contadoresProductos[producto.nombre] = valorSelect;
-      } else if (valorSelect === 0 || valorSelect === 1) {
-        // Si el valor del select es 0 o 1, elimina el contador del producto
-        delete contadoresProductos[producto.nombre];
-      }
-
-      eliminarProductoLocalStorage(producto);
-      contarProductosLocalStorage();
-
-      contador--;
-      textContador.innerHTML = contador;
-      textValorTotal.innerHTML = valorTotal;
-      if (contador === 0) {
+      if (contarProductosLocalStorage() === 0) {
         btnEliminarTodo.style.display = "none";
       }
-      setCookie("contador", contador, 1);
-      setCookie("valorTotal", valorTotal, 1);
 
     });
+
 
     columnaIzquierda.appendChild(imgElement);
     columnaDerecha.appendChild(cardBody);
@@ -427,8 +391,11 @@ function createCardToCar(producto) {
 
     //TODO - Agregar descuento a la card
 
+    divCantidadMasBoton.appendChild(selectCantidad);
+    divCantidadMasBoton.appendChild(btnAddProduct);
+
     cardBody.appendChild(precioElement);
-    columnaDerecha.appendChild(selectCantidad);
+    columnaDerecha.appendChild(divCantidadMasBoton);
     columnaDerecha.appendChild(btnRemove);
 
     filaCard.appendChild(columnaIzquierda);
@@ -437,8 +404,7 @@ function createCardToCar(producto) {
     card.appendChild(filaCard);
     return card;
   }
-
-
+  }
 
 //funcion para crear las cards de los productos por tipo de producto
 function createCardElementJson(producto) {
@@ -534,10 +500,7 @@ function createCardElementJson(producto) {
 
         e.preventDefault();
         guardarCardLocalStorage(producto);
-        sumarContador();
         btnEliminarTodo.style.display = "block";
-        sumarValorTotal(parseFloat(precio_final));
-        setCookie("valorTotal", valorTotal, 1);
   });
 
   cardBody.appendChild(imgElement);
@@ -568,76 +531,45 @@ document.querySelectorAll('.btn-add').forEach(function(button) {
       descuento: this.getAttribute("data-descuento"),
       precio_final: this.getAttribute("data-precio"),
     };
-    console.log(producto);
-    
-      guardarCardLocalStorage(producto);
 
-      btnEliminarTodo.style.display = "block";
-      sumarContador();
-      setCookie("btn_removeAll", btnEliminarTodo.style.display, 1);
-      
-    sumarValorTotal(parseFloat(this.getAttribute('data-precio')));
-    setCookie("valorTotal", valorTotal, 1);
+      guardarCardLocalStorage(producto);
+      btnEliminarTodo.style.display = "block";      
   });
 });
 
 function guardarCardLocalStorage(producto) {
   const card = createCardToCar(producto);
-  // if(!buscarProductoLocalStorage(producto)){
-  //   divHtml.appendChild(card);
-  // }else{
-  // }
-  divHtml.appendChild(card);
-  guardarProductosLocalStorage(producto);
-  actualizarCantidad(producto, card);
-
-  const cantidad = contarMismoProductoLocalStorage(producto);
-  console.log(`Cantidad de ${producto.nombre}: ${cantidad}`);
-}
-
-function actualizarCantidad(producto, card) {
-  if(contarMismoProductoLocalStorage(producto) > 0){
-    const cantidad = contarMismoProductoLocalStorage(producto);
-    // Cambia el selector para buscar el select con el name del producto
-    const selectCantidad = card.querySelector(`select[name="${producto.nombre}"]`);
-    // Verifica si selectCantidad es null
-    if (!selectCantidad) {
-      console.log('No se encontró el elemento select');
-      return;
-    }
-    // Encuentra la opción con el valor igual a la cantidad
-    const option = [...selectCantidad.options].find(option => option.value == cantidad);
-    // Si la opción existe, hazla la opción seleccionada
-    if(option) {
-      selectCantidad.value = option.value;
-    }
+  if(!buscarProductoLocalStorage(producto)){
+    divHtml.appendChild(card);
   }
+  guardarProductosLocalStorage(producto);
+  actualizarPrecioTotalLocalStorage();
+  actualizarContadorLocalStorage();
 }
+
+ function informacionCarrito() {
+    const carritoProducts = obtenerProductosLocalStorage();
+    console.log('Productos en el carrito:', carritoProducts.length);
+    console.log('Precio total LocalStorage:', getPrecioTotalLocalStorage());
+  }
+
 
   function guardarProductosLocalStorage(producto) {
     let carritoProducts = JSON.parse(localStorage.getItem('carritoProducts')) || [];
     carritoProducts.push(producto);
     localStorage.setItem('carritoProducts', JSON.stringify(carritoProducts));
-    console.log('Productos en el carrito', carritoProducts.length);
+    informacionCarrito();
   }
   
   function obtenerProductosLocalStorage() {
     return JSON.parse(localStorage.getItem('carritoProducts')) || [];
   }
 
-  function mostrarProductosLocalStorage() {
-    const carritoProducts = obtenerProductosLocalStorage();
-    console.log('Productos en el carrito:', carritoProducts.length);
-    carritoProducts.forEach(producto => {
-      const card = createCardToCar(producto);
-      divHtml.appendChild(card);
-    });
-  }
 
   function eliminarProductosLocalStorage() {
     localStorage.removeItem('carritoProducts');
     contadoresProductos = {};
-    console.log('contadorProductos', contadoresProductos);
+    informacionCarrito();
   }
 
   function contarProductosLocalStorage() {
@@ -646,11 +578,76 @@ function actualizarCantidad(producto, card) {
     return carritoProducts.length;
   }
 
-  function eliminarProductoLocalStorage(producto) {
+
+  function eliminarProductoLocalStorage(producto, cantidad) {
     const carritoProducts = obtenerProductosLocalStorage();
-    const newCarritoProducts = carritoProducts.filter(p => p.nombre !== producto.nombre);
+    let contador = 0;
+
+    const newCarritoProducts = carritoProducts.reduce((newCarrito, p) => {
+        if (p.nombre === producto.nombre && contador < cantidad) {
+            contador++;
+        } else {
+            newCarrito.push(p);
+        }
+        return newCarrito;
+    }, []);
+
     localStorage.setItem('carritoProducts', JSON.stringify(newCarritoProducts));
+}
+
+function actualizarProductoLocalStorage(producto, cantidad) {
+  const carritoProducts = obtenerProductosLocalStorage();
+
+  const cantidadActual = carritoProducts.filter(p => p.nombre === producto.nombre).length;
+  const diferencia = cantidadActual - cantidad;
+
+  let newCarritoProducts;
+
+  if (diferencia > 0) {
+      let contador = 0;
+
+      newCarritoProducts = carritoProducts.reduce((newCarrito, p) => {
+          if (p.nombre === producto.nombre && contador < diferencia) {
+              contador++;
+          } else {
+              newCarrito.push(p);
+          }
+          return newCarrito;
+      }, []);
+  } else if (diferencia < 0) {
+      newCarritoProducts = [...carritoProducts];
+
+      for (let i = 0; i < -diferencia; i++) {
+          newCarritoProducts.push(producto);
+      }
   }
+
+  if (newCarritoProducts) {
+      localStorage.setItem('carritoProducts', JSON.stringify(newCarritoProducts));
+  }
+}
+
+
+function actualizarContadorLocalStorage() {
+  const carritoProducts = obtenerProductosLocalStorage();
+  textContador.innerHTML = carritoProducts.length;
+}
+
+function actualizarPrecioTotalLocalStorage() {
+  if (textValorTotal){
+  textValorTotal.innerHTML = getPrecioTotalLocalStorage();
+  }
+}
+
+function getPrecioTotalLocalStorage() {
+  const carritoProducts = obtenerProductosLocalStorage();
+  let total = 0;
+  carritoProducts.forEach(producto => {
+    total += parseFloat(producto.precio_final);
+  });
+  return total;
+}
+
 
   function buscarProductoLocalStorage(producto) {
     const carritoProducts = obtenerProductosLocalStorage();
@@ -668,22 +665,28 @@ function actualizarCantidad(producto, card) {
 
 
 
-  function obtenerPrecioTotalLocalStorage() {
-    const carritoProducts = obtenerProductosLocalStorage();
-    let total = 0;
-    carritoProducts.forEach(producto => {
-      total += parseFloat(producto.precio_final);
-    });
-    return total;
-  }
+  buttonsCategories();
+  searchInputBuscador();
+  funcionBtnEliminarProducto();
+
+
+
+  actualizarPrecioTotalLocalStorage();
+  actualizarContadorLocalStorage();
+  mostrarBotonEliminarTodo();
 
   mostrarProductosLocalStorage();
 
-  if (contarProductosLocalStorage() > 0) {
-    btnEliminarTodo.style.display = "block";
-  }else{
-    mostrarCarroVacio();
+
+  function mostrarProductosLocalStorage() {
+    const carritoProducts = obtenerProductosLocalStorage();
+    console.log('Productos en el carrito:', carritoProducts.length);
+    carritoProducts.forEach(producto => {
+      const card = createCardToCar(producto);
+      divHtml.appendChild(card);
+    });
   }
 
-buttonsCategories();
+
+
 
