@@ -47,12 +47,12 @@ function handleDeleteRequest() {
             $_SESSION['message'] = 'Categoría eliminada con éxito';
             echo json_encode(['status' => 'success', 'message' => 'Categoría eliminada con éxito']);
         } else {
-            $_SESSION['messageErrorCategoria'] = 'Error al eliminar la categoría';
+            $_SESSION['messageError'] = 'Error al eliminar la categoría';
             http_response_code(500);
             echo json_encode(['status' => 'error', 'message' => 'Error al eliminar la categoría']);
         }
     } else {
-        $_SESSION['messageErrorCategoria'] = 'ID no proporcionado';
+        $_SESSION['messageError'] = 'ID no proporcionado';
         http_response_code(400);
         echo json_encode(['status' => 'error', 'message' => 'ID no proporcionado']);
     }
@@ -70,7 +70,7 @@ function handlePostRequest() {
         echo json_encode(['status' => 'success', 'message' => 'Categoría agregada con éxito']);
         exit();
     } else {
-        $_SESSION['messageErrorCategoria'] = 'Error al agregar la categoría';
+        $_SESSION['messageError'] = 'Error al agregar la categoría';
         echo json_encode(['status' => 'error', 'message' => 'Error al agregar la categoría']);
         exit();
     }
@@ -111,7 +111,7 @@ function handlePutRequest() {
         echo json_encode(['status' => 'success', 'message' => 'Categoría actualizada con éxito']);
         exit();
     } else {
-        $_SESSION['messageErrorCategoria'] = 'Error al actualizar la categoría';
+        $_SESSION['messageError'] = 'Error al actualizar la categoría';
         echo json_encode(['status' => 'error', 'message' => 'Categoría actualizada con éxito']);
         exit();
     }

@@ -1,6 +1,6 @@
 <?php
-
 define('DB_PATH', 'sqlite:' . __DIR__ . '/db_tienda.db');
+
 function conexionMySql() {
     $servername = "localhost";
     $username = "root";
@@ -17,4 +17,13 @@ function conexionMySql() {
     }
 }
 
-
+function getDBConnection(){
+    try {
+        $db = new PDO (DB_PATH);
+        $db->exec("PRAGMA foreign_keys = ON;");
+        return $db;
+    } catch (PDOException $e) {
+        // Si la conexión a SQLite falla, intenta conectar a MySQL
+        return conexionMySql();
+    }
+}

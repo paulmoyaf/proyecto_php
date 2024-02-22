@@ -55,32 +55,6 @@ document.querySelectorAll('#btn-eliminar').forEach(button => {
 
 
 
-const eliminarCategoria = (id) => {
-    const data = { id: id };
-    fetch('index.php', {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    })
-    .then(response => {
-        return response.json();
-    })
-    .then(data => {
-        console.log(data);
-        if (data.status === 'success') {
-            // alert(data.message);
-            window.location.reload();
-        } else {
-            alert('Error al eliminar la categoría');
-        }
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
-};
-
 const condicionesNombreCatergoria = (nombre) => {
     if (nombre === null || nombre === '') {
         alert('El nombre de la categoría puede entre 3 a 15 caracteres');
@@ -134,11 +108,39 @@ const editarCategoria = (id) => {
 };
 
 
+const eliminarCategoria = (id) => {
+    
+    const data = { id: id };
+    fetch('index.php', {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+    .then(response => {
+        return response.json();
+    })
+    .then(data => {
+        console.log(data);
+        if (data.status === 'success') {
+            // alert(data.message);
+            window.location.reload();
+        } else {
+            // console.log(data.messageError);
+            alert(data.messageError);
+        }
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+};
+
 
 $(document).ready(function() {
     if (typeof message !== 'undefined') {
         var alert = $('<div id="alert" class="alert alert-success">' + message + '</div>');
-        $(mensaje).append(alert);
+        $("#mensaje").append(alert);
         alert.hide().slideDown(500);
         setTimeout(function() {
             alert.slideUp(500);
@@ -146,7 +148,7 @@ $(document).ready(function() {
     }
     if (typeof messageDelete !== 'undefined') {
         var alert = $('<div id="alert" class="alert alert-warning">' + messageDelete + '</div>');
-        $(mensaje).append(alert);
+        $("#mensaje").append(alert);
         alert.hide().slideDown(500);
         setTimeout(function() {
             alert.slideUp(500);
@@ -154,7 +156,7 @@ $(document).ready(function() {
     }
     if (typeof messageError !== 'undefined') {
         var alert = $('<div id="alert" class="alert alert-danger">' + messageError + '</div>');
-        $(mensaje).append(alert);
+        $("#mensaje").append(alert);
         alert.hide().slideDown(500);
         setTimeout(function() {
             alert.slideUp(500);

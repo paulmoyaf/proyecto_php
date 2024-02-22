@@ -7,8 +7,7 @@ class ProductosDB{
 
     public static function selectProductos(){
         try{
-            $db = conexionMySql(); 
-            // $db = new PDO (DB_PATH);
+            $db = getDBConnection();
             $registros = $db->query("select * from productos");
             $productos = array();
 
@@ -36,8 +35,7 @@ class ProductosDB{
 
     public static function selectProducto($id){
         try{
-            $db = conexionMySql(); 
-            // $db = new PDO (DB_PATH);
+            $db = getDBConnection();
             $registros = $db->query("select * from productos where id=" .$id);
             $producto = null;
 
@@ -64,8 +62,7 @@ class ProductosDB{
     public static function insertProduct($producto){
 
         try{
-            $db = conexionMySql(); 
-            // $db = new PDO (DB_PATH);
+            $db = getDBConnection();
             $sql = "insert into productos (nombre, descripcion, categoria_id, talla_id, tipo_producto_id, descuento, precio, precio_final, imagen_url) values";
             $sql = $sql . "('" .$producto->getNombre() . "'";
             $sql = $sql . ",'" .$producto->getDescripcion() . "'";
@@ -88,8 +85,7 @@ class ProductosDB{
     public static function editProduct($producto){
 
         try{
-            $db = conexionMySql(); 
-            // $db = new PDO (DB_PATH);
+            $db = getDBConnection();
 
             $sql = "UPDATE productos SET ";
             $sql = $sql . "nombre = '" .$producto->getNombre() . "',";
@@ -117,8 +113,7 @@ class ProductosDB{
     public static function removeProduct($producto){
 
         try{
-            $db = conexionMySql(); 
-            // $db = new PDO (DB_PATH);
+            $db = getDBConnection();
             $sql = "DELETE FROM productos ";
             $sql = $sql . " WHERE id = " .$producto->getId() . "";
             $resultado = $db->exec($sql);
@@ -133,7 +128,7 @@ class ProductosDB{
 
     public static function obtenerNombreTipoProducto($tipo_producto_id) {
         try {
-            $db = conexionMySql(); 
+            $db = getDBConnection();
             $consulta = "SELECT nombre FROM tipo_producto WHERE id = $tipo_producto_id";
             $resultado = $db->query($consulta);
             $nombre_tipo_producto = $resultado->fetchColumn();
@@ -145,7 +140,7 @@ class ProductosDB{
     }
     public static function obtenerNombreTalla($talla_id) {
         try {
-            $db = conexionMySql(); 
+            $db = getDBConnection();
             $consulta = "SELECT nombre FROM talla WHERE id = $talla_id";
             $resultado = $db->query($consulta);
             $nombre_talla = $resultado->fetchColumn();
@@ -157,7 +152,7 @@ class ProductosDB{
     }
     public static function obtenerNombreTipoCategoria($categoria_id) {
         try {
-            $db = conexionMySql(); 
+            $db = getDBConnection();
             $consulta = "SELECT nombre FROM categoria WHERE id = $categoria_id";
             $resultado = $db->query($consulta);
             $nombre_tipo_categoria = $resultado->fetchColumn();
@@ -169,7 +164,7 @@ class ProductosDB{
     }
     public static function selectTallas(){ 
         try { 
-            $db = conexionMySql();  
+            $db = getDBConnection();
             $consulta = "SELECT id, nombre FROM talla"; 
             $registros = $db->query($consulta); 
             // Obtener los registros de la tabla "talla" como un array asociativo
@@ -184,7 +179,7 @@ class ProductosDB{
 
     public static function selectCategorias(){ 
         try { 
-            $db = conexionMySql();  
+            $db = getDBConnection();
             $consulta = "SELECT id, nombre FROM categoria"; 
             $registros = $db->query($consulta); 
             // Obtener los registros de la tabla "talla" como un array asociativo
@@ -198,7 +193,7 @@ class ProductosDB{
     }
     public static function selectTipoProducto(){ 
         try { 
-            $db = conexionMySql();  
+            $db = getDBConnection();
             $consulta = "SELECT id, nombre FROM tipo_producto"; 
             $registros = $db->query($consulta); 
             $tiposProducto = $registros->fetchAll(PDO::FETCH_ASSOC);            
