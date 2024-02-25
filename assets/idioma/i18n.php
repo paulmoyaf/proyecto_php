@@ -63,6 +63,7 @@ $idiomas = [
         'datosContacto' => 'Datos de Contacto',
         'Ubicacion' => 'Ubicación',
         'codigoPostal' => 'Código Postal',
+        'carrito-titulo' => 'Producto agregado al carrito',
     ],
     'en' => [
         'inicio' => 'Home',
@@ -127,6 +128,7 @@ $idiomas = [
         'datosContacto' => 'Contact Information',
         'Ubicacion' => 'Location',
         'codigoPostal' => 'Postal Code',
+        'carrito-titulo' => 'Product added to cart',
 
 
 
@@ -194,6 +196,7 @@ $idiomas = [
         'datosContacto' => 'Kontaktuaren Datuak',
         'Ubicacion' => 'Kokapena',
         'codigoPostal' => 'Posta Kodea',
+        'carrito-titulo' => 'Produktua saskian gehitu da',
         
 
 

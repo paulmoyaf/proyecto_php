@@ -97,7 +97,10 @@
                 
                 <hr>
                 
-                    <div class="d-flex d-md-block flex-wrap justify-content-around" id="new-product"></div>                
+                <div id="contenedor-carrito" class="card bg-secondary p-3 mb-3 d-none">
+                    <div class="card-title text-light"><?php echo $textos['carrito-titulo']; ?> ✔️</div>
+                    <div class="d-flex flex-wrap" id="new-product"></div>                
+                </div>
 
                 
 
