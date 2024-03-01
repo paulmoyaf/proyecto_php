@@ -51,7 +51,7 @@
                                     <div class="card-body">
                                         <img id="img-producto" src="<?php echo $producto->getImagenURL() ?>" class="img-fluid rounded-start py-3" style="width: 15em" alt="Card title">
                                         <h5 class="card-title"><?php echo $producto->getNombre() ?></h5>
-                                        <p class="card-text text-muted"><?php echo $producto->getDescripcion() ?></p>
+                                        <p class="card-text text-muted d-none d-md-block d-lg-block"><?php echo $producto->getDescripcion() ?></p>
                                         <p class="card-text text-muted" id="tipo-producto"><?php echo $textos['tipo']; ?> <strong><?php echo $nombre_tipo_producto ?></strong> </p>
                                         <?php if ($producto->getTipoProductoId() == 1): ?>
                                             <div class="d-flex justify-content-center align-items-center gap-2">
@@ -76,7 +76,21 @@
                                     <p class="card-text" style="font-size: larger;" id="price-producto"><?php echo $producto->getPrecioFinal() ?>€</p>
                                 </div>
                                 <!-- <button class="btn btn-warning w-100 btn-add" id="btn-add-to-car"><?php echo $textos['agregar-carrito']; ?></button> -->
-                                <button class="btn btn-warning w-100 btn-add"  id="btn-add-to-car" data-descuento="<?php echo $producto->getDescuento()?>" data-nombre="<?php echo $producto->getNombre() ?>" data-imagen="<?php echo $producto->getImagenURL() ?>" data-precio="<?php echo $producto->getPrecioFinal() ?>" data-tipo="<?php echo $producto->getTipoProductoId() ?>"><?php echo $textos['agregar-carrito']; ?></button>
+                                <button class="btn btn-warning w-100 btn-add"  id="btn-add-to-car"
+                                data-id="<?php echo $producto->getId() ?>"
+                                data-nombre="<?php echo $producto->getNombre() ?>"
+                                data-descripcion="<?php echo $producto->getDescripcion() ?>"
+                                data-categoria="<?php echo $producto->getCategoriaId() ?>"
+                                data-talla="<?php echo $producto->getTallaId() ?>"
+                                data-tipo="<?php echo $producto->getTipoProductoId() ?>"
+                                data-descuento="<?php echo $producto->getDescuento()?>"
+                                data-precio="<?php echo $producto->getPrecio() ?>"
+                                data-imagen="<?php echo $producto->getImagenURL() ?>"
+                                data-precio-final="<?php echo $producto->getPrecioFinal() ?>"
+                                data-stock="<?php echo $producto->getStock() ?>"
+                                data-descripcion-eus="<?php echo $producto->getDescripcionEus() ?>"
+                                
+                                ><?php echo $textos['agregar-carrito']; ?></button>
                             </div>
                         </div>
                     <?php endforeach; ?>
@@ -97,8 +111,8 @@
                 
                 <hr>
                 
-                <div id="contenedor-carrito" class="card bg-secondary p-3 mb-3 d-none">
-                    <div class="card-title text-light"><?php echo $textos['carrito-titulo']; ?> ✔️</div>
+                <div id="contenedor-carrito" class="card bg-light p-3 mb-3 d-none">
+                    <div class="card-title text-dark font-weight-bold h5 pb-2"><?php echo $textos['carrito-titulo']; ?> ✔️</div>
                     <div class="d-flex flex-wrap" id="new-product"></div>                
                 </div>
 

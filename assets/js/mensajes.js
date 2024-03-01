@@ -148,7 +148,7 @@ function esNombreValido(nombre) {
 }
 
 function esEmailValido(email) {
-    const regex = /^[a-zA-Z.-_0-9]+@[a-zA-Z]{2,}[.][a-zA-Z]{2,}$/;
+    const regex = /^[a-zA-Z.-_0-9]+@[a-zA-Z]{2,}([.][a-zA-Z]{2,})+$/;
     return regex.test(email);
 }
 
@@ -180,7 +180,7 @@ function verificarEmail(event) {
         email.setCustomValidity('');
         email.style.borderColor = 'green';
     } else {
-        email.setCustomValidity('El email debe tener al menos una @');
+        email.setCustomValidity('El email debe contener una @ y un dominio válido. Por ejemplo: nombre@dominio.com');
         email.style.borderColor = 'red';
     }
 };

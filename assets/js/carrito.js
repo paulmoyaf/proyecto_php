@@ -14,11 +14,10 @@ const contenedorCarrito = document.querySelector('#contenedor-carrito');
 
 
 
-
 let contadoresProductos = {};
 console.log('contadorProductos', contadoresProductos);
 
-
+window.onload = mostrarProductosLocalStorage;
 // console.log(JSON.stringify(productos));
 
 function searchInputBuscador() {
@@ -327,7 +326,7 @@ function createCardToCar(producto) {
     const columnaIzquierda = createElement("div", ["col-4"]);
     const columnaDerecha = createElement("div", ["col-8"]);
     const cardBody = createElement("div", ["card-body"]);
-    const nombreElement = createElement("h6", ["card-title"], {'textContent': producto.nombre});
+    const nombreElement = createElement("h6", ["card-title"], {'textContent': producto.id +': '+  producto.nombre});
     const imgElement = createElement("img", ["card-img"], {'src': producto.imagen_url, 'style': 'width: 6em;'});    const tipoElement = createElement("p", ["card-text", "text-muted"], {'innerHTML': producto.tipo_producto_id});
     const precioElement = createElement("p", ["card-text"], {'innerHTML': `<strong>${producto.precio_final}€</strong>`});
     const ofertaElement = createElement("div", ["d-flex", "gap-1", "align-items-center"]);
@@ -336,7 +335,7 @@ function createCardToCar(producto) {
     const divCantidadMasBoton = createElement("div", ["d-flex", "align-items-center", "mb-3", "w-100", "w-md-50", "mx-auto", "gap-2"]);
     const selectCantidad = createElement("select", ["form-select"], {'aria-label': "Default select example", 'name': producto.nombre});
     const count = contarMismoProductoLocalStorage(producto);
-    const option = createElement('option', [], {'textContent': count === 0 ? 1 : count-1});
+    const option = createElement('option', [], {'textContent': count === 0 ? 1 : count});
     selectCantidad.add(option);
 
     selectCantidad.addEventListener("change", function () {
@@ -376,7 +375,6 @@ function createCardToCar(producto) {
     divCantidadMasBoton.appendChild(btnRemove);
     cardBody.appendChild(precioElement);
     columnaDerecha.appendChild(divCantidadMasBoton);
-    // columnaDerecha.appendChild(btnRemove);
     filaCard.appendChild(columnaIzquierda);
     filaCard.appendChild(columnaDerecha);
     card.appendChild(filaCard);
@@ -421,7 +419,7 @@ function createCardElementJson(producto) {
   nombreElement.textContent = nombreProducto;
 
   const descripcionElement = document.createElement('p');
-  descripcionElement.classList.add('card-text','text-muted');
+  descripcionElement.classList.add('card-text','text-muted', 'd-none', 'd-md-block', 'd-lg-block');
   descripcionElement.textContent = descripcion;
 
   const imgElement = document.createElement('img');
@@ -466,13 +464,27 @@ function createCardElementJson(producto) {
   precioFinalElement.style.fontSize = "larger";
   precioFinalElement.innerHTML = `${precio_final}€`;
 
+  const attributes = {
+    'data-id': producto.id,
+    'data-nombre': producto.nombre,
+    'data-descripcion': producto.descripcion,
+    'data-categoria': producto.categoria_id,
+    'data-talla': producto.talla_id,
+    'data-tipo': producto.tipo_producto_id,
+    'data-descuento': producto.descuento,
+    'data-precio': producto.precio,
+    'data-precio-final': producto.precio_final,
+    'data-imagen': producto.imagen_url,
+    'data-stock': producto.stock,
+    'data-descripcion-eus': producto.descripcion_eus,
+  };
+
+
   const btnAddToCar = document.createElement('button');
   btnAddToCar.classList.add('btn', 'btn-warning', 'w-100', 'btn-add');
-  btnAddToCar.setAttribute('data-nombre', producto.nombre);
-  btnAddToCar.setAttribute('data-imagen', producto.imagen_url);
-  btnAddToCar.setAttribute('data-tipo', producto.tipo_producto_id);
-  btnAddToCar.setAttribute('data-descuento', producto.descuento);
-  btnAddToCar.setAttribute('data-precio', producto.precio_final); 
+  for (let key in attributes) {
+    btnAddToCar.setAttribute(key, attributes[key]);
+  }
   btnAddToCar.innerHTML = 'Agregar al carrito';
 
   btnAddToCar.addEventListener('click', function(e) {
@@ -504,11 +516,19 @@ document.querySelectorAll('.btn-add').forEach(function(button) {
   button.addEventListener('click', function(e) {
     e.preventDefault();
     producto = {
+      id: this.getAttribute("data-id"),
       nombre: this.getAttribute("data-nombre"),
-      imagen_url: this.getAttribute("data-imagen"),
+      descripcion: this.getAttribute("data-descripcion"),
+      categoria_id: this.getAttribute("data-categoria"),
+      talla_id: this.getAttribute("data-talla"),
       tipo_producto_id: this.getAttribute("data-tipo"),
       descuento: this.getAttribute("data-descuento"),
-      precio_final: this.getAttribute("data-precio"),
+      precio: this.getAttribute("data-precio"),
+      precio_final: this.getAttribute("data-precio-final"),
+      imagen_url: this.getAttribute("data-imagen"),
+      stock: this.getAttribute("data-stock"),
+      descripcion_eus: this.getAttribute("data-descripcion-eus"),
+
     };
 
       guardarCardLocalStorage(producto);
@@ -696,6 +716,26 @@ function getPrecioTotalLocalStorage() {
     });
   }
 
-  window.onload = mostrarProductosLocalStorage;
+  // // path del archivo: assets/js/carrito.js
+  // const procesarCompra = document.querySelector('#procesar-compra');
+
+  // if (procesarCompra) {
+  //   procesarCompra.addEventListener('click', function(e) {
+  //     e.preventDefault();
+  //     const carritoProducts = obtenerProductosLocalStorage();
+  //       let total = 0;
+  //       carritoProducts.forEach(producto => {
+  //         total += parseFloat(producto.precio_final);
+  //       });
+
+  //     console.log('Procesando compra...');
+  //     console.log('Cantidad de Productos:', carritoProducts.length);
+  //     console.log('Precio total:', total);
+  //     console.log('Productos del Carrito:', carritoProducts);
+  //   }
+  // );
+  // }
+
+ 
   
 

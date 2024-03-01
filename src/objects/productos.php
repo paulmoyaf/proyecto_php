@@ -12,6 +12,9 @@ class Producto {
     private $precio_final;
     private $imagen_url;
 
+    private $stock;
+    private $descripcion_eus;
+
     public function __construct() {
         $this->descuento = 50;
     }
@@ -107,5 +110,24 @@ class Producto {
     public function setImagenUrl($imagen_url) {
         $this->imagen_url = $imagen_url;
     }
+
+    public function getStock() {
+        return $this->stock;
+    }
+
+    public function setStock($stock) {
+        $this->stock = $stock;
+    }
+
+    public function getDescripcionEus() {
+        return $this->descripcion_eus;
+    }
+
+    public function setDescripcionEus($descripcion_eus) {
+        $this->descripcion_eus = $descripcion_eus;
+    }
+
+    
+
 }
 

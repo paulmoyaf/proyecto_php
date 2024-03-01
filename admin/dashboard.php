@@ -45,6 +45,12 @@
                                     Mensajes
                                 </button>
                             </div>
+                            <div class="col-md-4 col-sm-12 my-4">
+                                <button id="btn-opciones" class="btn btn-dark" onclick="window.location.href='../admin/pedidos/index.php'">
+                                    <img src="../assets/img/iconos/.png" alt="Imagen del botón">
+                                    Pedidos
+                                </button>
+                            </div>
                         </div>
                     </div>
 

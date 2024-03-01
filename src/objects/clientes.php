@@ -1,17 +1,13 @@
 <?php
 
-class Mensaje{
+class Cliente{
     private $id;
     private $nombre;
     private $telefono;
     private $email;
-    private $mensaje;
-    private $fecha;
-    private $status;
-
-    public function __construct() {
-        $this->fecha = date("Y-m-d H:i:s");
-    }
+    private $direccion;
+    private $ciudad;
+    private $codigoPostal;
 
     public function getId() {
         return $this->id;
@@ -45,27 +41,28 @@ class Mensaje{
         $this->email= $email;
     }
 
-    public function getMensaje() {
-        return $this->mensaje;
+    public function getDireccion() {
+        return $this->direccion;
     }
 
-    public function setMensaje($mensaje) {
-        $this->mensaje= $mensaje;
+    public function setDireccion($direccion) {
+        $this->direccion= $direccion;
     }
 
-    public function getFecha() {
-        return $this->fecha;
+    public function getCiudad() {
+        return $this->ciudad;
     }
 
-    public function setFecha($fecha) {
-        $this->fecha= $fecha;
-    }
-    public function getStatus() {
-        return $this->status;
+    public function setCiudad($ciudad) {
+        $this->ciudad= $ciudad;
     }
 
-    public function setStatus($status) {
-        $this->status= $status;
+    public function getCodigoPostal() {
+        return $this->codigoPostal;
+    }
+
+    public function setCodigoPostal($codigoPostal) {
+        $this->codigoPostal= $codigoPostal;
     }
     
 

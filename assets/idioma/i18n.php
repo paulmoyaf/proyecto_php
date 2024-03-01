@@ -64,6 +64,13 @@ $idiomas = [
         'Ubicacion' => 'Ubicación',
         'codigoPostal' => 'Código Postal',
         'carrito-titulo' => 'Producto agregado al carrito',
+        'datos-cliente' => 'Datos del Cliente',
+        'descripcion-cliente' => 'Rellena los campos para realizar la compra',
+        'direccion' => 'Dirección',
+        'realizar-pedido' => 'Realizar Pedido',
+        'productos-agregado-carrito' => 'Productos agregados al carrito',
+        'mensaje-carro-vacio' => 'El carrito está vacío',
+
     ],
     'en' => [
         'inicio' => 'Home',
@@ -129,6 +136,13 @@ $idiomas = [
         'Ubicacion' => 'Location',
         'codigoPostal' => 'Postal Code',
         'carrito-titulo' => 'Product added to cart',
+        'datos-cliente' => 'Customer Data',
+        'descripcion-cliente' => 'Fill in the fields to make the purchase',
+        'direccion' => 'Address',
+        'realizar-pedido' => 'Place Order',
+        'productos-agregado-carrito' => 'Products added to cart',
+        'mensaje-carro-vacio' => 'The cart is empty',
+
 
 
 
@@ -197,6 +211,13 @@ $idiomas = [
         'Ubicacion' => 'Kokapena',
         'codigoPostal' => 'Posta Kodea',
         'carrito-titulo' => 'Produktua saskian gehitu da',
+        'datos-cliente' => 'Bezeroaren Datuak',
+        'descripcion-cliente' => 'Bete eremuak erosketa egiteko',
+        'direccion' => 'Helbidea',
+        'realizar-pedido' => 'Egin Erosketa',
+        'productos-agregado-carrito' => 'Produktuak saskian gehitu dira',
+        'mensaje-carro-vacio' => 'Saskia hutsik dago',
+
         
 
 
