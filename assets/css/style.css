@@ -151,6 +151,21 @@ body{
 padding: 1em;
 }
 
+.pedido-view label{
+  font-weight: bold;
+  width: 5em;
+}
+
+.pedido-view div{
+padding: 0.2em;
+font-size: small;
+
+}
+
+.pedido-view input{
+  font-size: small;
+}
+
 
 /* #lista-items{
   display: none;

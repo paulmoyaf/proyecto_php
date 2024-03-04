@@ -1,3 +1,4 @@
+<!-- path del archivo: admin/pedidos/index.php -->
 <?php
 session_start();
 
@@ -45,8 +46,9 @@ try {
             $id = validateInput($_POST['id']);
             $pedido = createMensajeFromId($id);
             $emailCliente = PedidosDB::obtenerMailCliente($id);
-            $pedido = PedidosDB::selectPedido($id);
-            if ($pedido === false) {
+            $pedidos = PedidosDB::selectPedidosByCliente($id);
+            $cliente = ClientesDB::selectCliente($id);
+            if ($pedidos === false) {
                 throw new Exception("Mensaje not found");
             }
             require('view-pedido.php');
@@ -77,9 +79,9 @@ try {
 $clientes = ClientesDB::selectAllClientes();
 $todosPedidos = array();
 
-foreach($clientes as $cliente) {
-    $clienteId = $cliente->getId();
-    $emailCliente = $cliente->getEmail();    
+foreach($clientes as $pedido) {
+    $clienteId = $pedido->getId();
+    $emailCliente = $pedido->getEmail();    
     $pedidosCliente = PedidosDB::selectPedidosByCliente($clienteId);
     $todosPedidos = array_merge($todosPedidos, $pedidosCliente);
 }

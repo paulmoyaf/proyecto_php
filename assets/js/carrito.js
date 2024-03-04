@@ -114,21 +114,23 @@ function mostrarBotonEliminarTodo() {
   }
 }
 
+function vaciarCarrito() {
+  divHtml.innerHTML = '';
+  btnEliminarTodo.style.display = "none";
+  contenedorCarrito.classList.remove('d-block');
+  contenedorCarrito.classList.add('d-none');
+  
+  eliminarProductosLocalStorage();
+  actualizarPrecioTotalLocalStorage();
+  actualizarCantidadLocalStorage();
+  mostrarCarroVacio();
+}
+
 
 function funcionBtnEliminarProducto() {
   if (btnEliminarTodo)  {
     btnEliminarTodo.addEventListener('click', function() {
-
-      divHtml.innerHTML = '';
-      btnEliminarTodo.style.display = "none";
-      contenedorCarrito.classList.remove('d-block');
-      contenedorCarrito.classList.add('d-none');
-      
-      eliminarProductosLocalStorage();
-      actualizarPrecioTotalLocalStorage();
-      actualizarCantidadLocalStorage();
-      mostrarCarroVacio();
-      // setCookie("cards", "", -1);
+      vaciarCarrito();
     });
   }
 }
@@ -584,8 +586,13 @@ function guardarCardLocalStorage(producto) {
   }
   
   function obtenerProductosLocalStorage() {
-    return JSON.parse(localStorage.getItem('carritoProducts')) || [];
-  }
+    try {
+        return JSON.parse(localStorage.getItem('carritoProducts')) || [];
+    } catch (error) {
+        console.error('Error parsing products from local storage:', error);
+        return [];
+    }
+}
 
 
 

@@ -95,17 +95,18 @@ formulario.addEventListener('submit', function(e) {
         method: 'POST',
         body: formData
       })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Success:', data);
+      .then(response => response.text())
+      .then(text => {
+        console.log('Success:', text);
+        vaciarCarrito();
         limpiarInputs();
-        console.log(data.message);
-        alertMensaje.innerHTML = data.message;
+        alertMensaje.innerHTML = text;
         alertMensaje.classList.add('alert', 'alert-success', 'text-center');
         $(alertMensaje).hide().slideDown(500);
         setTimeout(() => {
           $(alertMensaje).slideUp(500);
         },5000);
+        // return JSON.parse(text); 
       })
       .catch(error => {
         console.error('Error:', error);

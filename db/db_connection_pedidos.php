@@ -121,4 +121,19 @@ class PedidosDB{
                 return null;
             }
         }
+
+        public static function obtenerNombreProducto($id){
+            try{
+                $db = getDBConnection();
+                $registros = $db->query("select nombre from productos where id = $id");
+                if ($registro = $registros->fetch()){
+                    return $registro['nombre'];
+                } else {
+                    return false;
+                }
+            } catch (Exception $e){
+                echo "<p>Error:" .$e->getMessage() . "</p>\n";
+                return null;
+            }
+        }
     }
