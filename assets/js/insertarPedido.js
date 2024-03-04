@@ -85,6 +85,11 @@ formulario.addEventListener('submit', function(e) {
       // Obtener los productos del carrito de localStorage
       const carritoProducts = obtenerProductosLocalStorage();
       formData.append('productos', JSON.stringify(carritoProducts));
+      const precioTotal = getPrecioTotalLocalStorage();
+      formData.append('precioTotal', precioTotal);
+      const totalProductos = contarProductosLocalStorage();
+      formData.append('totalProductos', totalProductos);
+
   
       fetch('../api/pedidos', {
         method: 'POST',
@@ -183,7 +188,7 @@ function verificarPhone(event) {
 };
 
 function verificarDireccion(event) {
-    const esValido = esNombreValido(event.target.value);
+    const esValido = esDireccionValida(event.target.value);
     if (esValido) {
         direccion.setCustomValidity('');
         direccion.style.borderColor = 'green';

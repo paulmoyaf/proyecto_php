@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Mensajes</title>
+    <title>pedidos</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../../assets/css/style.css">
@@ -17,7 +17,7 @@
         <a href='../../admin/index.php'>
             <img class="card-img-top logo" src="../../assets/img/logo/logo.png" alt="Logo">
         </a>
-        <p class="h2 text-center">Mensajes</p>
+        <p class="h2 text-center">Pedidos</p>
         <button class="btn btn-warning btn-sm " onclick="window.location.href='../logout.php'" style="height: fit-content">Cerrar Sesión</button>  
 
     </div>
@@ -28,33 +28,35 @@
             <thead>
                 <tr>
                     <th scope="col">Fecha Creación</th>
-                    <th scope="col">Nombre</th>
+                    <th scope="col">Cliente</th>
                     <th scope="col">Email</th>
-                    <th scope="col">Mensaje</th>
+                    <th scope="col">Valor Total Compra</th>
+                    <th scope="col">Cantidad Total Compra</th>
                     <th scope="col">Status</th>
                     <th scope="col">Opciones</th>
                 </tr>
             </thead>
             <tbody class="align-middle">
-                <?php foreach ($mensajes as $mensaje) : ?>
+                <?php foreach ($clientes as $cliente) : ?>
                     <tr>
-                        <td><?= htmlspecialchars($mensaje->getFecha()) ?></td>
-                        <td><?= htmlspecialchars($mensaje->getNombre()) ?></td>
-                        <td><?= htmlspecialchars($mensaje->getEmail()) ?></td>
-                        <td><?= htmlspecialchars($mensaje->getMensaje()) ?></td>
+                        <td><?= htmlspecialchars($cliente->getCreateDate()) ?></td>
+                        <td><?= htmlspecialchars($cliente->getNombre()) ?></td>
+                        <td><?= htmlspecialchars($cliente->getEmail()) ?></td>
+                        <td><?= htmlspecialchars($cliente->getPrecioTotal()) ?> €</td>
+                        <td><?= htmlspecialchars($cliente->getTotalProductos()) ?> uds.</td>
                         <td>
-                            <input type="checkbox" name="status" value="leido" <?= $mensaje->getStatus() == 'leido' ? 'checked' : '' ?> disabled>
-                            <label for="status">Leído</label>
+                            <input type="checkbox" name="status" value="enviado" <?= $cliente->getEstado() == 'enviado' ? 'checked' : '' ?> disabled>
+                            <label for="status">Enviado</label>
                         </td>
 
                         <td>
                             <form method="post" action="index.php">
-                                <input type="hidden" name="id" value="<?= htmlspecialchars($mensaje->getId()) ?>">
+                                <input type="hidden" name="id" value="<?= htmlspecialchars($cliente->getId()) ?>">
                                 <input type="hidden" name="ver-item" value="true">
                                 <input type="submit" value="Editar" id="btn-view" class="btn btn-outline-secondary btn-small w-100 mb-2">
                             </form>
                             <form method="post" action="index.php">
-                                <input type="hidden" name="id" value="<?= htmlspecialchars($mensaje->getId()) ?>">
+                                <input type="hidden" name="id" value="<?= htmlspecialchars($cliente->getId()) ?>">
                                 <input type="hidden" name="eliminar" value="true">
                                 <input type="submit" value="Eliminar" id="btn-delete" class="btn btn-danger btn-small w-100">
                             </form>
@@ -69,7 +71,7 @@
         <a class="btn btn-outline-secondary col mt-3" href="../../admin/index.php" role="button">Regresar al Menu</a>
     </div>
 
-    <script src="../../assets/js/mensajes.js"></script>
+    <script src="../../assets/js/pedidos.js"></script>
 </body>
 
 </html>

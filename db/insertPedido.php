@@ -16,26 +16,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $currentTime = date("Y-m-d H:i:s");
 
     $data = json_decode(file_get_contents('php://input'), true);
+    $productos = json_decode($_POST['productos'], true);
+    $totalProductos = $_POST['totalProductos'];
+    $precioTotal = $_POST['precioTotal'];
 
-    $stmt = $db->prepare('INSERT INTO clientes (nombre, email, direccion, ciudad, codigoPostal) VALUES (?, ?, ?, ?, ?)');
+    $stmt = $db->prepare('INSERT INTO clientes (nombre, email, direccion, ciudad, codigoPostal, total_productos, precio_total, estado, create_date) VALUES (?, ?, ?, ?, ?, ?, ?,?,?)');
     $nombre = $_POST['nombre'];
     $email = $_POST['email'];
     $direccion = $_POST['direccion'];
     $ciudad = $_POST['ciudad'];
     $codigoPostal = $_POST['codigoPostal'];
+    $estado = 'pendiente';
     $stmt->bindParam(1, $nombre);
     $stmt->bindParam(2, $email);
     $stmt->bindParam(3, $direccion);
     $stmt->bindParam(4, $ciudad);
     $stmt->bindParam(5, $codigoPostal);
+    $stmt->bindParam(6, $totalProductos);
+    $stmt->bindParam(7, $precioTotal);
+    $stmt->bindParam(8, $estado);
+    $stmt->bindParam(9, $currentTime);
+
+
     $stmt->execute();
     $clienteId = $db->lastInsertId();
 
-    $productos = json_decode($_POST['productos'], true);
-    // foreach ($productos as $producto) {
-    //     $stmt = $db->prepare('INSERT INTO pedidos (clienteId, productoId, cantidad, create_date, estado) VALUES (?, ?, ?, ?, ?)');
-    //     $stmt->execute([$clienteId, $producto['id'], $producto['cantidad'], $currentTime, 'no enviado']);
-    // }
 
     $cantidadProductos = array();
 
@@ -49,8 +54,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Inserta los productos en la base de datos
     foreach ($cantidadProductos as $id => $cantidad) {
-        $stmt = $db->prepare('INSERT INTO pedidos (clienteId, productoId, cantidad, create_date, estado) VALUES (?, ?, ?, ?, ?)');
-        $stmt->execute([$clienteId, $id, $cantidad, $currentTime, 'no enviado']);
+        $stmt = $db->prepare('INSERT INTO pedidos (cliente_id, producto_id, cantidad, precio, create_date, estado) VALUES (?, ?, ?, ?, ?,?)');
+        $stmt->execute([$clienteId, $id, $cantidad, $data[$producto['id']]['precio'], $currentTime, 'pendiente']);
+    
     }
     echo json_encode(['message' => 'Pedido insertado correctamente']);
 } else {

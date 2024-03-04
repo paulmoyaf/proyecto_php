@@ -6,6 +6,7 @@ class Pedido{
     private $clienteId;
     private $productoId;
     private $cantidad;
+    private $precioTotal;
     private $createDate;
     private $estado;
 
@@ -43,6 +44,14 @@ class Pedido{
 
     public function setCantidad($cantidad) {
         $this->cantidad = $cantidad;
+    }
+
+    public function getPrecioTotal() {
+        return $this->precioTotal;
+    }
+
+    public function setPrecioTotal($precioTotal) {
+        $this->precioTotal = $precioTotal;
     }
 
     public function getCreateDate() {

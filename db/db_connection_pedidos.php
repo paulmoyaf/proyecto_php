@@ -17,8 +17,34 @@ class PedidosDB{
                     $pedido->setClienteId($registro['cliente_id']);
                     $pedido->setProductoId($registro['producto_id']);
                     $pedido->setCantidad($registro['cantidad']);
+                    $pedido->setPrecioTotal($registro['precio']);
                     $pedido->setCreateDate($registro['create_date']);
                     $pedido->setEstado($registro['estado']);
+                    $pedidos[] = $pedido;                
+                }
+    
+                return $pedidos;
+    
+            } catch (Exception $e){
+                echo "<p>Error:" .$e->getMessage() . "</p>\n";
+                return null;
+            }
+        }
+
+        public static function selectPedidosByCliente($clienteId){
+            try{
+                $db = getDBConnection();
+                $registros = $db->query("select * from pedidos where cliente_id = $clienteId");
+                $pedidos = array();
+    
+                while ($registro = $registros->fetch()){
+                    $pedido = new Pedido();
+                    $pedido->setId($registro['id']);
+                    $pedido->setClienteId($registro['cliente_id']);
+                    $pedido->setProductoId($registro['producto_id']);
+                    $pedido->setCantidad($registro['cantidad']);
+                    $pedido->setPrecioTotal($registro['precio']);
+                    $pedido->setCreateDate($registro['create_date']);
                     $pedidos[] = $pedido;                
                 }
     
@@ -40,8 +66,8 @@ class PedidosDB{
                     $pedido->setClienteId($registro['cliente_id']);
                     $pedido->setProductoId($registro['producto_id']);
                     $pedido->setCantidad($registro['cantidad']);
+                    $pedido->setPrecioTotal($registro['precio']);
                     $pedido->setCreateDate($registro['create_date']);
-                    $pedido->setEstado($registro['estado']);
                     return $pedido;
                 } else {
                     return false;
@@ -71,10 +97,25 @@ class PedidosDB{
                 $clienteId = $pedido->getClienteId();
                 $productoId = $pedido->getProductoId();
                 $cantidad = $pedido->getCantidad();
+                $precioTotal = $pedido->getPrecioTotal();
                 $createDate = $pedido->getCreateDate();
-                $estado = $pedido->getEstado();
-                $registros = $db->query("update pedidos set cliente_id = $clienteId, producto_id = $productoId, cantidad = $cantidad, create_date = '$createDate', estado = '$estado' where id = $id");
+                $registros = $db->query("update pedidos set cliente_id = $clienteId, producto_id = $productoId, cantidad = $cantidad, precioTotal = $precioTotal ,create_date = '$createDate' where id = $id");
                 return $registros->rowCount();
+            } catch (Exception $e){
+                echo "<p>Error:" .$e->getMessage() . "</p>\n";
+                return null;
+            }
+        }
+
+        public static function obtenerMailCliente($id){
+            try{
+                $db = getDBConnection();
+                $registros = $db->query("select email from clientes where id = $id");
+                if ($registro = $registros->fetch()){
+                    return $registro['email'];
+                } else {
+                    return false;
+                }
             } catch (Exception $e){
                 echo "<p>Error:" .$e->getMessage() . "</p>\n";
                 return null;

@@ -8,6 +8,12 @@ class Cliente{
     private $direccion;
     private $ciudad;
     private $codigoPostal;
+    private $totalProductos;
+    private $precioTotal;
+
+    private $estado;
+
+    private $createDate;
 
     public function getId() {
         return $this->id;
@@ -64,6 +70,37 @@ class Cliente{
     public function setCodigoPostal($codigoPostal) {
         $this->codigoPostal= $codigoPostal;
     }
+
+    public function getTotalProductos() {
+        return $this->totalProductos;
+    }
+
+    public function setTotalProductos($totalProductos) {
+        $this->totalProductos= $totalProductos;
+    }
+
+    public function getPrecioTotal() {
+        return $this->precioTotal;
+    }
+
+    public function setPrecioTotal($precioTotal) {
+        $this->precioTotal= $precioTotal;
+    }
     
+    public function getCreateDate() {
+        return $this->createDate;
+    }
+
+    public function setCreateDate($createDate) {
+        $this->createDate= $createDate;
+    }
+
+    public function getEstado() {
+        return $this->estado;
+    }
+
+    public function setEstado($estado) {
+        $this->estado= $estado;
+    }
 
 }

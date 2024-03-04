@@ -31,14 +31,14 @@
 
 
             <div class="row">
-                <div class="col-4">
+                <div class="col-12 col-md-4 col-lg-4 pb-3 order-2 order-md-1">
                     <?php
                     include '../includes/formContactCar.php';
                     ?>
                 </div>
                 
                 
-                <div class="col-8">
+                <div class="col-12 col-md-8 col-lg-8 order-1 order-md-2">
                     <div id="contenedor-carrito" class="card bg-secondary p-3 mb-3 d-none">
                         <div class="card-title text-light"><?php echo $textos['productos-agregado-carrito']; ?> ✔️</div>
                         <div class="d-flex flex-wrap" id="new-product"></div>

@@ -126,7 +126,7 @@ function funcionBtnEliminarProducto() {
       
       eliminarProductosLocalStorage();
       actualizarPrecioTotalLocalStorage();
-      actualizarContadorLocalStorage();
+      actualizarCantidadLocalStorage();
       mostrarCarroVacio();
       // setCookie("cards", "", -1);
     });
@@ -344,7 +344,7 @@ function createCardToCar(producto) {
       actualizarProductoLocalStorage(producto, selectCantidad.value);
       informacionCarrito();
       actualizarPrecioTotalLocalStorage();
-      actualizarContadorLocalStorage();
+      actualizarCantidadLocalStorage();
     });
 
     const btnAddProduct = createElement("button", ["btn", "btn-sm", "btn-warning", "w-auto", "btn-add", "d-flex", "justify-content-center", "align-items-center"], {'innerHTML': "+"});
@@ -357,7 +357,7 @@ function createCardToCar(producto) {
       eliminarProductoLocalStorage(producto, selectCantidad.value);
       card.remove();
       actualizarPrecioTotalLocalStorage();
-      actualizarContadorLocalStorage();
+      actualizarCantidadLocalStorage();
       mostrarCarroVacio();
 
       if (contarProductosLocalStorage() === 0) {
@@ -551,7 +551,7 @@ function guardarCardLocalStorage(producto) {
   // guardarProducto(producto);
   guardarProductosLocalStorage(producto);
   actualizarPrecioTotalLocalStorage();
-  actualizarContadorLocalStorage();
+  actualizarCantidadLocalStorage();
 }
 
  function informacionCarrito() {
@@ -652,7 +652,7 @@ function actualizarProductoLocalStorage(producto, cantidad) {
 }
 
 
-function actualizarContadorLocalStorage() {
+function actualizarCantidadLocalStorage() {
   const carritoProducts = obtenerProductosLocalStorage();
   textContador.innerHTML = carritoProducts.length;
 }
@@ -696,7 +696,7 @@ function getPrecioTotalLocalStorage() {
 
 
   actualizarPrecioTotalLocalStorage();
-  actualizarContadorLocalStorage();
+  actualizarCantidadLocalStorage();
   mostrarBotonEliminarTodo();
 
 
@@ -716,25 +716,7 @@ function getPrecioTotalLocalStorage() {
     });
   }
 
-  // // path del archivo: assets/js/carrito.js
-  // const procesarCompra = document.querySelector('#procesar-compra');
 
-  // if (procesarCompra) {
-  //   procesarCompra.addEventListener('click', function(e) {
-  //     e.preventDefault();
-  //     const carritoProducts = obtenerProductosLocalStorage();
-  //       let total = 0;
-  //       carritoProducts.forEach(producto => {
-  //         total += parseFloat(producto.precio_final);
-  //       });
-
-  //     console.log('Procesando compra...');
-  //     console.log('Cantidad de Productos:', carritoProducts.length);
-  //     console.log('Precio total:', total);
-  //     console.log('Productos del Carrito:', carritoProducts);
-  //   }
-  // );
-  // }
 
  
   

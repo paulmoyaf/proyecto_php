@@ -4,6 +4,7 @@ session_start();
 $admin = isset($_SESSION['usuario']) && $_SESSION['usuario'] == "admin";
 
 require('../../db/db_connection_pedidos.php');
+require('../../db/db_connection_clientes.php');
 require('../../src/objects/clientes.php');
 require('../../src/objects/pedidos.php');
 
@@ -21,7 +22,7 @@ function validateInput($input) {
 }
 
 function createMensajeFromId($id) {
-    $pedido = new Mensaje();
+    $pedido = new Pedido();
     $pedido->setId($id);
     return $pedido;
 }
@@ -43,6 +44,7 @@ try {
         if (isset($_POST['ver-item'], $_POST['id'])) {
             $id = validateInput($_POST['id']);
             $pedido = createMensajeFromId($id);
+            $emailCliente = PedidosDB::obtenerMailCliente($id);
             $pedido = PedidosDB::selectPedido($id);
             if ($pedido === false) {
                 throw new Exception("Mensaje not found");
@@ -72,6 +74,16 @@ try {
     exit;
 }
 
-$pedidos = PedidosDB::selectPedidos();
-// $pedidosJSON = PedidosDB::selectPedidosJSON();
+$clientes = ClientesDB::selectAllClientes();
+$todosPedidos = array();
+
+foreach($clientes as $cliente) {
+    $clienteId = $cliente->getId();
+    $emailCliente = $cliente->getEmail();    
+    $pedidosCliente = PedidosDB::selectPedidosByCliente($clienteId);
+    $todosPedidos = array_merge($todosPedidos, $pedidosCliente);
+}
+$productos = PedidosDB::selectPedidos();
+$pedidos = $todosPedidos;
+
 require('pedidos-page-view.php');
