@@ -19,6 +19,8 @@ if ($admin == true) {
 
         $nombre          = $_POST['nombre'];
         $descripcion     = $_POST['descripcion'];
+        $descripcion_euskera = $_POST['descripcion_euskera'];
+        $descripcion_ingles = $_POST['descripcion_ingles'];
         $categoria_id    = $_POST['categoria_id'];
         $talla_id        = $_POST['talla_id'];
         $tipo_producto_id   = $_POST['tipo_producto_id'];
@@ -47,6 +49,8 @@ if ($admin == true) {
             $producto->setDescuento($descuento);
             $producto->setPrecio($precio);
             $producto->setImagenUrl($imagen_url);
+            $producto->setDescripcionEus($descripcion_euskera);
+            $producto->setDescripcionEn($descripcion_ingles);
     
             $precio = filter_var($precio, FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
             $descuento = filter_var($descuento, FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
@@ -76,7 +80,9 @@ if ($admin == true) {
         $nombre_tipo_nuevo = ""; 
         $descuento        = ""; 
         $precio           = ""; 
-        $imagen_url       = ""; 
+        $imagen_url       = "";
+        $descripcion_euskera = "";
+        $descripcion_ingles = ""; 
         include('view-add.php');
     }
     
@@ -85,31 +91,7 @@ if ($admin == true) {
     header("location: ../index.php");
 }
 
-// if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-//     // Comprueba si el archivo fue cargado sin errores
-//     if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] == 0) {
-//         $nombreArchivo = $_FILES['imagen']['name'];
-//         $rutaTemporal = $_FILES['imagen']['tmp_name'];
-//         $rutaDestino = 'assets/img/camisetas/' . $nombreArchivo;
-
-//         // Mueve el archivo a la carpeta deseada
-//         if (move_uploaded_file($rutaTemporal, $rutaDestino)) {
-//             // Construye la URL de la imagen
-//             // $imagenUrl = 'http://tu-dominio.com/' . $rutaDestino;
-//             $imagenUrl = $rutaDestino;
-            
-//             // Inserta la URL de la imagen en la base de datos
-//             // Asegúrate de que $db es una instancia de PDO y $tabla es el nombre de tu tabla
-//             $stmt = $db->prepare("INSERT INTO $tabla (imagen_url) VALUES (?)");
-//             $stmt->execute([$imagenUrl]);
-//         } else {
-//             echo 'Error al mover el archivo';
-//         }
-//     } else {
-//         echo 'Error al cargar el archivo';
-//     }
-// }
 
 
 
-?>
+

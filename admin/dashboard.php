@@ -27,27 +27,27 @@
 
                     <div class="card-body text-center">
                         <div class="row">
-                            <div class="col-md-4 col-sm-12 my-4">
+                            <div class="col-md-6 col-sm-12 my-4">
                                 <button id="btn-opciones" class="btn btn-dark" onclick="window.location.href='../admin/items/index.php'">
                                     <img src="../assets/img/iconos/stock.png" alt="Imagen del botón">
                                     Items
                                 </button>
                             </div>
-                            <div class="col-md-4 col-sm-12 my-4">
+                            <div class="col-md-6 col-sm-12 my-4">
                                 <button id="btn-opciones" class="btn btn-dark" onclick="window.location.href='../admin/categorias/index.php'">
                                     <img src="../assets/img/iconos/categorias2.png" alt="Imagen del botón">
                                     Categorias
                                 </button>
                             </div>
-                            <div class="col-md-4 col-sm-12 my-4">
+                            <div class="col-md-6 col-sm-12 my-4">
                                 <button id="btn-opciones" class="btn btn-dark" onclick="window.location.href='../admin/messages/index.php'">
                                     <img src="../assets/img/iconos/mensajes.png" alt="Imagen del botón">
                                     Mensajes
                                 </button>
                             </div>
-                            <div class="col-md-4 col-sm-12 my-4">
+                            <div class="col-md-6 col-sm-12 my-4">
                                 <button id="btn-opciones" class="btn btn-dark" onclick="window.location.href='../admin/pedidos/index.php'">
-                                    <img src="../assets/img/iconos/.png" alt="Imagen del botón">
+                                    <img src="../assets/img/nosotros/free.png" alt="Imagen del botón">
                                     Pedidos
                                 </button>
                             </div>

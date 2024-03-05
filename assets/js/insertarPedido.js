@@ -43,6 +43,13 @@ codigoPostal.addEventListener('input', verificarCodigoPostal);
 
 const btnComprar = document.querySelector('#procesar-compra');
 
+if (contarProductosLocalStorage() === 0) {
+    btnComprar.disabled = true;
+}else{
+    btnComprar.disabled = false;
+}
+
+
 
 const limpiarInputs = () =>{
     nombre.value = "";
@@ -65,7 +72,7 @@ const alertInputs = () =>{
     codigoPostal.style.borderColor = 'red';
 }
 
-// path del archivo: assets/js/compraProductos.js
+
 formulario.addEventListener('submit', function(e) {
     e.preventDefault();
   
@@ -100,6 +107,7 @@ formulario.addEventListener('submit', function(e) {
         console.log('Success:', text);
         vaciarCarrito();
         limpiarInputs();
+        btnComprar.disabled = true;
         alertMensaje.innerHTML = text;
         alertMensaje.classList.add('alert', 'alert-success', 'text-center');
         $(alertMensaje).hide().slideDown(500);
@@ -222,27 +230,5 @@ function verificarCodigoPostal(event) {
     }
 }
 
-// esto es lo que se muestra en el form despues de haber envaido el mensaje
-const showDatosMensaje = (formData) => {
-    // const mensajeEnviado = document.querySelector('#mensaje-enviado');
-    // mensajeEnviado.innerHTML = "";
 
-    for (let [key, valor] of formData.entries()) {
-
-        const paragraph = document.createElement('p');
-        paragraph.textContent = `${key}: ${valor}`;
-        // mensajeEnviado.appendChild(paragraph);
-
-      
-        // Selecciona el alertMensajeo del formulario por su nombre y deshabilítalo
-        const formalertMensaje = document.querySelector(`#${key}`);
-        if (formalertMensaje) {
-          formalertMensaje.value = `Value Sent: ${valor}`;
-          formalertMensaje.disabled = true;
-        }
-    }
-}
-
-
-// limpiarInputs();
 }

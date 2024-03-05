@@ -31,13 +31,18 @@ function createMensajeFromId($id) {
 try {
     if (isset($_POST['eliminar'], $_POST['id'])) {
         $id = validateInput($_POST['id']);
-        $pedido = createMensajeFromId($id);
-
-        if (PedidosDB::removePedido($pedido) > 0) {
-            header("Location: index.php"); 
-            exit;
+    
+        // Primero, eliminar los pedidos del cliente
+        if (PedidosDB::eliminarPedidoCliente($id)) {
+            // Luego, si los pedidos se eliminaron correctamente, eliminar al cliente
+            if (ClientesDB::eliminarCliente($id)) {
+                header("Location: index.php"); 
+                exit;
+            } else {
+                $messageError = "Error: No se pudo eliminar al cliente";
+            }
         } else {
-            $messageError = "Error: No se ha podido completar la acción deseada";
+            $messageError = "Error: No se pudieron eliminar los pedidos del cliente";
         }
     }
 
@@ -55,15 +60,12 @@ try {
             exit;
         } else {
             $id = validateInput($_POST['id']);
-            $status = isset($_POST['status']) ? filter_var($_POST['status']) : null;
-            if ($status === false) {
-                throw new Exception("Invalid status");
+            $estado = isset($_POST['estado']) ? filter_var($_POST['estado'], FILTER_SANITIZE_STRING) : null;
+            if ($estado === false) {
+                throw new Exception("Invalid estado");
             }
-            $pedido = createMensajeFromId($id);
-            $pedido->setStatus($status);
-            if (PedidosDB::updatePedido($pedido) > 0) {
-                $pedido = PedidosDB::selectPedido($id);
-                require('view-pedido.php');
+            if(ClientesDB::cambiarEstadoCliente($id, $estado)) {
+                header("Location: index.php"); 
                 exit;
             } else {
                 $messageError = "Error: No se ha podido completar la acción deseada";
@@ -79,9 +81,10 @@ try {
 $clientes = ClientesDB::selectAllClientes();
 $todosPedidos = array();
 
-foreach($clientes as $pedido) {
-    $clienteId = $pedido->getId();
-    $emailCliente = $pedido->getEmail();    
+
+foreach($clientes as $cliente) {
+    $clienteId = $cliente->getId();
+    $pedido = PedidosDB::selectPedido($clienteId);
     $pedidosCliente = PedidosDB::selectPedidosByCliente($clienteId);
     $todosPedidos = array_merge($todosPedidos, $pedidosCliente);
 }

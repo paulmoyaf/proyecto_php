@@ -111,7 +111,9 @@ body{
 }
 
 #secServicios img{
-  width: 5em;
+  width: fit-content;
+  aspect-ratio: 3/2;
+
 }
 
 #logosUnis{
@@ -167,9 +169,11 @@ font-size: small;
 }
 
 
-/* #lista-items{
-  display: none;
-} */
+.image-option.selected img {
+  padding: 0.5em;
+  border: 1px solid var(--negro);
+  border-radius: 1em;
+}
 
 .header-titulo{
   display: flex;

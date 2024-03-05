@@ -24,6 +24,9 @@ class ProductosDB{
                 $producto->setDescuento($registro['descuento']);
                 $producto->setPrecio($registro['precio']);
                 $producto->setImagenURL($registro['imagen_url']);
+                $producto->setStock($registro['stock']);
+                $producto->setDescripcionEus($registro['descripcion_eus']);
+                $producto->setDescripcionEn($registro['descripcion_en']);
                 $productos[] = $producto;                
             }
 
@@ -54,7 +57,10 @@ class ProductosDB{
                         'descuento' => (float)$registro['descuento'],
                         'precio' => (float)$registro['precio'],
                         'precio_final' => (float)$registro['precio_final'],
-                        'imagen_url' => $registro['imagen_url']
+                        'imagen_url' => $registro['imagen_url'],
+                        'stock' => (int)$registro['stock'],
+                        'descripcion_eus' => $registro['descripcion_eus'],
+                        'descripcion_en' => $registro['descripcion_en']
                     );
                     $productos[] = $producto;
                     $i++;
@@ -84,6 +90,9 @@ class ProductosDB{
                 $producto->setDescuento($registro['descuento']);
                 $producto->setPrecio($registro['precio']);
                 $producto->setImagenURL($registro['imagen_url']);
+                $producto->setStock($registro['stock']);
+                $producto->setDescripcionEus($registro['descripcion_eus']);
+                $producto->setDescripcionEn($registro['descripcion_en']);
             }
             return  $producto;
         } catch (Exception $e){
@@ -97,7 +106,7 @@ class ProductosDB{
 
         try{
             $db = getDBConnection();
-            $sql = "insert into productos (nombre, descripcion, categoria_id, talla_id, tipo_producto_id, descuento, precio, precio_final, imagen_url) values";
+            $sql = "insert into productos (nombre, descripcion, categoria_id, talla_id, tipo_producto_id, descuento, precio, precio_final, imagen_url, stock, descripcion_eus, descripcion_en) values ";
             $sql = $sql . "('" .$producto->getNombre() . "'";
             $sql = $sql . ",'" .$producto->getDescripcion() . "'";
             $sql = $sql . ",'" .$producto->getCategoriaId() . "'";
@@ -106,8 +115,10 @@ class ProductosDB{
             $sql = $sql . ",'" .$producto->getDescuento() . "'";
             $sql = $sql . ",'" .$producto->getPrecio() . "'";
             $sql = $sql . ",'" .$producto->getPrecioFinal() . "'";
-            $sql = $sql . ",'" .$producto->getImagenUrl() . "')";
-
+            $sql = $sql . ",'" .$producto->getImagenUrl() . "'";
+            $sql = $sql . ",'" .$producto->getStock() . "'";
+            $sql = $sql . ",'" .$producto->getDescripcionEus() . "'";
+            $sql = $sql . ",'" .$producto->getDescripcionEn() . "')";
             $res = $db->exec($sql);
             return $res;
         } catch (Exception $e){
@@ -130,8 +141,10 @@ class ProductosDB{
             $sql = $sql . "descuento = '" .$producto->getDescuento() . "',";
             $sql = $sql . "precio = '" .$producto->getPrecio() . "',";
             $sql = $sql . "precio_final = '" .$producto->getPrecioFinal() . "',";
-            $sql = $sql . "imagen_url = '" .$producto->getImagenUrl() . "'";
-
+            $sql = $sql . "imagen_url = '" .$producto->getImagenUrl() . "',";
+            $sql = $sql . "stock = '" .$producto->getStock() . "',";
+            $sql = $sql . "descripcion_eus = '" .$producto->getDescripcionEus() . "',";
+            $sql = $sql . "descripcion_en = '" .$producto->getDescripcionEn() . "'";
             $sql = $sql . " WHERE id = " .$producto->getId() . "";
 
             $resultado = $db->exec($sql);

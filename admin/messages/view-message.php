@@ -56,7 +56,6 @@
                     <input type="hidden" name="id" value="<?= htmlspecialchars($mensaje->getId()) ?>">
                     <input id="status" type="checkbox" name="status" value="leido" <?= $mensaje->getStatus() == 'leido' ? 'checked' : '' ?>>
                     <label for="status">Leído</label>
-                    <!-- <label for="status"><?= $mensaje->getStatus() == 'leido' ? 'Leído' : 'Sin leer' ?></label> -->
                     <button id="btn-actualizar" type="submit" class="btn btn-sm btn-warning" disabled>Actualizar estado</button>
                 </form>
             </div>

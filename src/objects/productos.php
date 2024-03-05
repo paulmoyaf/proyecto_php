@@ -15,6 +15,8 @@ class Producto {
     private $stock;
     private $descripcion_eus;
 
+    private $descripcion_en;
+
     public function __construct() {
         $this->descuento = 50;
     }
@@ -127,6 +129,13 @@ class Producto {
         $this->descripcion_eus = $descripcion_eus;
     }
 
+    public function getDescripcionEn() {
+        return $this->descripcion_en;
+    }
+
+    public function setDescripcionEn($descripcion_en) {
+        $this->descripcion_en = $descripcion_en;
+    }
     
 
 }

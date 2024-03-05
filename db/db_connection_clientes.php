@@ -22,6 +22,7 @@ class ClientesDB{
                     $cliente->setTotalProductos($registro['total_productos']);
                     $cliente->setPrecioTotal($registro['precio_total']);
                     $cliente->setCreateDate($registro['create_date']);
+                    $cliente->setEstado($registro['estado']);
                     $clientes[] = $cliente;                
                 }
     
@@ -48,6 +49,7 @@ class ClientesDB{
                 $cliente->setTotalProductos($registro['total_productos']);
                 $cliente->setPrecioTotal($registro['precio_total']);
                 $cliente->setCreateDate($registro['create_date']);
+                $cliente->setEstado($registro['estado']);
                 return $cliente;
     
             } catch (Exception $e){
@@ -67,7 +69,8 @@ class ClientesDB{
                 $totalProductos = $cliente->getTotalProductos();
                 $precioTotal = $cliente->getPrecioTotal();
                 $createDate = $cliente->getCreateDate();
-                $sql = "insert into clientes (nombre, email, direccion, ciudad, codigoPostal, total_productos, precio_total, create_date) values ('$nombre', '$email', '$direccion', '$ciudad', '$codigoPostal', $totalProductos, $precioTotal, '$createDate')";
+                $estado = $cliente->getEstado();
+                $sql = "insert into clientes (nombre, email, direccion, ciudad, codigoPostal, total_productos, precio_total, create_date, estado) values ('$nombre', '$email', '$direccion', '$ciudad', '$codigoPostal', $totalProductos, $precioTotal, '$createDate', '$estado')";
                 $count = $db->exec($sql);
                 return $count;
     
@@ -98,17 +101,29 @@ class ClientesDB{
             }
         }
 
-        public static function removeCliente($cliente){
+        public static function eliminarCliente($clienteId){
             try{
                 $db = getDBConnection();
-                $id = $cliente->getId();
-                $sql = "delete from clientes where id = $id";
+                $sql = "delete from clientes where id = $clienteId";
                 $count = $db->exec($sql);
                 return $count;
-    
+        
             } catch (Exception $e){
                 echo "<p>Error:" .$e->getMessage() . "</p>\n";
                 return null;
             }
-        }   
+        }
+
+        public static function cambiarEstadoCliente($clienteId, $estado){
+            try{
+                $db = getDBConnection();
+                $sql = "update clientes set estado = '$estado' where id = $clienteId";
+                $count = $db->exec($sql);
+                return $count;
+        
+            } catch (Exception $e){
+                echo "<p>Error:" .$e->getMessage() . "</p>\n";
+                return null;
+            }
+        }
     }

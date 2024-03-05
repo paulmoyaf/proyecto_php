@@ -39,6 +39,14 @@
                         <label for="descripcion" class="form-label">Descripcion:</label>
                         <input type="text" name="descripcion" id="descripcion" class="form-control" value="<?php echo $descripcion ?>">
                     </div>
+                    <div class="mb-3">
+                        <label for="descripcion" class="form-label">Descripcion Euskera:</label>
+                        <input type="text" name="descripcion_euskera" id="descripcion_euskera" class="form-control" value="<?php echo $descripcion_euskera ?>">
+                    </div>
+                    <div class="mb-3">
+                        <label for="descripcion" class="form-label">Descripcion Ingles:</label>
+                        <input type="text" name="descripcion_ingles" id="descripcion_ingles" class="form-control" value="<?php echo $descripcion_ingles ?>">
+                    </div>
 
                     <div class="form-group-item mb-3">
                         <label for="categoria_id" class="form-label">Categoria:</label>
@@ -78,13 +86,25 @@
                         <input type="text" name="descuento" id="descuento" class="form-control" value="<?php echo $descuento ?>">
                     </div>
 
-                    <div class="form-group-item mb-3">
+                    <!-- <div class="form-group-item mb-3">
                         <label for="imagen_url" class="form-label">Imagen:</label>
                         <div class="d-flex gap-3">
                             <img class="form-control w-25" src="../../<?php echo $producto->getImagenURL() ?>" alt="imagen-item">
                             <input style="height: 3em" type="text" name="imagen_url" id="imagen_url" class="form-control" value="<?php echo $imagen_url ?>" >
                         </div>
-                        <!-- <input type="file" name="imagen_url" id="imagen_url" class="form-control"> -->
+                    </div> -->
+                    <div class="form-group-item mb-3">
+                        <label class="form-label">Modelos:</label>
+                        <div class="d-flex flex-wrap">
+                            <?php for($i = 1; $i <= 9; $i++): ?>
+                                <div class="m-2 image-option">
+                                    <input type="radio" id="imagen_url<?php echo $i; ?>" name="imagen_url" value="../assets/img/camisetas/cam_<?php echo $i; ?>_.webp" style="display: none;" <?php if($producto->getImagenURL() == "../assets/img/camisetas/cam_".$i."_.webp") echo 'checked'; ?>>
+                                    <label for="imagen_url<?php echo $i; ?>">
+                                        <img src="../../../assets/img/camisetas/cam_<?php echo $i; ?>_.webp" alt="Imagen <?php echo $i; ?>" style="width: 100px;">
+                                    </label>
+                                </div>
+                            <?php endfor; ?>
+                        </div>
                     </div>
                     <div class="row gap-3 mx-3">
                         <input class="btn btn-success col" name="editar" type="submit" value="Actualizar">
@@ -94,6 +114,7 @@
 
             </div>
         </div>
+        <script src="../../../assets/js/botonesImg.js"></script>
 
 </body>
 

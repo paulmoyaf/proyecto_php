@@ -6,6 +6,7 @@ $categorias = ProductosDB::selectCategorias();
 $tallas = ProductosDB::selectTallas();
 $tiposProducto = ProductosDB::selectTipoProducto();
 
+
 $title = "Catalogo";
 $favicon = "../assets/img/logo/favicon.ico";
 $css = "../assets/css/style.css";
@@ -46,9 +47,8 @@ if (isset($_GET['id'])) {
 
     $nombre_tipo_producto = ProductosDB::obtenerNombreTipoProducto($producto->getTipoProductoId());
     $nombre_tipo_categoria = ProductosDB::obtenerNombreTipoCategoria($producto->getCategoriaId());
-    // $tallas = ProductosDB::selectTallas();
-    // $tiposProducto = ProductosDB::selectTipoProducto();
-    // 
+    $descripcion_producto = $_SESSION['idioma'] == 'es' ? $producto->getDescripcion() : ($_SESSION['idioma'] == 'eus' ? $producto->getDescripcionEus() : $producto->getDescripcionEn());
+
 
     include '../src/views/product-page.php';
 
@@ -56,9 +56,7 @@ if (isset($_GET['id'])) {
     
     $productos = ProductosDB::selectProductos();
     $productosJSON = ProductosDB::selectProductosJSON();
-    // $categorias = ProductosDB::selectCategorias();
-    // $tallas = ProductosDB::selectTallas();
-    // $tiposProducto = ProductosDB::selectTipoProducto();
+
     $title = "Catalogo";
     $favicon = "../assets/img/logo/favicon.ico";
     $css = "../assets/css/style.css";

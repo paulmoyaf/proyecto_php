@@ -29,7 +29,9 @@
                         <tr>
                             <th scope="col">Imagen</th>
                             <th scope="col">Nombre</th>
-                            <th scope="col">Descripcion</th>
+                            <th class="w-25" scope="col">Descripcion</th>
+                            <!-- <th class="w-25" scope="col">Descripcion Eus</th>
+                            <th class="w-25" scope="col">Descripcion Ing</th> -->
                             <th scope="col">Categoria</th>
                             <th scope="col">Talla</th>
                             <th scope="col">Tipo</th>
@@ -43,7 +45,9 @@
                         <tr class="">
                             <td><img src="../../<?php echo $producto->getImagenURL()  ?>" alt="imagen-item"></td>
                             <td><?php echo $producto->getNombre()  ?></td>
-                            <td><?php echo $producto->getDescripcion() ?></td>
+                            <td class="text-truncate w-25"><?php echo $producto->getDescripcion() ?></td>
+                            <!-- <td class="text-truncate w-25"><?php echo $producto->getDescripcionEus() ?></td>
+                            <td class="text-truncate w-25"><?php echo $producto->getDescripcionEn() ?></td> -->
                             <td><?php echo $nombre_tipo_categoria ?></td>
                             <td><?php echo $nombre_talla ?></td>
                             <td><?php echo $nombre_tipo_producto ?></td>

@@ -29,6 +29,8 @@
                         <th scope="col">Imagen</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Descripcion</th>
+                        <th scope="col">Descripcion Euskera</th>
+                        <th scope="col">Descripcion Ingles</th>
                         <th scope="col">Categoria</th>
                         <th scope="col">Talla</th>
                         <th scope="col">Tipo</th>
@@ -41,7 +43,9 @@
                     <tr class="">
                         <td><img src="../../<?php echo $imagen_url ?>" alt="imagen-item"></td>
                         <td><?php echo $nombre  ?></td>
-                        <td><?php echo $descripcion ?></td>
+                        <td class="text-truncate"><?php echo $descripcion ?></td>
+                        <td class="text-truncate"><?php echo $descripcion_euskera ?></td>
+                        <td class="text-truncate"><?php echo $descripcion_ingles ?></td>
                         <td><?php echo $nombre_categoria_nuevo ?></td>
                         <td><?php echo $nombre_talla_nuevo ?></td>
                         <td><?php echo $nombre_tipo_nuevo ?></td>

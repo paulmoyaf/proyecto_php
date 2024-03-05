@@ -107,10 +107,12 @@ const mostrarCarroVacio = () => {
 }
 
 function mostrarBotonEliminarTodo() {
-  if (contarProductosLocalStorage() > 0) {
-    btnEliminarTodo.style.display = "block";
-  }else{
-    mostrarCarroVacio();
+  if(btnEliminarTodo) {
+    if (contarProductosLocalStorage() > 0) {
+      btnEliminarTodo.style.display = "block";
+    }else{
+      mostrarCarroVacio();
+    }
   }
 }
 
@@ -312,12 +314,12 @@ function createElement(tag, classes = [], properties = {}) {
 }
 
 const mostrarContenidoCarrito = () => {
-  // if (contarProductosLocalStorage() > 0) {
+  if (contenedorCarrito) {
     contenedorCarrito.classList.remove('d-none');
     contenedorCarrito.classList.add('d-block');
-  // }
+  }
 }
-//funcion para crear las cards de los productos en el carrito
+
 
 
 function createCardToCar(producto) {
@@ -360,12 +362,13 @@ function createCardToCar(producto) {
       card.remove();
       actualizarPrecioTotalLocalStorage();
       actualizarCantidadLocalStorage();
-      mostrarCarroVacio();
+
 
       if (contarProductosLocalStorage() === 0) {
         btnEliminarTodo.style.display = "none";
         contenedorCarrito.classList.remove('d-block');
         contenedorCarrito.classList.add('d-none');
+        mostrarCarroVacio();
       }
     });
 
@@ -530,9 +533,7 @@ document.querySelectorAll('.btn-add').forEach(function(button) {
       imagen_url: this.getAttribute("data-imagen"),
       stock: this.getAttribute("data-stock"),
       descripcion_eus: this.getAttribute("data-descripcion-eus"),
-
     };
-
       guardarCardLocalStorage(producto);
       btnEliminarTodo.style.display = "block";      
   });
@@ -541,16 +542,16 @@ document.querySelectorAll('.btn-add').forEach(function(button) {
 function guardarCardLocalStorage(producto) {
     const existingCard = document.querySelector(`[name="${producto.nombre}"]`);
 
-  if (existingCard) {
-    actualizarCardProducto(producto, existingCard);
-  } else {
-  const card = createCardToCar(producto);
-  if(!buscarProductoLocalStorage(producto)){
-    divHtml.appendChild(card);
+    if (existingCard) {
+      actualizarCardProducto(producto, existingCard);
+    } else {
+    const card = createCardToCar(producto);
+    if(!buscarProductoLocalStorage(producto)){
+      if (divHtml){
+        divHtml.appendChild(card);
+      }
+    }
   }
-}
-
-  // guardarProducto(producto);
   guardarProductosLocalStorage(producto);
   actualizarPrecioTotalLocalStorage();
   actualizarCantidadLocalStorage();
@@ -718,7 +719,9 @@ function getPrecioTotalLocalStorage() {
       }
       else {
         const card = createCardToCar(producto);
-        divHtml.appendChild(card);
+        if (divHtml){
+          divHtml.appendChild(card);
+        }
       }
     });
   }

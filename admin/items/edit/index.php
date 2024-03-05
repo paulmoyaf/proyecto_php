@@ -38,6 +38,8 @@ if ($admin) {
         if (isset($_POST['editar'])) {
             $nombre = $_POST['nombre'];
             $descripcion = $_POST['descripcion'];
+            $descripcion_euskera = $_POST['descripcion_euskera'];
+            $descripcion_ingles = $_POST['descripcion_ingles'];
             $categoria_id = $_POST['categoria_id'];
             $talla_id = $_POST['talla_id'];
             $tipo_producto_id = $_POST['tipo_producto_id'];
@@ -57,6 +59,8 @@ if ($admin) {
                 $producto->setId($id);
                 $producto->setNombre($nombre);
                 $producto->setDescripcion($descripcion);
+                $producto->setDescripcionEus($descripcion_euskera);
+                $producto->setDescripcionEn($descripcion_ingles);
                 $producto->setCategoriaId($categoria_id);
                 $producto->setTallaId($talla_id);
                 $producto->setTipoProductoId($tipo_producto_id);
@@ -86,6 +90,8 @@ if ($admin) {
         } else {
             $nombre = $producto->getNombre();
             $descripcion = $producto->getDescripcion();
+            $descripcion_euskera = $producto->getDescripcionEus();
+            $descripcion_ingles = $producto->getDescripcionEn();
             $descuento = $producto->getDescuento();
             $precio = $producto->getPrecio();
             $imagen_url = $producto->getImagenUrl();

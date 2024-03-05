@@ -42,6 +42,8 @@
                     <?php foreach ($productos as $producto) :
                         $nombre_tipo_producto = ProductosDB::obtenerNombreTipoProducto($producto->getTipoProductoId());
                         $nombre_tipo_categoria = ProductosDB::obtenerNombreTipoCategoria($producto->getCategoriaId());
+                        $descripcion_producto = $_SESSION['idioma'] == 'es' ? $producto->getDescripcion() : ($_SESSION['idioma'] == 'eus' ? $producto->getDescripcionEus() : $producto->getDescripcionEn());
+
                     ?>
                         <div class="col-lg-4 col-md-4 col-6 pb-5 px-3">
 
@@ -51,7 +53,7 @@
                                     <div class="card-body">
                                         <img id="img-producto" src="<?php echo $producto->getImagenURL() ?>" class="img-fluid rounded-start py-3" style="width: 15em" alt="Card title">
                                         <h5 class="card-title"><?php echo $producto->getNombre() ?></h5>
-                                        <p class="card-text text-muted d-none d-md-block d-lg-block"><?php echo $producto->getDescripcion() ?></p>
+                                        <p class="card-text text-muted d-none d-md-block d-lg-block"><?php echo $descripcion_producto ?></p>
                                         <p class="card-text text-muted" id="tipo-producto"><?php echo $textos['tipo']; ?> <strong><?php echo $nombre_tipo_producto ?></strong> </p>
                                         <?php if ($producto->getTipoProductoId() == 1): ?>
                                             <div class="d-flex justify-content-center align-items-center gap-2">
@@ -75,7 +77,6 @@
                                 <div class="card-footer">
                                     <p class="card-text" style="font-size: larger;" id="price-producto"><?php echo $producto->getPrecioFinal() ?>€</p>
                                 </div>
-                                <!-- <button class="btn btn-warning w-100 btn-add" id="btn-add-to-car"><?php echo $textos['agregar-carrito']; ?></button> -->
                                 <button class="btn btn-warning w-100 btn-add"  id="btn-add-to-car"
                                 data-id="<?php echo $producto->getId() ?>"
                                 data-nombre="<?php echo $producto->getNombre() ?>"
@@ -89,7 +90,6 @@
                                 data-precio-final="<?php echo $producto->getPrecioFinal() ?>"
                                 data-stock="<?php echo $producto->getStock() ?>"
                                 data-descripcion-eus="<?php echo $producto->getDescripcionEus() ?>"
-                                
                                 ><?php echo $textos['agregar-carrito']; ?></button>
                             </div>
                         </div>

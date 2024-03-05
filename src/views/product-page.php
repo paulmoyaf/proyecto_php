@@ -17,7 +17,9 @@
             <!-- <img class="card-img-top logo" src="../src/img/logo/logo.png" alt="Title"> -->
             <!-- <p class="display-5 text-end">View Item</p> -->
             <ol class="breadcrumb">
-                <li class="breadcrumb-item text-dark"><a href="catalogo.php"><?php echo $textos['catalogo']; ?></a></li>
+                <li class="breadcrumb-item">
+                    <a href="catalogo.php" class="text-dark font-bold"><?php echo $textos['catalogo']; ?></a>
+                </li>
                 <li class="breadcrumb-item active" aria-current="page"><?php echo $producto->getNombre() ?></li>
             </ol>
         </div>
@@ -29,7 +31,7 @@
                 <img class="card-img-top" src="<?php echo $producto->getImagenURL()  ?>">
                 <div class="card-body">
                     <h4 class="card-title"><?php echo $producto->getNombre()  ?></h4>
-                    <p class="card-text"><?php echo $producto->getDescripcion()  ?></p>
+                    <p class="card-text"><?php echo $descripcion_producto ?></p>
                 </div>
             </div>
 
@@ -37,14 +39,14 @@
                 <div class="h3"><?php echo $textos['caracteristicas']; ?></div>
                 <hr>
                 <ul>
-                    <li><?php echo $textos['descripcion']; ?>: <?php echo $producto->getDescripcion() ?></li>
-                    <li><?php echo $textos['tipo']; ?>: <?php echo $nombre_tipo_producto ?></li>
+                    <li><?php echo $textos['descripcion']; ?>: <?php echo $descripcion_producto ?></li>
+                    <li><?php echo $textos['tipo']; ?><?php echo $nombre_tipo_producto ?></li>
                     <li><?php echo $textos['precio']; ?>: <?php echo $producto->getPrecio() ?></li>
                     <li><?php echo $textos['descuentos']; ?>: <?php echo $producto->getDescuento() ?> % (<?php echo $textos['parrafo-prime'] ?>)</li>
                 </ul>
-                <p class="display-6"><?php echo $producto->getPrecioFinal()  ?> €</p>
+                <p class="display-6 text-center"><?php echo $producto->getPrecioFinal()  ?> €</p>
 
-                <div class="row form-group">
+                <!-- <div class="row form-group">
                     <div class="mb-3 col">
                         <label for="talla_id"><?php echo $textos['talla']; ?>:</label>
                         <select class="form-select form-select-md" name="talla_id">
@@ -55,15 +57,26 @@
 
                     </div>
 
-
                     <div class="form-outline col">
                         <label for="cantidad"><?php echo $textos['cantidad']; ?>: </label>
                         <input type="number" id="typeNumber" name="cantidad" class="form-control form-select-md" placeholder="<?php echo $textos['cantidad'] ?>" min="0" />
-                        <!-- <label class="form-label" for="typeNumber">Number input</label> -->
                     </div>
-                </div>
+                </div> -->
 
-                <input type="button" class="btn btn-primary w-100" value="<?php echo $textos['agregar-carrito']; ?>">
+                <button class="btn btn-warning w-100 btn-add"  id="btn-add-to-car"
+                                data-id="<?php echo $producto->getId() ?>"
+                                data-nombre="<?php echo $producto->getNombre() ?>"
+                                data-descripcion="<?php echo $producto->getDescripcion() ?>"
+                                data-categoria="<?php echo $producto->getCategoriaId() ?>"
+                                data-talla="<?php echo $producto->getTallaId() ?>"
+                                data-tipo="<?php echo $producto->getTipoProductoId() ?>"
+                                data-descuento="<?php echo $producto->getDescuento()?>"
+                                data-precio="<?php echo $producto->getPrecio() ?>"
+                                data-imagen="<?php echo $producto->getImagenURL() ?>"
+                                data-precio-final="<?php echo $producto->getPrecioFinal() ?>"
+                                data-stock="<?php echo $producto->getStock() ?>"
+                                data-descripcion-eus="<?php echo $producto->getDescripcionEus() ?>"
+                                ><?php echo $textos['agregar-carrito']; ?></button>
             </div>
 
         </div>

@@ -67,6 +67,11 @@
                 <div>
                     <h4>Detalle del Pedido:</h4>
                     <div class="d-flex align-items-center gap-3">
+                        <label for="" class="form-label w-25 text-end">Id Pedido:</label>
+                        <input type="text" readonly class="form-control text-center w-25 text-truncate"
+                        value="<?= htmlspecialchars($cliente->getId()) ?>">
+                    </div>
+                    <div class="d-flex align-items-center gap-3">
                         <label for="" class="form-label w-25 text-end">Precio Total Pedido:</label>
                         <input type="text" readonly class="form-control text-center w-25 text-truncate"
                         value="<?= htmlspecialchars($cliente->getPrecioTotal()) ?> €">
@@ -77,13 +82,23 @@
                         value="<?= htmlspecialchars($cliente->getTotalProductos()) ?> uds.">
                     </div>
                     <div class="d-flex align-items-center gap-3">
-                        <label for="" class="form-label w-25 text-end">Status:</label>
-                        <input type="text" readonly class="form-control text-center w-25 text-truncate"
-                        value="<?= htmlspecialchars($cliente->getEstado()) ?>">
+                        <label for="" class="form-label w-25 text-end">Estado del Pedido:</label>
+                            <input type="hidden" name="id" value="<?= htmlspecialchars($cliente->getId()) ?>">
+                            <input id="status" type="checkbox" name="status" value="enviado" <?= $cliente->getEstado() == 'true' ? 'checked' : '' ?>>
+                            <label for="status">Enviado</label>
                     </div>
+
                     <div class="d-flex gap-3 mt-3">
-                        <button class="btn btn-warning" id="btn-enviar">Enviar Pedido</button>
-                        <button class="btn btn-danger" id="btn-eliminar">Eliminar Pedido</button>
+                        <form method="post" action="index.php">
+                            <input type="hidden" name="id" value="<?= htmlspecialchars($cliente->getId()) ?>">
+                            <input type="hidden" name="estado" value="true">
+                            <button id="btn-actualizar" type="submit" class="btn btn-warning">Enviar Pedido</button>
+                        </form>
+                        <form method="post" action="index.php">
+                            <input type="hidden" name="id" value="<?= htmlspecialchars($cliente->getId()) ?>">
+                            <input type="hidden" name="eliminar" value="true">
+                            <input type="submit" value="Eliminar Pedido" id="btn-delete" class="btn btn-danger">
+                        </form>
                     </div>
                 </div>
                 <div class="table-responsive">
@@ -104,7 +119,7 @@
                                         <?= htmlspecialchars($pedido->getId()) ?>
                                     </td>
                                     <td>
-                                        <?= htmlspecialchars($pedido->getClienteId()) ?>
+                                        <?= htmlspecialchars(PedidosDB::obtenerNombreProducto($pedido->getProductoId())) ?>
                                     </td>
                                     <td>
                                         <?= htmlspecialchars($pedido->getPrecioTotal()) ?> €

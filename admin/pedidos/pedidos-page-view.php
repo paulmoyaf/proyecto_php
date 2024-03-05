@@ -17,7 +17,7 @@
         <a href='../../admin/index.php'>
             <img class="card-img-top logo" src="../../assets/img/logo/logo.png" alt="Logo">
         </a>
-        <p class="h2 text-center">clientes</p>
+        <p class="h2 text-center">Pedidos</p>
         <button class="btn btn-warning btn-sm " onclick="window.location.href='../logout.php'" style="height: fit-content">Cerrar Sesión</button>  
 
     </div>
@@ -45,7 +45,7 @@
                         <td><?= htmlspecialchars($cliente->getPrecioTotal()) ?> €</td>
                         <td><?= htmlspecialchars($cliente->getTotalProductos()) ?> uds.</td>
                         <td>
-                            <input type="checkbox" name="status" value="enviado" <?= $cliente->getEstado() == 'enviado' ? 'checked' : '' ?> disabled>
+                            <input type="checkbox" name="status" <?= htmlspecialchars($cliente->getEstado()) == 'true' ? 'checked' : '' ?> disabled>
                             <label for="status">Enviado</label>
                         </td>
 
@@ -53,12 +53,7 @@
                             <form method="post" action="index.php">
                                 <input type="hidden" name="id" value="<?= htmlspecialchars($cliente->getId()) ?>">
                                 <input type="hidden" name="ver-item" value="true">
-                                <input type="submit" value="Editar" id="btn-view" class="btn btn-outline-secondary btn-small w-100 mb-2">
-                            </form>
-                            <form method="post" action="index.php">
-                                <input type="hidden" name="id" value="<?= htmlspecialchars($cliente->getId()) ?>">
-                                <input type="hidden" name="eliminar" value="true">
-                                <input type="submit" value="Eliminar" id="btn-delete" class="btn btn-danger btn-small w-100">
+                                <input type="submit" value="Ver Pedido" id="btn-view" class="btn btn-secondary btn-small w-100 mb-2">
                             </form>
                         </td>
                     </tr>

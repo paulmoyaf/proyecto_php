@@ -40,6 +40,14 @@
                         <input type="text" name="descripcion" id="descripcion" class="form-control" value="<?php echo $descripcion ?>">
                     </div>
                     <div class="form-group-item mb-3">
+                        <label for="categoria_id" class="form-label">Descripcion Euskera:</label>
+                        <input type="text" name="descripcion_euskera" id="descripcion_euskera" class="form-control" value="<?php echo $descripcion_euskera ?>">
+                    </div>
+                    <div class="form-group-item mb-3">
+                        <label for="categoria_id" class="form-label">Descripcion Ingles:</label>
+                        <input type="text" name="descripcion_ingles" id="descripcion_ingles" class="form-control" value="<?php echo $descripcion_ingles ?>">
+                    </div>
+                    <div class="form-group-item mb-3">
                         <label for="categoria_id" class="form-label">Categoria:</label>
                         <select class="form-select form-select-md" name="categoria_id" id="categoria_id" class="form-control" required>
                             <option value="" selected>Seleccionar categoría</option>
@@ -79,9 +87,21 @@
                         <input type="text" name="descuento" id="descuento" class="form-control" value="<?php echo $descuento ?>">
                     </div>
                     <div class="form-group-item mb-3">
-                        <label for="imagen_url" class="form-label">Imagen:</label>
-                        <input type="text" name="imagen_url" id="imagen_url" class="form-control" value="<?php echo $imagen_url?>" placeholder="../assets/img/camisetas/cam_#_.webp">
+                        <label class="form-label">Modelos:</label>
+                        <div class="d-flex flex-wrap">
+                            <?php for($i = 1; $i <= 9; $i++): ?>
+                                <div class="m-2 image-option">
+                                    <input type="radio" id="imagen_url<?php echo $i; ?>" name="imagen_url" value="../assets/img/camisetas/cam_<?php echo $i; ?>_.webp" style="display: none;">
+                                    <label for="imagen_url<?php echo $i; ?>">
+                                        <img src="../../../assets/img/camisetas/cam_<?php echo $i; ?>_.webp" alt="Imagen <?php echo $i; ?>" style="width: 100px;">
+                                    </label>
+                                </div>
+                            <?php endfor; ?>
+                        </div>
                     </div>
+
+
+
 
                     <!-- <div class="form-group-item mb-3">
                         <label for="imagen_url" class="form-label">Imagen:</label>
@@ -95,6 +115,6 @@
                 </form>
             </div>
         </div>
-
+        <script src="../../../assets/js/botonesImg.js"></script>
 </body>
 </html>

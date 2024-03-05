@@ -136,4 +136,15 @@ class PedidosDB{
                 return null;
             }
         }
+
+        public static function eliminarPedidoCliente($id){
+            try{
+                $db = getDBConnection();
+                $registros = $db->query("delete from pedidos where cliente_id = $id");
+                return $registros->rowCount();
+            } catch (Exception $e){
+                echo "<p>Error:" .$e->getMessage() . "</p>\n";
+                return null;
+            }
+        }
     }
