@@ -330,8 +330,9 @@ function createCardToCar(producto) {
     const columnaIzquierda = createElement("div", ["col-4"]);
     const columnaDerecha = createElement("div", ["col-8"]);
     const cardBody = createElement("div", ["card-body"]);
-    const nombreElement = createElement("h6", ["card-title"], {'textContent': producto.id +': '+  producto.nombre});
-    const imgElement = createElement("img", ["card-img"], {'src': producto.imagen_url, 'style': 'width: 6em;'});    const tipoElement = createElement("p", ["card-text", "text-muted"], {'innerHTML': producto.tipo_producto_id});
+    const nombreElement = createElement("h6", ["card-title"], {'textContent': producto.nombre});
+    const imgElement = createElement("img", ["card-img"], {'src': producto.imagen_url, 'style': 'width: 6em;'});
+    const tipoElement = createElement("p", ["card-text", "text-muted"], {'innerHTML': producto.tipo_producto_id});
     const precioElement = createElement("p", ["card-text"], {'innerHTML': `<strong>${producto.precio_final}€</strong>`});
     const ofertaElement = createElement("div", ["d-flex", "gap-1", "align-items-center"]);
     const textoOferta = createElement("div", ["text-danger"], {'innerHTML': "Oferta: "});
