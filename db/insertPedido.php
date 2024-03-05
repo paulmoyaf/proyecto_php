@@ -52,6 +52,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute([$clienteId, $id, $producto['cantidad'], $producto['precio_final'], $currentTime, 'pendiente']);
     }
 
+    // $to = $email;
+    // $subject = "Confirmación de pedido";
+    // $message = "Gracias por tu pedido. Tu número de pedido es: " . $clienteId;
+    // $headers = "From: ilargicreative@example.com" . "\r\n";
+    // // "CC: paul.moyaf@gmail.com";
+    // mail($to,$subject,$message,$headers);
 
     // echo json_encode(['message' => 'Pedido insertado correctamente']);
     echo 'Pedido enviado correctamente';

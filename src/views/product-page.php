@@ -46,22 +46,6 @@
                 </ul>
                 <p class="display-6 text-center"><?php echo $producto->getPrecioFinal()  ?> €</p>
 
-                <!-- <div class="row form-group">
-                    <div class="mb-3 col">
-                        <label for="talla_id"><?php echo $textos['talla']; ?>:</label>
-                        <select class="form-select form-select-md" name="talla_id">
-                            <?php foreach ($tallas as $talla) { ?>
-                                <option value="<?php echo $talla['id']; ?>"><?php echo $talla['nombre']; ?></option>
-                            <?php } ?>
-                        </select>
-
-                    </div>
-
-                    <div class="form-outline col">
-                        <label for="cantidad"><?php echo $textos['cantidad']; ?>: </label>
-                        <input type="number" id="typeNumber" name="cantidad" class="form-control form-select-md" placeholder="<?php echo $textos['cantidad'] ?>" min="0" />
-                    </div>
-                </div> -->
 
                 <button class="btn btn-warning w-100 btn-add"  id="btn-add-to-car"
                                 data-id="<?php echo $producto->getId() ?>"

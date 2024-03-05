@@ -39,12 +39,12 @@
                 
                 
                 <div class="col-12 col-md-8 col-lg-8 order-1 order-md-2">
-                    <div id="contenedor-carrito" class="card bg-secondary p-3 mb-3 d-none">
-                        <div class="card-title text-light"><?php echo $textos['productos-agregado-carrito']; ?> ✔️</div>
+                    <div id="contenedor-carrito" class="card bg-light p-3 mb-3 d-none">
+                        <div class="card-title text-dark"><?php echo $textos['productos-agregado-carrito']; ?> ✔️</div>
                         <div class="d-flex flex-wrap" id="new-product"></div>
                     </div>
                     
-                    <div class="d-none text-center" id="carro-vacio">
+                    <div class="d-none text-center pb-3" id="carro-vacio">
                         <div class="alert alert-warning" role="alert"><?php echo $textos['mensaje-carro-vacio']; ?></div>
                         <img class="w-100 w-md-50 w-lg-50" src="../assets/img/varios/carro-vacio.jpg" alt="carro-vacio">
                     </div>
