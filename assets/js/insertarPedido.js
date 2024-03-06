@@ -130,7 +130,7 @@ formulario.addEventListener('submit', function(e) {
 
 
 function verificarCampos() {
-    if (esNombreValido(nombre.value) && esEmailValido(email.value) && esDireccionValida(direccion.value) && esNombreValido(ciudad.value) && esCodigoPostalValido(codigoPostal.value)) {
+    if (esNombreValido(nombre.value) && esEmailValido(email.value) && esDireccionValida(direccion.value) && esCiudadValida(ciudad.value) && esCodigoPostalValido(codigoPostal.value)) {
         return true;
     } else {
         return false;
@@ -140,6 +140,11 @@ function verificarCampos() {
 function esNombreValido(nombre) {
     const regex = /^[a-zA-ZñÑ\s]{2,}$/;
     return regex.test(nombre);
+}
+
+function esCiudadValida(ciudad) {
+    const regex = /^[a-zA-ZñÑ\s.,'-_0-9]{2,}$/;
+    return regex.test(ciudad);
 }
 
 function esEmailValido(email) {
@@ -209,7 +214,7 @@ function verificarDireccion(event) {
 
 
 function verificarCiudad(event) {
-    const esValido = esNombreValido(event.target.value);
+    const esValido = esCiudadValida(event.target.value);
     if (esValido) {
         ciudad.setCustomValidity('');
         ciudad.style.borderColor = 'green';

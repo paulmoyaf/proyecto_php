@@ -22,6 +22,15 @@
                     
                 </div>
                 <hr>
+
+                <div class="">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="../../admin/index.php" class="text-dark font-bold">Menu</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">Items</li>
+                    </ol>
+                </div>
                 
                 <div class="card bg-light">
                     <!-- <img class="card-img-top" src="" alt="Portada_Dashboard"> -->
