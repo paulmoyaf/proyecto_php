@@ -104,7 +104,7 @@ formulario.addEventListener('submit', function(e) {
       })
       .then(response => response.text())
       .then(text => {
-        console.log('Success:', text);
+        // console.log('Success:', text);
         vaciarCarrito();
         limpiarInputs();
         btnComprar.disabled = true;

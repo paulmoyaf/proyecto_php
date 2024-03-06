@@ -1,8 +1,10 @@
-
 <!-- path del archivo: db/insertPedido.php -->
 <?php
 
+// Importar PHPMailer classes al "namespace" global
+// Estos deben estar en la parte superior de tu script, no dentro de una función
 require_once('conexion.php');
+require_once('lib/enviarCorreo.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -52,17 +54,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute([$clienteId, $id, $producto['cantidad'], $producto['precio_final'], $currentTime, 'pendiente']);
     }
 
-    // $to = $email;
-    // $subject = "Confirmación de pedido";
-    // $message = "Gracias por tu pedido. Tu número de pedido es: " . $clienteId;
-    // $headers = "From: ilargicreative@example.com" . "\r\n";
-    // // "CC: paul.moyaf@gmail.com";
-    // mail($to,$subject,$message,$headers);
-
-    // echo json_encode(['message' => 'Pedido insertado correctamente']);
-    echo 'Pedido enviado correctamente';
+    if ($stmt->execute()) {
+        $subject = 'Confirmación de pedido';
+        $body = "Hola $nombre,\n\nTu pedido ha sido enviado correctamente.\n\nGracias por tu compra.";
+        if (sendEmail($email, $nombre, $subject, $body)) {
+            echo 'Pedido enviado correctamente y correo de confirmación enviado.';
+        } else {
+            echo "Pedido enviado correctamente, pero el correo de confirmación no pudo ser enviado.";
+        }
+    } else {
+        echo 'Hubo un error al enviar el pedido.';
+    }
+    
 } else {
-    // Maneja otros métodos HTTP o devuelve un error
     http_response_code(405);
     echo json_encode(['error' => 'Method not allowed']);
 }

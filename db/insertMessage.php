@@ -1,6 +1,7 @@
 <?php
 
 require_once('conexion.php');
+require_once('lib/enviarCorreo.php');
 
 // Verifica que el método de la petición sea POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -27,11 +28,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bindParam(5, $currentTime);
     $stmt->execute();
 
-    echo json_encode(["message" => "Mensaje enviado con éxito"]);
-
-    // $stmt->close();
-    // $conn->close();
-
+    
+    if ($stmt->execute()) {
+        $subject = 'Confirmación de Mensaje';
+        $body = "Hola $name,\n\nTu Mensaje ha sido enviado correctamente.\n\nGracias por comunicarte.";
+        if (sendEmail($email, $name, $subject, $body)) {
+            echo 'Mensaje enviado correctamente y correo de confirmación enviado.';
+        } else {
+            echo "Mensaje enviado correctamente, pero el correo de confirmación no pudo ser enviado.";
+        }
+    } else {
+        echo 'Hubo un error al enviar el mensaje.';
+    }
 } else {
     // Maneja otros métodos HTTP o devuelve un error
     http_response_code(405);

@@ -97,27 +97,17 @@ formulario.addEventListener('submit', function(e) {
             method: 'POST',
             body: formData
         })
-        .then(response => response.json())
-
         
-        .then(data => {
-            console.log('Success:', data);
-            // showMessage(data.message);
+        .then(response => response.text())
+        .then(text => {
+        //   console.log('Success:', text);
             limpiarInputs();
-
-            // showDatosMensaje(formData);
-
-            console.log(data.message);
-            alertMensaje.innerHTML = data.message;
+            alertMensaje.innerHTML = text;
             alertMensaje.classList.add('alert', 'alert-success', 'text-center');
             $(alertMensaje).hide().slideDown(500);
             setTimeout(() => {
                 $(alertMensaje).slideUp(500);
             },5000);
-
-            // btnEnviar.classList.add('d-none');
-            // nuevoMensaje.classList.remove('d-none');
-            // nuevoMensaje.classList.add('d-block');
 
         })
         .catch(error => {
