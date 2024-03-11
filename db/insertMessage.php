@@ -1,7 +1,7 @@
 <?php
 
 require_once('conexion.php');
-require_once('..lib/enviarCorreo.php');
+require_once('../lib/enviarCorreo.php');
 
 
 // Verifica que el método de la petición sea POST
