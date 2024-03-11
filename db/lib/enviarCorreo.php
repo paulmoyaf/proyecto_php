@@ -14,7 +14,8 @@ function sendEmail($email, $nombre, $subject, $body) {
 
     try {
         //Configuraciones del servidor
-        $mail->SMTPDebug = SMTP::DEBUG_OFF; // Habilitar salida de depuración detallada
+        // $mail->SMTPDebug = SMTP::DEBUG_OFF; // Habilitar salida de depuración detallada
+        $mail->SMTPDebug = SMTP::DEBUG_SERVER; // Habilitar salida de depuración detallada
         $mail->isSMTP(); // Enviar usando SMTP
         $mail->Host       = 'smtp.serviciodecorreo.es'; // Configurar el servidor SMTP para enviar a través de
         $mail->SMTPAuth   = true; // Habilitar autenticación SMTP
@@ -35,6 +36,7 @@ function sendEmail($email, $nombre, $subject, $body) {
         $mail->send();
         return true;
     } catch (Exception $e) {
+        echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
         return false;
     }
 }
