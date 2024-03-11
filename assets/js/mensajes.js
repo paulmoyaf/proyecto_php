@@ -148,7 +148,7 @@ function esNumeroValido(phone) {
 }
 
 function esMensajeValido(msn) {
-    const regex = /^[a-zA-Z0-9!@#\$%\^\&*\)\(<>,"`'?¿+=._-ñÑ\s]{10,}$/g;
+    const regex = /^[a-zA-Z0-9!@#\%\^\&*\)\(,"`'?¿+=._-ñÑ\s]{10,}$/g;
     // const regex = /^[a-zA-ZñÑ0-9\s]{10,}$/;
     return regex.test(msn);
 }

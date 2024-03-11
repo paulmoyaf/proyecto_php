@@ -26,9 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bindParam(3, $email);
     $stmt->bindParam(4, $msn);
     $stmt->bindParam(5, $currentTime);
-    $stmt->execute();
+    // $stmt->execute();
 
-    
     if ($stmt->execute()) {
         $subject = 'Confirmación de Mensaje';
         $encoded_subject = mb_encode_mimeheader($subject, 'UTF-8', 'B', "\r\n", strlen('Subject: '));
