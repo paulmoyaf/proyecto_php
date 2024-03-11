@@ -162,12 +162,12 @@ class ProductosDB{
         try{
             $db = getDBConnection();
             $sql = "DELETE FROM productos ";
-            $sql = $sql . " WHERE id = " .$producto->getId() . "";
+            $sql = $sql . "WHERE id = " .$producto->getId() . "";
             $resultado = $db->exec($sql);
             $_SESSION['mensaje'] = "Producto se ha borrrado exitosamente.";
             return $resultado;
         } catch (Exception $e){
-            echo "<p>Error:" .$e->getMessage() . "</p>\n";
+            // echo "<p>Error:" .$e->getMessage() . "</p>\n";
             return 0;
         }
     }

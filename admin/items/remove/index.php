@@ -1,7 +1,7 @@
+<!-- path de la página: /admin/items/remove/index.php -->
 <?php
 //esto no tiene las cookies
 session_start();
-
 
 $admin = false;
 if (isset($_SESSION['usuario']) && $_SESSION['usuario'] == "admin") {
@@ -33,14 +33,21 @@ if ($admin == true) {
             $producto = new Producto();
 
             $producto->setId($id);
+            // $id = $_SESSION['product_id'];
+            // $producto = ProductosDB::selectProducto($id);
+            // $nombre_tipo_producto = ProductosDB::obtenerNombreTipoProducto($producto->getTipoProductoId());
+            // $nombre_tipo_categoria = ProductosDB::obtenerNombreTipoCategoria($producto->getCategoriaId());
+            // $nombre_talla = ProductosDB::obtenerNombreTalla($producto->getTallaId());
+            
 
             if (ProductosDB::removeProduct($producto) > 0) {
 
                 require('remove-page-results.php');
                 exit;
             } else {
-                $messageError = "Error: No se ha podido completar la acción deseada";
-                require('remove-page.php');
+                $messageError = "Error: No se ha podido completar la acción deseada, el item puede estar siendo utilizado en una orden o no existe.";
+
+                require('remove-page-results-bad.php');
                 exit;
             }
         } else {

@@ -3,6 +3,8 @@
 
 <head>
     <title>Ver pedido</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
@@ -24,9 +26,9 @@
     </div>
     <hr>
 
-    <div class="mb-3">
+    <div class="my-3">
 
-        <div class="d-flex align-items-top gap-5">
+        <div class="d-flex align-items-top gap-5 flex-wrap">
 
             <div class="pedido-view">
                 <h4>Datos del Cliente:</h4>
@@ -63,7 +65,7 @@
 
             </div>
 
-            <div class="w-100">
+            <div class="">
                 <div>
                     <h4>Detalle del Pedido:</h4>
                     <div class="d-flex align-items-center gap-3">
@@ -84,7 +86,7 @@
                     <div class="d-flex align-items-center gap-3">
                         <label for="" class="form-label w-25 text-end">Estado del Pedido:</label>
                             <input type="hidden" name="id" value="<?= htmlspecialchars($cliente->getId()) ?>">
-                            <input id="status" type="checkbox" name="status" value="enviado" <?= $cliente->getEstado() == 'true' ? 'checked' : '' ?>>
+                            <input id="status" type="checkbox" name="status" value="enviado" <?= $cliente->getEstado() == 'true' ? 'checked' : '' ?> disabled>
                             <label for="status">Enviado</label>
                     </div>
 
@@ -92,7 +94,12 @@
                         <form method="post" action="index.php">
                             <input type="hidden" name="id" value="<?= htmlspecialchars($cliente->getId()) ?>">
                             <input type="hidden" name="estado" value="true">
-                            <button id="btn-actualizar" type="submit" class="btn btn-warning">Enviar Pedido</button>
+                            <button id="btn-enviar" type="submit" class="btn btn-warning">Enviar Pedido</button>
+                        </form>
+                        <form method="post" action="index.php">
+                            <input type="hidden" name="id" value="<?= htmlspecialchars($cliente->getId()) ?>">
+                            <input type="hidden" name="estado" value="false">
+                            <button id="btn-cancelar" type="submit" class="btn btn-danger">Cancelar Pedido</button>
                         </form>
                         <form method="post" action="index.php">
                             <input type="hidden" name="id" value="<?= htmlspecialchars($cliente->getId()) ?>">
@@ -140,6 +147,9 @@
 
         </div>
 
+    </div>
+
+    <div id="alerta-mensaje"></div>
         <div class="d-flex justify-content-between gap-3 row mx-5">
             <a class="btn btn-outline-secondary col" href="../../admin/pedidos/" role="button">Ver Todos los pedidos</a>
         </div>

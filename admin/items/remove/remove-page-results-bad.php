@@ -18,7 +18,12 @@
 
 <body class="container pt-5">
 
-    <div class="alert alert-success" role="alert">Se ha realizado la acción correctamente</div>
+        <?php
+
+        if (isset($messageError)) {
+            echo "<div class=\"alert alert-warning\" role=\"alert\">$messageError </div>\n";
+        }
+        ?>
    
     <a class="btn btn-outline-secondary" href="../../items/index.php" role="button">Regresar al Menú</a>
 

@@ -65,6 +65,7 @@ try {
                 throw new Exception("Invalid estado");
             }
             if(ClientesDB::cambiarEstadoCliente($id, $estado)) {
+                
                 header("Location: index.php"); 
                 exit;
             } else {
