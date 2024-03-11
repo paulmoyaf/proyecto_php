@@ -4,7 +4,7 @@
 // Importar PHPMailer classes al "namespace" global
 // Estos deben estar en la parte superior de tu script, no dentro de una función
 require_once('conexion.php');
-require_once('lib/enviarCorreo.php');
+require_once('..lib/enviarCorreo.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
