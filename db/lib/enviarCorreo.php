@@ -14,8 +14,8 @@ function sendEmail($email, $nombre, $subject, $body) {
 
     try {
         //Configuraciones del servidor
-        // $mail->SMTPDebug = SMTP::DEBUG_OFF; // Habilitar salida de depuración detallada
-        $mail->SMTPDebug = SMTP::DEBUG_SERVER; // Habilitar salida de depuración detallada
+        $mail->SMTPDebug = SMTP::DEBUG_OFF; // Habilitar salida de depuración detallada
+        // $mail->SMTPDebug = SMTP::DEBUG_SERVER; // Habilitar salida de depuración detallada
         $mail->isSMTP(); // Enviar usando SMTP
         $mail->Host       = 'smtp.serviciodecorreo.es'; // Configurar el servidor SMTP para enviar a través de
         $mail->SMTPAuth   = true; // Habilitar autenticación SMTP
