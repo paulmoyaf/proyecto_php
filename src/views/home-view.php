@@ -63,7 +63,7 @@
         <div class="col-md-3 col-sm-12 card p-sm-3">
           <h4 class="card-title"><?php echo $textos['proceso-4']; ?></h4>
           <div class="card-body">
-            <img class="card-img-top" src="../assets/img/iconos/pago_seguro.png" alt="Title">
+              <img class="card-img-top" src="../assets/img/iconos/pago_seguro.png" alt="Title">
             <p class="card-text pt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
             <a href="#" class="btn btn-outline-dark"><?php echo $textos['ver-mas']; ?></a>
           </div>

@@ -663,7 +663,9 @@ function actualizarProductoLocalStorage(producto, cantidad) {
 
 function actualizarCantidadLocalStorage() {
   const carritoProducts = obtenerProductosLocalStorage();
-  textContador.innerHTML = carritoProducts.length;
+  if (textContador){
+    textContador.innerHTML = carritoProducts.length;
+  }
 }
 
 function actualizarPrecioTotalLocalStorage() {

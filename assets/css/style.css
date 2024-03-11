@@ -48,6 +48,10 @@ body{
   left: 0;
 } */
 
+#status[disabled] + label::before {
+  background-color: blue;
+}
+
 .custom-width {
   width: 60%;
   margin: 0 auto;
@@ -217,8 +221,12 @@ font-size: small;
     border: 0px;
   }
 
+
+  
   #servicios img{
-    height: 4em;
+    width: 6em; 
+    height: 6em; 
+    object-fit: cover;
   }
 
 

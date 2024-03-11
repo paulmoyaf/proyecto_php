@@ -31,8 +31,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     if ($stmt->execute()) {
         $subject = 'Confirmación de Mensaje';
+        $encoded_subject = mb_encode_mimeheader($subject, 'UTF-8', 'B', "\r\n", strlen('Subject: '));
         $body = "Hola $name,\n\nTu Mensaje ha sido enviado correctamente.\n\nGracias por comunicarte.";
-        if (sendEmail($email, $name, $subject, $body)) {
+        $encoded_body = mb_convert_encoding($body, 'UTF-8', mb_detect_encoding($body));
+        if (sendEmail($email, $name, $encoded_subject, $encoded_body)) {
             echo 'Mensaje enviado correctamente y correo de confirmación enviado.';
         } else {
             echo "Mensaje enviado correctamente, pero el correo de confirmación no pudo ser enviado.";

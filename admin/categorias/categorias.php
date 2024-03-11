@@ -30,7 +30,7 @@
     <div class="">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="../../admin/index.php" class="text-dark font-bold">Menu</a>
+                <a href="../../admin/index.php" class="text-dark font-bold">Inicio</a>
             </li>
             <li class="breadcrumb-item active" aria-current="page">Categorias</li>
         </ol>

@@ -55,15 +55,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if ($stmt->execute()) {
-        $subject = 'Confirmación de pedido';
-        $body = "Hola $nombre,\n\nTu pedido ha sido enviado correctamente.\n\nGracias por tu compra.";
-        if (sendEmail($email, $nombre, $subject, $body)) {
-            echo 'Pedido enviado correctamente y correo de confirmación enviado.';
+        $subject = 'Confirmación de Pedido';
+        $encoded_subject = mb_encode_mimeheader($subject, 'UTF-8', 'B', "\r\n", strlen('Subject: '));
+        $body = "Hola $nombre,\n\nTu Pedido ha sido enviado correctamente.\n\nGracias por tu compra en Ilargi Creative.";
+        $encoded_body = mb_convert_encoding($body, 'UTF-8', mb_detect_encoding($body));
+        if (sendEmail($email, $nombre, $encoded_subject, $encoded_body)) {
+            echo 'Mensaje enviado correctamente y correo de confirmación enviado.';
         } else {
-            echo "Pedido enviado correctamente, pero el correo de confirmación no pudo ser enviado.";
+            echo "Mensaje enviado correctamente, pero el correo de confirmación no pudo ser enviado.";
         }
     } else {
-        echo 'Hubo un error al enviar el pedido.';
+        echo 'Hubo un error al enviar el mensaje.';
     }
     
 } else {

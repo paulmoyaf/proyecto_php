@@ -19,7 +19,7 @@
                     <a href='../admin/index.php'>
                         <img class="card-img-top logo" src="../assets/img/logo/logo.png" alt="Logo">
                     </a>
-                    <h1 class="h3 text-end">Menu - Administrador</h1>
+                    <h1 class="h3 text-end">Administrador</h1>
                     <button class="btn btn-warning btn-sm " onclick="window.location.href='logout.php'" style="height: fit-content">Cerrar Sesión</button>
 
                 </div>

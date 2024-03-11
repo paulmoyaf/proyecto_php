@@ -19,36 +19,37 @@ const ciudad = document.querySelector("#ciudad");
 const codigoPostal = document.querySelector("#codigoPostal");
 const statusCheck = document.querySelector('#status');
 
+
 const btnEnviar = document.querySelector('#btn-enviar');
 const btnCancelar = document.querySelector('#btn-cancelar');
 
-btnEnviar.addEventListener('click', function() {
-    alertMensaje.innerHTML = "El pedido ha sido actualizado";
-    alertMensaje.classList.add('alert', 'alert-success', 'text-center');
-    $(alertMensaje).hide().slideDown(500);
-    setTimeout(() => {
-        $(alertMensaje).slideUp(500);
-    }
-    ,5000);
-});
-
-btnCancelar.addEventListener('click', function() {
-    alertMensaje.innerHTML = "El pedido ha sido cancelado";
-    alertMensaje.classList.add('alert', 'alert-danger', 'text-center');
-    $(alertMensaje).hide().slideDown(500);
-    setTimeout(() => {
-        $(alertMensaje).slideUp(500);
-    }
-    ,5000);
-});
 
 
 if (btnEnviar || btnCancelar) {
-if (statusCheck.checked === true) {
-btnEnviar.disabled = true;}
-else{
-btnCancelar.disabled = true;
-}
+    btnEnviar.addEventListener('click', function() {
+        alertMensaje.innerHTML = "El pedido ha sido actualizado";
+        alertMensaje.classList.add('alert', 'alert-success', 'text-center');
+        $(alertMensaje).hide().slideDown(1500);
+        setTimeout(() => {
+            $(alertMensaje).slideUp(1000);
+        }
+        ,5000);
+    });
+    
+    btnCancelar.addEventListener('click', function() {
+        alertMensaje.innerHTML = "El pedido ha sido cancelado";
+        alertMensaje.classList.add('alert', 'alert-danger', 'text-center');
+        $(alertMensaje).hide().slideDown(1500);
+        setTimeout(() => {
+            $(alertMensaje).slideUp(1000);
+        }
+        ,5000);
+    });
+    if (statusCheck.checked === true) {
+    btnEnviar.disabled = true;}
+    else{
+    btnCancelar.disabled = true;
+    }
 }
 
 if (nombre) {
