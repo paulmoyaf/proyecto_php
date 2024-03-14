@@ -20,7 +20,7 @@ function sendEmail($email, $nombre, $subject, $body) {
         $mail->Host       = 'smtp.serviciodecorreo.es'; // Configurar el servidor SMTP para enviar a través de
         $mail->SMTPAuth   = true; // Habilitar autenticación SMTP
         $mail->Username   = 'info@paulmoyaf.com'; // Nombre de usuario SMTP
-        $mail->Password   = 'Paul!234'; // Contraseña SMTP
+        $mail->Password   = ''; // Contraseña SMTP Pa...34
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // Habilitar encriptación TLS; `PHPMailer::ENCRYPTION_SMTPS` alentó
         $mail->Port       = 465; // Puerto TCP para conectarse, use 465 para `PHPMailer::ENCRYPTION_SMTPS` arriba
 
